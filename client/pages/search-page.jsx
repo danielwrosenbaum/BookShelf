@@ -10,23 +10,26 @@ export default class SearchPage extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
 
   }
 
   handleChange() {
+    this.setState({ inputValue: event.target.value });
 
   }
 
   render() {
     return (
-      <div className = "container">
+      <div className = "search-container">
         <form>
           <label>
-            Search
-            <input type="text" name="search" />
+            <h1>Search</h1>
+            <input type="text" name="search" onChange={this.handleChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
         </form>
       </div>
     );
