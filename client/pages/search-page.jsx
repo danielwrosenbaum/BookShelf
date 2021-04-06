@@ -32,6 +32,7 @@ export default class SearchPage extends React.Component {
             <input type="submit" value="Submit" />
           </div>
         </form>
+        <button>Advanced Search</button>
       </div>
     );
   }
