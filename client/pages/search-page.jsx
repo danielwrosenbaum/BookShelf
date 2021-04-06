@@ -2,12 +2,16 @@ import React from 'react';
 import parseRoute from '../lib/parse-route';
 import AdvancedSearch from './advanced-search';
 
+const apiKey = 'key=AIzaSyAvazhS5IpqO0KVFL5XyOvDA-Gns7YyFJ8';
+const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
+
 export default class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       inputValue: '',
       isClicked: false,
+      data: [],
       route: parseRoute(window.location.hash)
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,6 +21,20 @@ export default class SearchPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // this.setState({ submitted: true });
+    // if (this.state.submitted) {
+    const query = this.state.inputValue;
+    fetch(bookURL + query + '&' + apiKey)
+      .then(res => res.json())
+      .then(
+        result => {
+          // console.log(result);
+          this.setState({
+            data: result
+          });
+        }
+      );
+    // }
 
   }
 
