@@ -11,6 +11,7 @@ export default class SearchPage extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
 
   }
 
@@ -21,8 +22,8 @@ export default class SearchPage extends React.Component {
 
   render() {
     return (
-      <div className = "search-container">
-        <form>
+      <div className="search-container">
+        <form className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <h1>Search</h1>
             <input type="text" name="search" onChange={this.handleChange} />
