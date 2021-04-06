@@ -1,11 +1,10 @@
 import React from 'react';
+import SearchPage from './search-page';
 
 export default function Home(props) {
   return (
     <>
-    <div className="page-container">
-      <form></form>
-    </div>
+    <SearchPage />
     </>
   );
 }
