@@ -1,5 +1,6 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
+import AdvancedSearch from './advanced-search';
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -33,8 +34,9 @@ export default class SearchPage extends React.Component {
   }
 
   render() {
+    if (this.state.isClicked) return <AdvancedSearch />;
     return (
-      <div className="search-container">
+      <div className="search-container home">
         <form className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="heading">Search</div>
@@ -44,7 +46,7 @@ export default class SearchPage extends React.Component {
             <input className="button submit" type="submit" value="Submit" />
           </div>
         </form>
-        <button onClick={this.handleAdvancedButton} className="button advanced">Advanced Search</button>
+        <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
       </div>
     );
   }

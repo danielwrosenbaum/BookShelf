@@ -1,6 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-image: linear-gradient(#f9f7f7 10%, #3f72af);
+  margin: none;
 }
 
 .heading {
@@ -10,11 +10,20 @@ body {
 }
 
 .search-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.home {
+  background-image: linear-gradient(#f9f7f7 10%, #3f72af);
+}
+
+.advanced {
+  background-image: linear-gradient(#f9f7f7 10%, #e63946);
 }
 
 .search-form {
@@ -53,7 +62,7 @@ body {
   height: 40px;
 }
 
-.advanced {
+.advanced-btn {
   background-color: #3f72af;
   color: #f9f7f7;
   width: 180px;
