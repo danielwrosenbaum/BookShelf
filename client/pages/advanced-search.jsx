@@ -12,7 +12,7 @@ export default class AdvancedSearch extends React.Component {
       inputAuthorValue: '',
       inputIsbnValue: '',
       results: false,
-      data: []
+      data: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -62,7 +62,7 @@ export default class AdvancedSearch extends React.Component {
   }
 
   render() {
-    if (this.state.results) return <Results />;
+    if (this.state.data) return <Results value={this.state.data} />;
     return (
       <div className="search-container advanced">
         <div className="heading two">Advanced Search</div>

@@ -18,6 +18,7 @@ export default class SearchPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAdvancedButton = this.handleAdvancedButton.bind(this);
+    this.handleResults = this.handleResults.bind(this);
   }
 
   handleSubmit(event) {
@@ -46,12 +47,19 @@ export default class SearchPage extends React.Component {
 
   }
 
-  render() {
+  handleResults() {
 
-    if (this.state.data) return <Results value={this.state.data} />;
+    return <Results value={this.state.data} />;
+  }
+
+  render() {
     if (this.state.isClicked) return <AdvancedSearch />;
+    // if (this.state.data) return <Results value={this.state.data} />;
+
     return (
-         <div className="search-container home">
+      (this.state.data)
+        ? <Results value={this.state.data} />
+        : <div className="search-container home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
               <div className="heading one">Search</div>
@@ -59,7 +67,7 @@ export default class SearchPage extends React.Component {
             </label>
             <div>
               <a href ="#results">
-                <input className="button submit" type="submit" value="Submit" />
+                <input className="button submit" type="submit" value="Submit" onSubmit={this.handleResults} />
               </a>
             </div>
           </form>
