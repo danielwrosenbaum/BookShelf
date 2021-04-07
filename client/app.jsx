@@ -6,6 +6,7 @@ import AppDrawer from './components/appdrawer';
 import Results from './pages/results';
 import AppContext from './lib/app-context';
 import PageContainer from './components/page-container';
+import Header from './components/header';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
+          <Header />
           <AppDrawer />
           <PageContainer>
             {this.renderPage()}
