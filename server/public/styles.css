@@ -1,0 +1,147 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.heading {
+  font-family: 'Raleway', sans-serif;
+}
+
+.one {
+  font-size: 3rem;
+  color: #f9f7f7;
+}
+
+.two {
+  font-size: 2rem;
+  color: #112d4e;
+}
+
+.three {
+  color: #112d4e;
+}
+
+.four {
+  font-size: 1.5rem;
+  color: #112d4e;
+}
+
+.search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.home {
+  background: linear-gradient(#f9f7f7 10%, #3f72af 65%, #112d4e  95%);
+}
+
+.advanced {
+  background-image: linear-gradient(#f9f7f7 10%, #ef7d85 65%, #e63946 95%);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 2rem;
+}
+
+.button,
+.text-box {
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 1rem;
+  border: none;
+  text-decoration: none;
+  box-shadow: 2px 2px 4px #112d4e;
+  font-size: 1rem;
+  outline: none;
+}
+
+.text-box {
+  background-color: #f9f7f7;
+  border-radius: 0.75rem;
+  width: 230px;
+  height: 35px;
+  font-size: 1rem;
+  margin: 1rem 0 2rem 0;
+  color: #112d4e;
+  text-align: center;
+}
+
+.submit {
+  background: linear-gradient(#f9f7f7 25%, #dbe2ef 95%);
+  color: #112d4e;
+  width: 100px;
+  height: 40px;
+}
+
+.advanced-btn {
+  background: linear-gradient(#f9f7f7bd 0, #3f72af 95%);
+  color: #f9f7f7;
+  width: 180px;
+  height: 40px;
+}
+
+.menu-icon {
+  position: fixed;
+  color: #112d4e;
+}
+
+.overlay {
+  background-color: #dbe2ef7e;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal {
+  border-right: solid #112d4e;
+  width: 40%;
+  height: 100vh;
+  background: linear-gradient(#f9f7f7 15%, #dbe2ef 55%, #3f72af 100%);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  margin: 1.5rem 5%;
+  text-decoration: none;
+}
+
+i:hover,
+.menu-item:hover {
+  cursor: pointer;
+  color: #a8dadc;
+}
+
+i:active,
+.menu-item:active {
+  transform: translateY(5px);
+  color: #112d4e;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #e63946;
+  background: linear-gradient(#f9f7f7 25%, #a8dadc 95%);
+}
+
+.button:active {
+  transform: translateY(5px);
+  background: linear-gradient(#f9f7f7 25%, #a8dadc 95%);
+  box-shadow: 0 5px #112d4e;
+  outline: none;
+}
