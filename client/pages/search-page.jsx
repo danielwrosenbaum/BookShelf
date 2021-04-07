@@ -13,7 +13,7 @@ export default class SearchPage extends React.Component {
       inputValue: '',
       isClicked: false,
       results: false,
-      data: []
+      data: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -47,26 +47,27 @@ export default class SearchPage extends React.Component {
   }
 
   render() {
+
+    if (this.state.data) return <Results value={this.state.data} />;
     if (this.state.isClicked) return <AdvancedSearch />;
-    if (this.state.results) return <Results />;
-    const contextValue = this.state.data;
     return (
-      <AppContext.Provider value={contextValue}>
-        <div className="search-container home">
+         <div className="search-container home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
               <div className="heading one">Search</div>
               <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
             </label>
             <div>
-              <input className="button submit" type="submit" value="Submit" />
+              <a href ="#results">
+                <input className="button submit" type="submit" value="Submit" />
+              </a>
             </div>
           </form>
           <a href="#advanced-search">
             <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
           </a>
         </div>
-      </AppContext.Provider>
+
     );
   }
 }
