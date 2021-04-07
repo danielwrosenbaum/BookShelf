@@ -40,11 +40,11 @@ body {
 }
 
 .home {
-  background-image: linear-gradient(#f9f7f7 10%, #3f72af);
+  background: linear-gradient(#f9f7f7 10%, #3f72af 65%, #112d4e  95%);
 }
 
 .advanced {
-  background-image: linear-gradient(#f9f7f7 10%, #e63946);
+  background-image: linear-gradient(#f9f7f7 10%, #ef7d85 65%, #e63946 95%);
 }
 
 .search-form {
@@ -92,29 +92,26 @@ body {
 
 .menu-icon {
   position: fixed;
+  color: #112d4e;
 }
 
 .overlay {
-  /* background-image: linear-gradient(#f9f7f780 10%, #3f71af83); */
-  background-color: rgba(128, 128, 128, 0.411);
+  background-color: #dbe2ef7e;
   position: fixed;
   width: 100%;
   height: 100vh;
 }
 
 .modal {
-  position: absolute;
-  border-style: none solid none none;
-  width: 33%;
+  border-right: solid #112d4e;
+  width: 40%;
   height: 100vh;
-  background-image: linear-gradient(#f9f7f7 15%, #dbe2ef);
+  background: linear-gradient(#f9f7f7 15%, #dbe2ef 55%, #3f72af 100%);
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  height: 25%;
 }
 
 .menu-item {
@@ -132,4 +129,10 @@ i:active,
 .menu-item:active {
   transform: translateY(5px);
   color: #112d4e;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #e63946;
+  background-color: #a8dadc;
 }

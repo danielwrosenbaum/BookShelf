@@ -53,7 +53,7 @@ export default class AppDrawer extends React.Component {
     const nonModalClass = this.overlay();
     return (
       <div className={nonModalClass} onClick={this.handleClick}>
-        <a className={buttonClass} onClick={this.handleClick}><i className="fas fa-bars fa-2x"></i></a>
+        <a className={buttonClass} onClick={this.handleClick}><i className="fas fa-bars fa-3x"></i></a>
         <div className={modalClass} onClick={this.handleClick}>
           <div className={'menu'}>
             <div className="heading two menu-item">Menu</div>

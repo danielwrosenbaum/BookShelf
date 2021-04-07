@@ -42,7 +42,8 @@ export default class AdvancedSearch extends React.Component {
             data: result
           });
         }
-      );
+      )
+      .catch(error => console.error(error));
   }
 
   handleChange(event) {

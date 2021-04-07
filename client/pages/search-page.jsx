@@ -30,8 +30,8 @@ export default class SearchPage extends React.Component {
             data: result
           });
         }
-      );
-    // }
+      )
+      .catch(error => console.error(error));
 
   }
 
@@ -49,7 +49,6 @@ export default class SearchPage extends React.Component {
     const contextValue = this.state.data;
     return (
       <AppContext.Provider value={contextValue}>
-
         <div className="search-container home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
@@ -63,7 +62,6 @@ export default class SearchPage extends React.Component {
           <a href="#advanced-search">
             <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
           </a>
-
         </div>
       </AppContext.Provider>
     );
