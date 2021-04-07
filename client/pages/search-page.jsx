@@ -60,7 +60,10 @@ export default class SearchPage extends React.Component {
               <input className="button submit" type="submit" value="Submit" />
             </div>
           </form>
-          <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
+          <a href="#advanced-search">
+            <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
+          </a>
+
         </div>
       </AppContext.Provider>
     );

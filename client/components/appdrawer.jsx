@@ -57,9 +57,15 @@ export default class AppDrawer extends React.Component {
         <div className={modalClass} onClick={this.handleClick}>
           <div className={'menu'}>
             <div className="heading two menu-item">Menu</div>
-            <div className="heading four menu-item">Search</div>
-            <div className="heading four menu-item">Library</div>
-            <div className="heading four menu-item">Reading List</div>
+            <a href="#search-page" className="heading four menu-item">
+              Search
+            </a>
+            <a href="#library" className="heading four menu-item">
+              Library
+            </a>
+            <a href="#reading-list" className="heading four menu-item">
+              Reading List
+            </a>
           </div>
         </div>
       </div>

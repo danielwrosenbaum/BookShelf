@@ -1,4 +1,5 @@
 import React from 'react';
+import parseRoute from '../lib/parse-route';
 
 const apiKey = 'key=AIzaSyAvazhS5IpqO0KVFL5XyOvDA-Gns7YyFJ8';
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -10,6 +11,7 @@ export default class AdvancedSearch extends React.Component {
       inputTitleValue: '',
       inputAuthorValue: '',
       inputIsbnValue: '',
+      route: parseRoute(window.location.hash),
       data: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
