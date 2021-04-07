@@ -1,4 +1,5 @@
 import React from 'react';
+import Results from './results';
 
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 const apiKey = process.env.API_KEY;
@@ -10,6 +11,7 @@ export default class AdvancedSearch extends React.Component {
       inputTitleValue: '',
       inputAuthorValue: '',
       inputIsbnValue: '',
+      results: false,
       data: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,6 +38,7 @@ export default class AdvancedSearch extends React.Component {
       .then(
         result => {
           this.setState({
+            results: true,
             data: result
           });
         }
@@ -59,6 +62,7 @@ export default class AdvancedSearch extends React.Component {
   }
 
   render() {
+    if (this.state.results) return <Results />;
     return (
       <div className="search-container advanced">
         <div className="heading two">Advanced Search</div>
