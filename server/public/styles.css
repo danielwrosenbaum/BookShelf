@@ -64,6 +64,7 @@ body {
   text-decoration: none;
   box-shadow: 2px 2px 4px #112d4e;
   font-size: 1rem;
+  outline: none;
 }
 
 .text-box {
@@ -134,5 +135,12 @@ i:active,
 .button:hover {
   cursor: pointer;
   color: #e63946;
-  background-color: #a8dadc;
+  background: linear-gradient(#f9f7f7 25%, #a8dadc 95%);
+}
+
+.button:active {
+  transform: translateY(5px);
+  background: linear-gradient(#f9f7f7 25%, #a8dadc 95%);
+  box-shadow: 0 5px #112d4e;
+  outline: none;
 }
