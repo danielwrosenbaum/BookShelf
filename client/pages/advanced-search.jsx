@@ -1,12 +1,16 @@
 import React from 'react';
 
+const apiKey = 'key=AIzaSyAvazhS5IpqO0KVFL5XyOvDA-Gns7YyFJ8';
+const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
+
 export default class AdvancedSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       inputTitleValue: '',
       inputAuthorValue: '',
-      inputIsbnValue: ''
+      inputIsbnValue: '',
+      data: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -14,6 +18,29 @@ export default class AdvancedSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let query;
+    let terms;
+    const name = event.target.name;
+    if (name === 'title') {
+      query = this.state.inputTitleValue;
+      terms = 'intitle';
+    } else if (name === 'author') {
+      query = this.state.inputAuthorValue;
+      terms = 'inauthor';
+    } else if (name === 'ISBN') {
+      query = this.state.inputIsbnValue;
+      terms = 'isbn';
+    }
+    fetch(bookURL + terms + ':' + query + '&' + apiKey)
+      .then(res => res.json())
+      .then(
+        result => {
+          // console.log(query, result);
+          this.setState({
+            data: result
+          });
+        }
+      );
   }
 
   handleChange(event) {
@@ -35,7 +62,7 @@ export default class AdvancedSearch extends React.Component {
     return (
       <div className="search-container advanced">
         <div className="adv-heading">Advanced Search</div>
-        <form className="search-form" onSubmit={this.handleSubmit}>
+        <form name="title" className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="search-heading">Search by Title</div>
             <input name="title" className="text-box" type="text" placeholder="Title Name..." required onChange={this.handleChange} />
@@ -44,7 +71,7 @@ export default class AdvancedSearch extends React.Component {
             </div>
           </label>
         </form>
-        <form className="search-form" onSubmit={this.handleSubmit}>
+        <form name="author" className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="search-heading">Search by Author</div>
             <input name="author" className="text-box" type="text" placeholder="Author Name..." required onChange={this.handleChange} />
@@ -53,7 +80,7 @@ export default class AdvancedSearch extends React.Component {
             </div>
           </label>
         </form>
-        <form className="search-form" onSubmit={this.handleSubmit}>
+        <form name="ISBN" className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="search-heading">Search by ISBN</div>
             <input name="ISBN" className="text-box" type="text" placeholder="ISBN number..." required onChange={this.handleChange} />

@@ -21,8 +21,6 @@ export default class SearchPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // this.setState({ submitted: true });
-    // if (this.state.submitted) {
     const query = this.state.inputValue;
     fetch(bookURL + query + '&' + apiKey)
       .then(res => res.json())
