@@ -3,19 +3,30 @@ body {
   margin: none;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .heading {
   font-family: 'Raleway', sans-serif;
+}
+
+.one {
   font-size: 3rem;
   color: #f9f7f7;
 }
 
-.adv-heading {
-  font-family: 'Raleway', sans-serif;
+.two {
   font-size: 2rem;
   color: #112d4e;
 }
 
-.search-heading {
+.three {
+  color: #112d4e;
+}
+
+.four {
+  font-size: 1.5rem;
   color: #112d4e;
 }
 
@@ -77,4 +88,49 @@ body {
   color: #f9f7f7;
   width: 180px;
   height: 40px;
+}
+
+.menu-icon {
+  position: fixed;
+}
+
+.overlay {
+  /* background-image: linear-gradient(#f9f7f780 10%, #3f71af83); */
+  background-color: rgba(128, 128, 128, 0.411);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal {
+  position: absolute;
+  border-style: none solid none none;
+  width: 33%;
+  height: 100vh;
+  background-image: linear-gradient(#f9f7f7 15%, #dbe2ef);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  /* margin: 0 10px; */
+  height: 25%;
+}
+
+.menu-item {
+  margin: 1.5rem 5%;
+}
+
+i:hover,
+.menu-item:hover {
+  cursor: pointer;
+  color: #a8dadc;
+}
+
+i:active,
+.menu-item:active {
+  transform: translateY(5px);
+  color: #112d4e;
 }
