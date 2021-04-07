@@ -59,10 +59,10 @@ body {
 .button,
 .text-box {
   font-family: 'Montserrat', sans-serif;
-  border-radius: 3rem;
+  border-radius: 1rem;
   border: none;
   text-decoration: none;
-  box-shadow: 1px 1px 3px #112d4e;
+  box-shadow: 2px 2px 4px #112d4e;
   font-size: 1rem;
 }
 
@@ -71,20 +71,20 @@ body {
   width: 230px;
   height: 35px;
   font-size: 1rem;
-  margin: 2rem;
+  margin: 1rem 0 2rem 0;
   color: #112d4e;
   text-align: center;
 }
 
 .submit {
-  background-color: #dbe2ef;
+  background: linear-gradient(#f9f7f7 25%, #dbe2ef 95%);
   color: #112d4e;
   width: 100px;
   height: 40px;
 }
 
 .advanced-btn {
-  background-color: #3f72af;
+  background: linear-gradient(#f9f7f7bd 0, #3f72af 95%);
   color: #f9f7f7;
   width: 180px;
   height: 40px;

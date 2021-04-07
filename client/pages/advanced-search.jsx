@@ -1,8 +1,7 @@
 import React from 'react';
-import parseRoute from '../lib/parse-route';
 
-const apiKey = 'key=AIzaSyAvazhS5IpqO0KVFL5XyOvDA-Gns7YyFJ8';
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
+const apiKey = process.env.API_KEY;
 
 export default class AdvancedSearch extends React.Component {
   constructor(props) {
@@ -11,7 +10,6 @@ export default class AdvancedSearch extends React.Component {
       inputTitleValue: '',
       inputAuthorValue: '',
       inputIsbnValue: '',
-      route: parseRoute(window.location.hash),
       data: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,11 +31,10 @@ export default class AdvancedSearch extends React.Component {
       query = this.state.inputIsbnValue;
       terms = 'isbn';
     }
-    fetch(bookURL + terms + ':' + query + '&' + apiKey)
+    fetch(bookURL + terms + ':' + query + '&' + 'key=' + apiKey)
       .then(res => res.json())
       .then(
         result => {
-          // console.log(query, result);
           this.setState({
             data: result
           });

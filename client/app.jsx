@@ -1,5 +1,4 @@
 import React from 'react';
-// import Home from './pages/home';
 import parseRoute from './lib/parse-route';
 import SearchPage from './pages/search-page';
 import AdvancedSearch from './pages/advanced-search';
@@ -37,6 +36,5 @@ export default class App extends React.Component {
     {this.renderPage()}
     </>
     );
-    /* return <Home />; */
   }
 }

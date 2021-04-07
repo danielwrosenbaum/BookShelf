@@ -6,7 +6,6 @@
   "main": "server/index.js",
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch --mode=development --devtool=source-map",
     "start": "node server/index.js",
     "dev": "npm-run-all --silent --parallel dev:*",
     "dev:client": "webpack serve --mode=development",

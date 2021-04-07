@@ -2,7 +2,7 @@ import React from 'react';
 import AdvancedSearch from './advanced-search';
 import AppContext from '../lib/app-context';
 
-const apiKey = 'key=AIzaSyAvazhS5IpqO0KVFL5XyOvDA-Gns7YyFJ8';
+const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 export default class SearchPage extends React.Component {
@@ -21,11 +21,10 @@ export default class SearchPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const query = this.state.inputValue;
-    fetch(bookURL + query + '&' + apiKey)
+    fetch(bookURL + query + '&' + 'key=' + apiKey)
       .then(res => res.json())
       .then(
         result => {
-          // console.log(result);
           this.setState({
             data: result
           });
