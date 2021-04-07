@@ -23,11 +23,12 @@ export default class Results extends React.Component {
             const year = parseInt(books.volumeInfo.publishedDate, 10);
             return (
               <div key={index} className="card">
-                <img src={thumbNail} alt={title} />
+                <img className="thumbnail" src={thumbNail} alt={title} />
                 <div className="book-info">
-                <div>{title}</div>
-                <div>{author}</div>
-                <div>{year}</div>
+                  <h2 className="heading three no-top">{title}</h2>
+                  <h3 className="heading three no-bottom">by {author}</h3>
+                  <div className="heading three">{year}</div>
+                  <button className="info button">More Info</button>
                 </div>
 
               </div>
