@@ -1,6 +1,7 @@
 import React from 'react';
 import AdvancedSearch from './advanced-search';
 import AppContext from '../lib/app-context';
+import Results from './results';
 
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -11,6 +12,7 @@ export default class SearchPage extends React.Component {
     this.state = {
       inputValue: '',
       isClicked: false,
+      results: false,
       data: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +28,8 @@ export default class SearchPage extends React.Component {
       .then(
         result => {
           this.setState({
-            data: result
+            data: result,
+            results: true
           });
         }
       )
@@ -45,6 +48,7 @@ export default class SearchPage extends React.Component {
 
   render() {
     if (this.state.isClicked) return <AdvancedSearch />;
+    if (this.state.results) return <Results />;
     const contextValue = this.state.data;
     return (
       <AppContext.Provider value={contextValue}>
