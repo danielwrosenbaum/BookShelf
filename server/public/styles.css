@@ -69,6 +69,7 @@ body {
 
 .text-box {
   background-color: #f9f7f7;
+  border-radius: 0.75rem;
   width: 230px;
   height: 35px;
   font-size: 1rem;
