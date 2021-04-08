@@ -35,27 +35,34 @@ export default class Details extends React.Component {
     const authors = this.handleAuthor(author);
     const year = parseInt(book.volumeInfo.publishedDate, 10);
     const text = book.volumeInfo.description;
-    const isbn = book.volumeInfo.industryIdentifiers[1].identifier;
-    // const category = book.volumeInfo.categories;
+    const isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+    const subTitle = book.volumeInfo.subtitle;
+    const category = book.volumeInfo.categories;
     const pages = book.volumeInfo.pageCount;
 
     // const description = this.handleDescription(text);
 
     return (
-      <div className="details-container">
-        <div className='details-pic-container'>
-          <img src={thumbNail} alt={title} />
+      <div className="details-page">
+        <div className="details-container">
+          <div className='details-pic-container'>
+            <img src={thumbNail} alt={title} />
+          </div>
+          <div className="book-details">
+            <div className="heading one-blue">{title}</div>
+            <div className="heading sub">{subTitle}</div>
+            <div className="heading four">by {authors}</div>
+            <div className="small-details">
+              <div className="heading three">{category}</div>
+              <div className="heading three">Published in {year}</div>
+              <div className="heading three">{pages} pages</div>
+              <div className="heading three">ISBN: {isbn}</div>
+              <p className="detail-description">{text}</p>
+            </div>
+          </div>
         </div>
-        <div className="book-details">
-          <div className="heading one-blue">{title}</div>
-          <div className="heading four">by {authors}</div>
-          <div className="heading three">Published in {year}</div>
-          <div className="heading three">{pages} pages</div>
-          <div className="heading three">ISBN: {isbn}</div>
-        </div>
-        <p className="detail-description">{text}</p>
-
       </div>
+
     );
   }
 }

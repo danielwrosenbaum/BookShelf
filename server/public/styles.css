@@ -48,6 +48,12 @@ body {
   color: #112d4e;
 }
 
+.sub {
+  color: #112d4e;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
 .search-container {
   width: 100%;
   display: flex;
@@ -62,18 +68,35 @@ body {
   margin-top: 4.5rem;
 }
 
-.details-container {
-  height: 100vh;
+.details-page {
+  min-height: 100vh;
   background: linear-gradient(#f9f7f7 35%, #dbe2ef 55%, #3f72af 100%);
+}
+
+.details-container {
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
 
+.details-pic-container {
+  margin: 1rem;
+  box-shadow: 1px 2px 4px;
+}
+
 .book-details {
   justify-content: center;
   text-align: center;
+}
+
+.small-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: #112d4e;
+  margin: 2rem 1rem;
 }
 
 .card {
@@ -101,11 +124,6 @@ body {
   width: fit-content;
   margin: 2rem;
   color: #112d4e;
-}
-
-.detail-description {
-  color: #112d4e;
-  margin: 1rem;
 }
 
 .home {
