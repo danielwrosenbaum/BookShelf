@@ -1,0 +1,21 @@
+.description {
+  display: none;
+}
+
+@media screen and (min-width: 575px) {
+  .description {
+    display: block;
+  }
+
+  .book-col {
+    width: 25%;
+  }
+
+  .info {
+    align-self: flex-end;
+  }
+
+  .thumbnail {
+    max-height: 200px;
+  }
+}

@@ -1,8 +1,5 @@
 import React from 'react';
 
-const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
-const apiKey = process.env.API_KEY;
-
 export default class AdvancedSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +7,9 @@ export default class AdvancedSearch extends React.Component {
       inputTitleValue: '',
       inputAuthorValue: '',
       inputIsbnValue: '',
-      data: []
+      searchTerm: '',
+      results: false,
+      data: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,31 +30,28 @@ export default class AdvancedSearch extends React.Component {
       query = this.state.inputIsbnValue;
       terms = 'isbn';
     }
-    fetch(bookURL + terms + ':' + query + '&' + 'key=' + apiKey)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            data: result
-          });
-        }
-      )
-      .catch(error => console.error(error));
+    window.location.hash = 'results?advsearch=' + terms + ':' + query;
   }
 
   handleChange(event) {
     const name = event.target.name;
+    const value = event.target.value;
     if (name === 'title') {
-      this.setState({ inputTitleValue: event.target.value });
-
+      this.setState({
+        inputTitleValue: value,
+        searchTerm: value
+      });
     } else if (name === 'author') {
-      this.setState({ inputAuthorValue: event.target.value });
-
+      this.setState({
+        inputAuthorValue: value,
+        searchTerm: value
+      });
     } else if (name === 'ISBN') {
-      this.setState({ inputIsbnValue: event.target.value });
-
+      this.setState({
+        inputIsbnValue: value,
+        searchTerm: value
+      });
     }
-
   }
 
   render() {

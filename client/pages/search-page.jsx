@@ -1,9 +1,5 @@
 import React from 'react';
 import AdvancedSearch from './advanced-search';
-import AppContext from '../lib/app-context';
-
-const apiKey = process.env.API_KEY;
-const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -11,7 +7,7 @@ export default class SearchPage extends React.Component {
     this.state = {
       inputValue: '',
       isClicked: false,
-      data: []
+      data: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,18 +16,7 @@ export default class SearchPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const query = this.state.inputValue;
-    fetch(bookURL + query + '&' + 'key=' + apiKey)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            data: result
-          });
-        }
-      )
-      .catch(error => console.error(error));
-
+    window.location.hash = 'results?search=' + this.state.inputValue;
   }
 
   handleChange(event) {
@@ -40,30 +25,23 @@ export default class SearchPage extends React.Component {
 
   handleAdvancedButton() {
     this.setState({ isClicked: true });
-
   }
 
   render() {
     if (this.state.isClicked) return <AdvancedSearch />;
-    const contextValue = this.state.data;
     return (
-      <AppContext.Provider value={contextValue}>
-        <div className="search-container home">
-          <form className="search-form" onSubmit={this.handleSubmit}>
-            <label>
-              <div className="heading one">Search</div>
-              <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
-            </label>
-            <div>
-              <input className="button submit" type="submit" value="Submit" />
-            </div>
-          </form>
-          <a href="#advanced-search">
-            <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
-          </a>
-        </div>
-      </AppContext.Provider>
+      <div className="search-container home">
+        <form className="search-form" onSubmit={this.handleSubmit}>
+          <label>
+            <div className="heading one">Search</div>
+            <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
+          </label>
+          <input className="button submit" type="submit" value="Submit" />
+        </form>
+        <a href="#advanced-search">
+          <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
+        </a>
+      </div>
     );
   }
 }
-SearchPage.contextType = AppContext;
