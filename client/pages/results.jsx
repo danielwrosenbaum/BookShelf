@@ -19,7 +19,12 @@ export default class Results extends React.Component {
     function getParams() {
       const newArr = [];
       for (const term of searchTerms) {
-        newArr.push(term[1]);
+        if (term[0] === 'search') {
+          newArr.push(term[1]);
+        } else {
+          const splitTerm = term[1].split(':');
+          newArr.push(splitTerm[1]);
+        }
       }
       return newArr;
     }

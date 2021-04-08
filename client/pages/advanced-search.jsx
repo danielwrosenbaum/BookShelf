@@ -30,7 +30,7 @@ export default class AdvancedSearch extends React.Component {
       query = this.state.inputIsbnValue;
       terms = 'isbn';
     }
-    window.location.hash = 'results?search=' + terms + ':' + query;
+    window.location.hash = 'results?advsearch=' + terms + ':' + query;
   }
 
   handleChange(event) {
