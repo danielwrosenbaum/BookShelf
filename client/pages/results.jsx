@@ -1,5 +1,4 @@
 import React from 'react';
-import AppContext from '../lib/app-context';
 import parseRoute from '../lib/parse-route';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -57,7 +56,6 @@ export default class Results extends React.Component {
         return joined;
       }
     }
-
   }
 
   render() {
@@ -67,7 +65,9 @@ export default class Results extends React.Component {
     const { results, inputValue } = this.state;
     const books = results.items;
     const bookResults = (
-      <div className="results-container">
+      (books)
+        ? <div className="results-container">
+
         {
           books.map((book, index) => {
             const title = book.volumeInfo.title;
@@ -82,8 +82,8 @@ export default class Results extends React.Component {
                   <img className="thumbnail" src={thumbNail} alt={title} />
                   <div className="book-col">
                     <div className="book-info">
-                      <h2 className="heading three no-top">{title}</h2>
-                      <h3 className="heading three no-top no-bottom">by {author}</h3>
+                      <h3 className="heading three no-top">{title}</h3>
+                      <h4 className="heading three no-top no-bottom">by {author}</h4>
                       <div className="heading three">{year}</div>
                     </div>
                     <button className="info button">More Info</button>
@@ -91,15 +91,15 @@ export default class Results extends React.Component {
                   <div className="description">{description}</div>
                 </div>
                 <div className="card-icons">
-                  <i className="fas fa-plus"></i>
-                  <i className="far fa-heart"></i>
+                  <i className="fas fa-plus fa-1x"></i>
+                  <i className="far fa-heart fa-1x"></i>
                 </div>
-
               </div>
             );
           })
         }
       </div>
+        : <div className="results-container heading two">Try again!</div>
     );
     return (
          <>
@@ -107,11 +107,10 @@ export default class Results extends React.Component {
           <div className="heading two-white">Results</div>
           <div className="heading">for {inputValue}</div>
         </div>
-        <div href="#results">
-          {bookResults}
-        </div>
+          <div href="#results">
+            {bookResults}
+          </div>
       </>
     );
   }
 }
-Results.contextType = AppContext;

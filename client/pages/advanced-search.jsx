@@ -51,9 +51,7 @@ export default class AdvancedSearch extends React.Component {
         inputIsbnValue: value,
         searchTerm: value
       });
-
     }
-
   }
 
   render() {
@@ -90,5 +88,4 @@ export default class AdvancedSearch extends React.Component {
       </div>
     );
   }
-
 }

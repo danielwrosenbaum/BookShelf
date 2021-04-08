@@ -10,10 +10,12 @@
   .book-col {
     width: 25%;
   }
-}
 
-
-/* @media screen and (min-width: 768px) {
-
+  .info {
+    align-self: flex-end;
   }
-} */
+
+  .thumbnail {
+    max-height: 200px;
+  }
+}
