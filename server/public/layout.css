@@ -1,0 +1,19 @@
+.description {
+  display: none;
+}
+
+@media screen and (min-width: 575px) {
+  .description {
+    display: block;
+  }
+
+  .book-col {
+    width: 25%;
+  }
+}
+
+
+/* @media screen and (min-width: 768px) {
+
+  }
+} */

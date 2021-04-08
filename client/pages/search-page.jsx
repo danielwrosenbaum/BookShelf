@@ -57,8 +57,9 @@ export default class SearchPage extends React.Component {
     // if (this.state.data) return <Results value={this.state.data} />;
 
     return (
-      (this.state.data)
-        ? <Results value={this.state.data} />
+      (this.state.results)
+        ? <Results value={{ data: this.state.data, inputValue: this.state.inputValue } }/>
+
         : <div className="search-container home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
