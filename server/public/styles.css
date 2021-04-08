@@ -66,8 +66,11 @@ body {
   display: flex;
 }
 
-.book-info {
+.book-col {
   margin: 0.5rem 0 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   /* margin-left: 1rem;
   margin-top: 0.5rem;
@@ -185,7 +188,7 @@ i:active,
 
 .info {
   /* position: absolute; */
-  margin-top: 2rem;
+  margin-top: 1rem;
   height: 2.5rem;
   width: 6rem;
   background-color: #e63946;
@@ -209,6 +212,7 @@ i:active,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-right: 0.5rem;
 
   /* float: right; */
 }
