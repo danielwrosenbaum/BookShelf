@@ -1,5 +1,6 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
+import Details from './details';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -8,10 +9,14 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
+      info: null,
+      detailsId: null,
+      isClicked: false,
       results: null
     };
     this.handleDescription = this.handleDescription.bind(this);
     this.handleAuthor = this.handleAuthor.bind(this);
+    this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
 
   componentDidMount() {
@@ -60,16 +65,31 @@ export default class Results extends React.Component {
     return author.join(', ');
   }
 
+  handleMoreInfo(event) {
+    const title = event.target.name;
+    const detailsId = event.target.id;
+    this.setState({
+      detailsId: detailsId,
+      isClicked: true,
+      info: title
+    });
+  }
+
   render() {
+    const isClicked = this.state.isClicked;
     if (!this.state.results) {
       return null;
     }
 
-    const { results, inputValue } = this.state;
+    const { results, inputValue, info, detailsId } = this.state;
     const books = results.items;
     if (!books) {
       return <div className="results-container heading two">Try again!</div>;
     }
+    if (isClicked) {
+      return <Details value={results} name={info} id={detailsId} />;
+    }
+
     const bookResults = (
          <div className="results-container">
         {
@@ -81,8 +101,9 @@ export default class Results extends React.Component {
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.handleDescription(text);
+            const googleId = book.id;
             return (
-              <div key={index} className="card">
+              <div key={index} name={title} className="card">
                 <div className="result-info">
                   <img className="thumbnail" src={thumbNail} alt={title} />
                   <div className="book-col">
@@ -91,7 +112,7 @@ export default class Results extends React.Component {
                       <h4 className="heading three no-top no-bottom">by {authors}</h4>
                       <div className="heading three">{year}</div>
                     </div>
-                    <button className="info button">More Info</button>
+                    <button id={googleId} name={title} className="info button" onClick={this.handleMoreInfo}>More Info</button>
                   </div>
                   <div className="description">{description}</div>
                 </div>
