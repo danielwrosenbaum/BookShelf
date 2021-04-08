@@ -43,44 +43,35 @@ export default class Results extends React.Component {
   }
 
   handleDescription(text) {
-    if (text) {
-      const newText = text.split(' ');
-      const newArr = [];
-      for (let i = 0; i < 60; i++) {
-        newArr.push(newText[i]);
-      }
-      if (newText.length > 60) {
-        const joined = newArr.join(' ');
-        return joined + '... (Click More Info to read more)';
-      } else {
-        const joined = newArr.join(' ');
-        return joined;
-      }
+    if (!text) {
+      return '';
+    }
+    const newText = text.split(' ').slice(0, 60);
+    if (newText.length === 60) {
+      const joined = newText.join(' ');
+      return joined + '... (Click More Info to read more)';
+    } else {
+      const joined = newText.join(' ');
+      return joined;
     }
   }
 
   handleAuthor(author) {
-    let returnedAuthor = author[0];
-    if (author.length > 1) {
-      for (let i = 1; i < author.length; i++) {
-        returnedAuthor += ', ' + author[i];
-      }
-      return returnedAuthor;
-    } else {
-      return author;
-    }
+    return author.join(', ');
   }
 
   render() {
     if (!this.state.results) {
       return null;
     }
+
     const { results, inputValue } = this.state;
     const books = results.items;
+    if (!books) {
+      return <div className="results-container heading two">Try again!</div>;
+    }
     const bookResults = (
-      (books)
-        ? <div className="results-container">
-
+         <div className="results-container">
         {
           books.map((book, index) => {
             const title = book.volumeInfo.title;
@@ -113,7 +104,6 @@ export default class Results extends React.Component {
           })
         }
       </div>
-        : <div className="results-container heading two">Try again!</div>
     );
     return (
          <>

@@ -88,4 +88,5 @@ export default class AdvancedSearch extends React.Component {
       </div>
     );
   }
+
 }
