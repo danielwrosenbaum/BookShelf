@@ -36,6 +36,9 @@ export default class Details extends React.Component {
     const year = parseInt(book.volumeInfo.publishedDate, 10);
     const text = book.volumeInfo.description;
     const isbn = book.volumeInfo.industryIdentifiers[1].identifier;
+    // const category = book.volumeInfo.categories;
+    const pages = book.volumeInfo.pageCount;
+
     // const description = this.handleDescription(text);
 
     return (
@@ -44,12 +47,13 @@ export default class Details extends React.Component {
           <img src={thumbNail} alt={title} />
         </div>
         <div className="book-details">
-          <h1 className="heading ">{title}</h1>
+          <div className="heading one-blue">{title}</div>
           <div className="heading four">by {authors}</div>
           <div className="heading three">Published in {year}</div>
+          <div className="heading three">{pages} pages</div>
           <div className="heading three">ISBN: {isbn}</div>
         </div>
-        <p>{text}</p>
+        <p className="detail-description">{text}</p>
 
       </div>
     );
