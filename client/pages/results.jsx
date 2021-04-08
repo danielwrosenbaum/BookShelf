@@ -5,9 +5,15 @@ export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      route: 'results'
 
     };
     this.handleDescription = this.handleDescription.bind(this);
+    this.changeHash = this.changeHash.bind(this);
+  }
+
+  changeHash() {
+    window.location.assign('#results');
   }
 
   handleDescription(text) {
@@ -29,6 +35,9 @@ export default class Results extends React.Component {
   }
 
   render() {
+    if (!this.props.value) {
+      return null;
+    }
     const { data, inputValue } = this.props.value;
     const books = data.items;
     const bookResults = (
@@ -68,15 +77,14 @@ export default class Results extends React.Component {
     );
     return (
       <>
-      <div className="result-title">
+        <div href="#results" className="result-title">
           <div className="heading two-white">Results</div>
           <div className="heading">for {inputValue}</div>
-      </div>
-
-      <div>
-        { bookResults}
-      </div>
-</>
+        </div>
+        <div href="#results">
+          {bookResults}
+        </div>
+      </>
     );
   }
 }

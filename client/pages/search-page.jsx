@@ -18,7 +18,7 @@ export default class SearchPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAdvancedButton = this.handleAdvancedButton.bind(this);
-    this.handleResults = this.handleResults.bind(this);
+
   }
 
   handleSubmit(event) {
@@ -35,7 +35,6 @@ export default class SearchPage extends React.Component {
         }
       )
       .catch(error => console.error(error));
-
   }
 
   handleChange(event) {
@@ -44,33 +43,22 @@ export default class SearchPage extends React.Component {
 
   handleAdvancedButton() {
     this.setState({ isClicked: true });
-
-  }
-
-  handleResults() {
-
-    return <Results value={this.state.data} />;
   }
 
   render() {
     if (this.state.isClicked) return <AdvancedSearch />;
-    // if (this.state.data) return <Results value={this.state.data} />;
-
     return (
-      (this.state.results)
-        ? <Results value={{ data: this.state.data, inputValue: this.state.inputValue } }/>
-
+      (this.state.data)
+        ? <Results value={{ data: this.state.data, inputValue: this.state.inputValue }} />
         : <div className="search-container home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
               <div className="heading one">Search</div>
               <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
             </label>
-            <div>
-              <a href ="#results">
-                <input className="button submit" type="submit" value="Submit" onSubmit={this.handleResults} />
-              </a>
-            </div>
+            <a href="#results">
+              <input className="button submit" type="submit" value="Submit" />
+            </a>
           </form>
           <a href="#advanced-search">
             <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
