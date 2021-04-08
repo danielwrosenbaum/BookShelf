@@ -8,6 +8,11 @@ export default class Details extends React.Component {
 
     };
     this.handleResult = this.handleResult.bind(this);
+    this.handleAuthor = this.handleAuthor.bind(this);
+  }
+
+  handleAuthor(author) {
+    return author.join(', ');
   }
 
   handleResult() {
@@ -22,11 +27,31 @@ export default class Details extends React.Component {
   }
 
   render() {
-    // const element = this.handleResult();
-    // console.log(element);
+    const book = this.handleResult();
+    // console.log(book);
+    const title = book.volumeInfo.title;
+    const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
+    const author = book.volumeInfo.authors;
+    const authors = this.handleAuthor(author);
+    const year = parseInt(book.volumeInfo.publishedDate, 10);
+    const text = book.volumeInfo.description;
+    const isbn = book.volumeInfo.industryIdentifiers[1].identifier;
+    // const description = this.handleDescription(text);
 
     return (
-      <div className="details-container"></div>
+      <div className="details-container">
+        <div className='details-pic-container'>
+          <img src={thumbNail} alt={title} />
+        </div>
+        <div className="book-details">
+          <h1 className="heading ">{title}</h1>
+          <div className="heading four">by {authors}</div>
+          <div className="heading three">Published in {year}</div>
+          <div className="heading three">ISBN: {isbn}</div>
+        </div>
+        <p>{text}</p>
+
+      </div>
     );
   }
 }
