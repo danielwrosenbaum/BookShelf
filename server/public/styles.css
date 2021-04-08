@@ -55,10 +55,15 @@ body {
 .card {
   /* position: relative; */
   display: flex;
+  justify-content: space-between;
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 1rem;
   background: linear-gradient(#f9f7f7 10%, #a8dadc 65%);
+}
+
+.result-info {
+  display: flex;
 }
 
 .book-info {
@@ -194,8 +199,18 @@ i:active,
 .thumbnail {
   max-width: fit-content;
   max-height: fit-content;
+  align-self: flex-start;
 
   /* height: 25%; */
+}
+
+.card-icons {
+  /* align-self: flex-end; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* float: right; */
 }
 
 .no-top {
