@@ -11,17 +11,19 @@ export default class Results extends React.Component {
   }
 
   handleDescription(text) {
-    const newText = text.split(' ');
-    const newArr = [];
-    for (let i = 0; i < 60; i++) {
-      newArr.push(newText[i]);
-    }
-    if (newText.length > 60) {
-      const joined = newArr.join(' ');
-      return joined + '... (Click More Info to read more)';
-    } else {
-      const joined = newArr.join(' ');
-      return joined;
+    if (text) {
+      const newText = text.split(' ');
+      const newArr = [];
+      for (let i = 0; i < 60; i++) {
+        newArr.push(newText[i]);
+      }
+      if (newText.length > 60) {
+        const joined = newArr.join(' ');
+        return joined + '... (Click More Info to read more)';
+      } else {
+        const joined = newArr.join(' ');
+        return joined;
+      }
     }
 
   }
@@ -40,7 +42,6 @@ export default class Results extends React.Component {
             const text = books.volumeInfo.description;
             const description = this.handleDescription(text);
             return (
-
               <div key={index} className="card">
                 <div className="result-info">
                   <img className="thumbnail" src={thumbNail} alt={title} />
@@ -67,7 +68,11 @@ export default class Results extends React.Component {
     );
     return (
       <>
-<div className="heading two result-title">Results for {inputValue}</div>
+      <div className="result-title">
+          <div className="heading two-white">Results</div>
+          <div className="heading">for {inputValue}</div>
+      </div>
+
       <div>
         { bookResults}
       </div>

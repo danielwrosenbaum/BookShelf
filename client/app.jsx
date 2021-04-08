@@ -43,7 +43,9 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
-          <Header />
+        {route.path !== 'search-page' &&
+        route.path !== 'advanced-search' &&
+          <Header />}
           <AppDrawer />
           <PageContainer>
             {this.renderPage()}

@@ -11,7 +11,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   background: linear-gradient(120deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
 }
 
@@ -27,6 +27,11 @@ body {
 .two {
   font-size: 2rem;
   color: #112d4e;
+}
+
+.two-white {
+  font-size: 2rem;
+  color: #f9f7f7;
 }
 
 .three {
@@ -49,11 +54,10 @@ body {
 
 .results-container {
   margin-bottom: 1rem;
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .card {
-  /* position: relative; */
   display: flex;
   justify-content: space-between;
   margin: 1rem;
@@ -71,8 +75,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  /* width: 25%; */
 }
 
 .description {
@@ -137,7 +139,7 @@ body {
   position: fixed;
   color: black;
   left: 1rem;
-  top: 0;
+  top: 0.5rem;
 }
 
 .overlay {
@@ -230,10 +232,15 @@ i:active,
 }
 
 .result-title {
-  position: relative;
+  position: fixed;
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
 
-  /* top: 0; */
-  z-index: 2;
+  /* z-index: 2; */
   text-align: center;
   color: #f9f7f7;
 }

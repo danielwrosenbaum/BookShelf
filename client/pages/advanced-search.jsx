@@ -11,6 +11,7 @@ export default class AdvancedSearch extends React.Component {
       inputTitleValue: '',
       inputAuthorValue: '',
       inputIsbnValue: '',
+      searchTerm: '',
       results: false,
       data: null
     };
@@ -48,23 +49,33 @@ export default class AdvancedSearch extends React.Component {
 
   handleChange(event) {
     const name = event.target.name;
+    const value = event.target.value;
     if (name === 'title') {
-      this.setState({ inputTitleValue: event.target.value });
-
+      this.setState({
+        inputTitleValue: value,
+        searchTerm: value
+      });
     } else if (name === 'author') {
-      this.setState({ inputAuthorValue: event.target.value });
-
+      this.setState({
+        inputAuthorValue: value,
+        searchTerm: value
+      });
     } else if (name === 'ISBN') {
-      this.setState({ inputIsbnValue: event.target.value });
+      this.setState({
+        inputIsbnValue: value,
+        searchTerm: value
+      });
 
     }
 
   }
 
   render() {
-    if (this.state.data) return <Results value={this.state.data} />;
     return (
-      <div className="search-container advanced">
+      (this.state.results)
+        ? <Results value={{ data: this.state.data, inputValue: this.state.searchTerm }} />
+
+        : <div className="search-container advanced">
         <div className="heading two">Advanced Search</div>
         <form name="title" className="search-form" onSubmit={this.handleSubmit}>
           <label>
