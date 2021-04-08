@@ -1,8 +1,4 @@
 import React from 'react';
-import Results from './results';
-
-const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
-const apiKey = process.env.API_KEY;
 
 export default class AdvancedSearch extends React.Component {
   constructor(props) {
@@ -34,17 +30,7 @@ export default class AdvancedSearch extends React.Component {
       query = this.state.inputIsbnValue;
       terms = 'isbn';
     }
-    fetch(bookURL + terms + ':' + query + '&' + 'key=' + apiKey)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            results: true,
-            data: result
-          });
-        }
-      )
-      .catch(error => console.error(error));
+    window.location.hash = 'results?search=' + terms + ':' + query;
   }
 
   handleChange(event) {
@@ -72,10 +58,7 @@ export default class AdvancedSearch extends React.Component {
 
   render() {
     return (
-      (this.state.results)
-        ? <Results value={{ data: this.state.data, inputValue: this.state.searchTerm }} />
-
-        : <div className="search-container advanced">
+      <div className="search-container advanced">
         <div className="heading two">Advanced Search</div>
         <form name="title" className="search-form" onSubmit={this.handleSubmit}>
           <label>

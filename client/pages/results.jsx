@@ -1,19 +1,40 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import parseRoute from '../lib/parse-route';
+const apiKey = process.env.API_KEY;
+const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: 'results'
-
+      route: parseRoute(window.location.hash),
+      results: null
     };
     this.handleDescription = this.handleDescription.bind(this);
-    this.changeHash = this.changeHash.bind(this);
   }
 
-  changeHash() {
-    window.location.assign('#results');
+  componentDidMount() {
+    const searchTerms = this.state.route.params;
+    function getParams() {
+      const newArr = [];
+      for (const term of searchTerms) {
+        newArr.push(term[1]);
+      }
+      return newArr;
+    }
+    const query = getParams();
+    fetch(bookURL + query + '&' + 'key=' + apiKey)
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            inputValue: query,
+            results: result
+          });
+        }
+      )
+      .catch(error => console.error(error));
   }
 
   handleDescription(text) {
@@ -35,20 +56,20 @@ export default class Results extends React.Component {
   }
 
   render() {
-    if (!this.props.value) {
+    if (!this.state.results) {
       return null;
     }
-    const { data, inputValue } = this.props.value;
-    const books = data.items;
+    const { results, inputValue } = this.state;
+    const books = results.items;
     const bookResults = (
       <div className="results-container">
         {
-          books.map((books, index) => {
-            const title = books.volumeInfo.title;
-            const thumbNail = books.volumeInfo.imageLinks.thumbnail;
-            const author = books.volumeInfo.authors;
-            const year = parseInt(books.volumeInfo.publishedDate, 10);
-            const text = books.volumeInfo.description;
+          books.map((book, index) => {
+            const title = book.volumeInfo.title;
+            const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
+            const author = book.volumeInfo.authors;
+            const year = parseInt(book.volumeInfo.publishedDate, 10);
+            const text = book.volumeInfo.description;
             const description = this.handleDescription(text);
             return (
               <div key={index} className="card">
@@ -76,7 +97,7 @@ export default class Results extends React.Component {
       </div>
     );
     return (
-      <>
+         <>
         <div href="#results" className="result-title">
           <div className="heading two-white">Results</div>
           <div className="heading">for {inputValue}</div>

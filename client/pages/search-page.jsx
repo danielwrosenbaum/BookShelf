@@ -1,10 +1,6 @@
 import React from 'react';
 import AdvancedSearch from './advanced-search';
 import AppContext from '../lib/app-context';
-import Results from './results';
-
-const apiKey = process.env.API_KEY;
-const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -23,18 +19,8 @@ export default class SearchPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const query = this.state.inputValue;
-    fetch(bookURL + query + '&' + 'key=' + apiKey)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            data: result,
-            results: true
-          });
-        }
-      )
-      .catch(error => console.error(error));
+    window.location.hash = 'results?search=' + this.state.inputValue;
+
   }
 
   handleChange(event) {
@@ -48,9 +34,7 @@ export default class SearchPage extends React.Component {
   render() {
     if (this.state.isClicked) return <AdvancedSearch />;
     return (
-      (this.state.data)
-        ? <Results value={{ data: this.state.data, inputValue: this.state.inputValue }} />
-        : <div className="search-container home">
+       <div className="search-container home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
               <div className="heading one">Search</div>
