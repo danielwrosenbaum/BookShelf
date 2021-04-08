@@ -11,6 +11,7 @@ export default class Results extends React.Component {
       results: null
     };
     this.handleDescription = this.handleDescription.bind(this);
+    this.handleAuthor = this.handleAuthor.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +59,18 @@ export default class Results extends React.Component {
     }
   }
 
+  handleAuthor(author) {
+    let returnedAuthor = author[0];
+    if (author.length > 1) {
+      for (let i = 1; i < author.length; i++) {
+        returnedAuthor += ', ' + author[i];
+      }
+      return returnedAuthor;
+    } else {
+      return author;
+    }
+  }
+
   render() {
     if (!this.state.results) {
       return null;
@@ -73,6 +86,7 @@ export default class Results extends React.Component {
             const title = book.volumeInfo.title;
             const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
             const author = book.volumeInfo.authors;
+            const authors = this.handleAuthor(author);
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.handleDescription(text);
@@ -83,7 +97,7 @@ export default class Results extends React.Component {
                   <div className="book-col">
                     <div className="book-info">
                       <h3 className="heading three no-top">{title}</h3>
-                      <h4 className="heading three no-top no-bottom">by {author}</h4>
+                      <h4 className="heading three no-top no-bottom">by {authors}</h4>
                       <div className="heading three">{year}</div>
                     </div>
                     <button className="info button">More Info</button>
