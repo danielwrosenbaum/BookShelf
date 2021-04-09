@@ -14,6 +14,7 @@ export default class Results extends React.Component {
     };
     this.handleDescription = this.handleDescription.bind(this);
     this.handleAuthor = this.handleAuthor.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   componentDidMount() {
@@ -62,6 +63,10 @@ export default class Results extends React.Component {
     return author.join(', ');
   }
 
+  handleSave() {
+    this.setState({ isSaveClicked: true });
+  }
+
   render() {
     const { results, inputValue } = this.state;
     if (!this.state.results) {
@@ -101,7 +106,7 @@ export default class Results extends React.Component {
                 </div>
                 <div className="card-icons">
                   <i className="fas fa-plus fa-1x"></i>
-                  <i className="far fa-heart fa-1x"></i>
+                  <i className="far fa-heart fa-1x" onClick={this.handleSave}></i>
                 </div>
               </div>
             );
