@@ -7,6 +7,7 @@ export default class Details extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
+      isSaveClicked: false,
       inputValue: null,
       result: null
     };
@@ -53,6 +54,10 @@ export default class Details extends React.Component {
 
   renderedDescription() {
     return <p dangerouslySetInnerHTML={this.renderDescription()} />;
+  }
+
+  handleSave() {
+
   }
 
   render() {
