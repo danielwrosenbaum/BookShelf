@@ -9,6 +9,7 @@ export default class Details extends React.Component {
     };
     this.handleResult = this.handleResult.bind(this);
     this.handleAuthor = this.handleAuthor.bind(this);
+    // this.handleBack = this.handleBack.bind(this);
   }
 
   handleAuthor(author) {
@@ -31,6 +32,7 @@ export default class Details extends React.Component {
   // }
 
   render() {
+    // console.log('props:', this.props);
     const book = this.handleResult();
     const title = book.volumeInfo.title;
     const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
@@ -46,6 +48,7 @@ export default class Details extends React.Component {
     return (
       <div className="details-page">
         <div className="details-container">
+
           <div className='details-pic-container'>
             <img src={thumbNail} alt={title} />
           </div>

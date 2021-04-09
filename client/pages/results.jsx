@@ -68,7 +68,7 @@ export default class Results extends React.Component {
   handleMoreInfo(event) {
 
     const title = event.target.name;
-    // window.location.hash = 'details?result=' + title;
+
     const detailsId = event.target.id;
     this.setState({
       detailsId: detailsId,
@@ -82,17 +82,14 @@ export default class Results extends React.Component {
     if (!this.state.results) {
       return null;
     }
-
     const { results, inputValue, info, detailsId } = this.state;
     const books = results.items;
     if (!books) {
       return <div className="results-container heading two">Try again!</div>;
     }
     if (isClicked) {
-
       return <Details value={results} name={info} id={detailsId} />;
     }
-
     const bookResults = (
       <div className="results-container">
         {
@@ -137,7 +134,7 @@ export default class Results extends React.Component {
           <div className="heading two-white">Results</div>
           <div className="heading">for {inputValue}</div>
         </div>
-        <div href="#results">
+        <div>
           {bookResults}
         </div>
       </>

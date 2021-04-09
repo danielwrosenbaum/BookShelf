@@ -14,6 +14,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
+      resultsData: null,
       data: null
     };
   }
@@ -25,6 +26,10 @@ export default class App extends React.Component {
     );
   }
 
+  handleData(event) {
+    this.setState({ resultsData: event });
+  }
+
   renderPage() {
     const { route } = this.state;
     if (route.path === 'search-page') {
@@ -34,7 +39,7 @@ export default class App extends React.Component {
       return <AdvancedSearch />;
     }
     if (route.path === 'results') {
-      return <Results />;
+      return <Results handleData={this.handleData} />;
     }
     if (route.path === 'details') {
       return <Details />;
