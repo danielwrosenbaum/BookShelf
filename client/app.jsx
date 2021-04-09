@@ -26,10 +26,6 @@ export default class App extends React.Component {
     );
   }
 
-  handleData(event) {
-    this.setState({ resultsData: event });
-  }
-
   renderPage() {
     const { route } = this.state;
     if (route.path === 'search-page') {
@@ -39,7 +35,7 @@ export default class App extends React.Component {
       return <AdvancedSearch />;
     }
     if (route.path === 'results') {
-      return <Results handleData={this.handleData} />;
+      return <Results />;
     }
     if (route.path === 'details') {
       return <Details />;
