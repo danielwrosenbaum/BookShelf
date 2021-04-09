@@ -254,13 +254,21 @@ body {
   text-decoration: none;
 }
 
-i:hover,
+i:hover {
+  cursor: pointer;
+  color: #e63946;
+}
+
+i:active {
+  transform: translateY(5px);
+  color: #e63946;
+}
+
 .menu-item:hover {
   cursor: pointer;
   color: #a8dadc;
 }
 
-i:active,
 .menu-item:active {
   transform: translateY(5px);
   color: #112d4e;

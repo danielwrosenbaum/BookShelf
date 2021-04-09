@@ -64,7 +64,13 @@ export default class Results extends React.Component {
   }
 
   handleSave() {
-    this.setState({ isSaveClicked: true });
+    const clicked = this.state.isSaveClicked;
+    if (!clicked) {
+      this.setState({ isSaveClicked: true });
+      setTimeout(() => {
+        this.setState({ isSaveClicked: false });
+      }, 4000);
+    }
   }
 
   render() {

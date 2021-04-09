@@ -65,7 +65,6 @@ export default class Details extends React.Component {
         this.setState({ isSaveClicked: false });
       }, 4000);
     }
-
   }
 
   render() {
