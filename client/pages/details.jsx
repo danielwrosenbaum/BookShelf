@@ -77,16 +77,32 @@ export default class Details extends React.Component {
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />
             </div>
+
             <div className="book-details">
               <div className="heading one-blue">{title}</div>
               <div className="heading sub">{subTitle}</div>
               <div className="heading four">by {authors}</div>
               <div className="small-details">
-                <div className="heading three">{category}</div>
-                <div className="heading three">Published in {year}</div>
-                <div className="heading three">{pages} pages</div>
-                <div className="heading three">ISBN: {isbn}</div>
-                {this.renderedDescription()}
+                <div className="heading four bold">Book Details</div>
+                <div className="small-details-insert">
+                  <div className="three">
+                    <span className="semi-bold">Genre: </span>
+                    {category}</div>
+                  <div className="three">
+                    <span className="semi-bold">Published: </span>
+                  {year}</div>
+                  <div className="three">
+                    <span className="semi-bold">Pages: </span>
+                    {pages}</div>
+                  <div className="three">
+                    <span className="semi-bold">ISBN: </span>
+                    {isbn}</div>
+                </div>
+                <div className="description-container">
+                  <div className="heading four bold">Description</div>
+                  {this.renderedDescription()}
+                </div>
+
               </div>
             </div>
             <div className="button-container">

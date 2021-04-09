@@ -1,5 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
   margin: 0;
 }
 
@@ -17,6 +18,7 @@ body {
 
 .heading {
   font-family: 'Raleway', sans-serif;
+  font-weight: 400;
 }
 
 .one-blue {
@@ -94,6 +96,14 @@ body {
   width: 90%;
 }
 
+.semi-bold {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
+}
+
 .details-button {
   width: 125px;
   height: 50px;
@@ -126,6 +136,10 @@ body {
   text-align: left;
   color: #112d4e;
   margin: 2rem 1rem;
+}
+
+.small-details-insert {
+  margin: 1rem;
 }
 
 .card {
