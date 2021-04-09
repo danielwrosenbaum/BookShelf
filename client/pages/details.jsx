@@ -14,6 +14,7 @@ export default class Details extends React.Component {
     this.handleAuthor = this.handleAuthor.bind(this);
     this.renderDescription = this.renderDescription.bind(this);
     this.rendered = this.renderedDescription.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleAuthor(author) {
@@ -57,6 +58,7 @@ export default class Details extends React.Component {
   }
 
   handleSave() {
+    this.setState({ isSaveClicked: true });
 
   }
 
@@ -112,7 +114,7 @@ export default class Details extends React.Component {
             </div>
             <div className="button-container">
               <button className="details-button add-list">Add to List</button>
-              <button className="details-button add-lib">Read it!</button>
+              <button className="details-button add-lib" onClick={this.handleSave}>Read it!</button>
             </div>
           </div>
         </div>
