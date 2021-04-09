@@ -68,6 +68,7 @@ export default class Details extends React.Component {
   }
 
   render() {
+    const saveClick = this.state.isSaveClicked;
     const book = this.state.result;
     if (!book) return null;
     const title = book.volumeInfo.title;
@@ -81,9 +82,15 @@ export default class Details extends React.Component {
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-        <div className="details-title">
-          <div className="heading two-white">Details</div>
-        </div>
+      {(saveClick) &&
+      <div className="save-header header">
+          <div className="details-title">Nice! <span className="italic">{title} </span>is Now Saved in Your Library!</div>
+        </div>}
+        {(!saveClick) &&
+          <div className="details-title">
+            <div className="heading two-white">Details</div>
+          </div>}
+
         <div className="details-page">
           <div className="details-container">
             <div className='details-pic-container'>

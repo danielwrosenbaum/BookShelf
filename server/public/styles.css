@@ -16,6 +16,14 @@ body {
   background: linear-gradient(120deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
 }
 
+.save-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  background: linear-gradient(#f9f7f7 0%, #e63946 100%);
+}
+
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
@@ -53,6 +61,10 @@ body {
 .sub {
   color: #112d4e;
   font-size: 1.5rem;
+  font-style: italic;
+}
+
+.italic {
   font-style: italic;
 }
 
