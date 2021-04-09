@@ -43,10 +43,10 @@ export default class Details extends React.Component {
       .catch(error => console.error(error));
   }
 
-  renderDescription(text) {
+  renderDescription() {
     const book = this.state.result;
     if (!book) return null;
-    text = book.volumeInfo.description;
+    const text = book.volumeInfo.description;
     const clean = DOMPurify.sanitize(text);
     return { __html: clean };
   }
