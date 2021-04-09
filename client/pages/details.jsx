@@ -46,6 +46,11 @@ export default class Details extends React.Component {
     const pages = book.volumeInfo.pageCount;
 
     return (
+      <>
+       <div className="details-title">
+          <div className="heading two-white">More Info</div>
+          {/* <div className="heading">for {inputValue}</div> */}
+        </div>
       <div className="details-page">
         <div className="details-container">
 
@@ -70,6 +75,7 @@ export default class Details extends React.Component {
           </div>
         </div>
       </div>
+      </>
 
     );
   }
