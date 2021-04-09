@@ -86,9 +86,28 @@ body {
   box-shadow: 1px 2px 4px;
 }
 
+.button-container {
+  position: fixed;
+  top: 92%;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.details-button {
+  width: 125px;
+  height: 50px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
 .book-details {
   justify-content: center;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .small-details {

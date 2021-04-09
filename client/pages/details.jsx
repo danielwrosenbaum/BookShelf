@@ -60,6 +60,10 @@ export default class Details extends React.Component {
               <p className="detail-description">{text}</p>
             </div>
           </div>
+          <div className="button-container">
+            <button className="details-button">Add to List</button>
+            <button className="details-button">Read it!</button>
+          </div>
         </div>
       </div>
 
