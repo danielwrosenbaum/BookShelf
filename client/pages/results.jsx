@@ -74,6 +74,7 @@ export default class Results extends React.Component {
   }
 
   render() {
+    const saveClick = this.state.isSaveClicked;
     const { results, inputValue } = this.state;
     if (!this.state.results) {
       return null;
@@ -122,10 +123,16 @@ export default class Results extends React.Component {
     );
     return (
       <>
-        <div className="result-title">
-          <div className="heading two-white">Results</div>
-          <div className="heading">for {inputValue}</div>
-        </div>
+        {(saveClick) &&
+          <div className="save-header heading five">
+            <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+          </div>}
+          {(!saveClick) &&
+          <div className="result-title">
+            <div className="heading two-white">Results</div>
+            <div className="heading">for {inputValue}</div>
+          </div>}
+
         <div>
           {bookResults}
         </div>

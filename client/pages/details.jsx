@@ -84,7 +84,7 @@ export default class Details extends React.Component {
       <>
       {(saveClick) &&
       <div className="save-header heading five">
-          <div className="save-title">Nice! <span className="italic">{title} </span>is Now Saved in Your Library!</div>
+          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
         </div>}
         {(!saveClick) &&
           <div className="details-title">
