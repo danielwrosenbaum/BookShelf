@@ -17,7 +17,6 @@ export default class Details extends React.Component {
 
   handleResult() {
     const results = this.props.value;
-    // const title = this.props.name;
     const detailsId = this.props.id;
     for (let i = 0; i < results.items.length; i++) {
       if (results.items[i].id === detailsId) {
@@ -26,9 +25,13 @@ export default class Details extends React.Component {
     }
   }
 
+  // handleBack() {
+  //   const title = this.props.name;
+  //   window.location.hash = 'results?search=' + title;
+  // }
+
   render() {
     const book = this.handleResult();
-    // console.log(book);
     const title = book.volumeInfo.title;
     const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
     const author = book.volumeInfo.authors;
@@ -39,8 +42,6 @@ export default class Details extends React.Component {
     const subTitle = book.volumeInfo.subtitle;
     const category = book.volumeInfo.categories;
     const pages = book.volumeInfo.pageCount;
-
-    // const description = this.handleDescription(text);
 
     return (
       <div className="details-page">
@@ -61,8 +62,8 @@ export default class Details extends React.Component {
             </div>
           </div>
           <div className="button-container">
-            <button className="details-button">Add to List</button>
-            <button className="details-button">Read it!</button>
+            <button className="details-button add-list">Add to List</button>
+            <button className="details-button add-lib">Read it!</button>
           </div>
         </div>
       </div>

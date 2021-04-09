@@ -66,7 +66,9 @@ export default class Results extends React.Component {
   }
 
   handleMoreInfo(event) {
+
     const title = event.target.name;
+    // window.location.hash = 'details?result=' + title;
     const detailsId = event.target.id;
     this.setState({
       detailsId: detailsId,
@@ -87,11 +89,12 @@ export default class Results extends React.Component {
       return <div className="results-container heading two">Try again!</div>;
     }
     if (isClicked) {
+
       return <Details value={results} name={info} id={detailsId} />;
     }
 
     const bookResults = (
-         <div className="results-container">
+      <div className="results-container">
         {
           books.map((book, index) => {
             const title = book.volumeInfo.title;
@@ -112,7 +115,9 @@ export default class Results extends React.Component {
                       <h4 className="heading three no-top no-bottom">by {authors}</h4>
                       <div className="heading three">{year}</div>
                     </div>
-                    <button id={googleId} name={title} className="info button" onClick={this.handleMoreInfo}>More Info</button>
+                    {/* <a href="#details"> */}
+                      <button id={googleId} name={title} className="info button" onClick={this.handleMoreInfo}>More Info</button>
+                    {/* </a> */}
                   </div>
                   <div className="description">{description}</div>
                 </div>
@@ -127,14 +132,14 @@ export default class Results extends React.Component {
       </div>
     );
     return (
-         <>
+      <>
         <div href="#results" className="result-title">
           <div className="heading two-white">Results</div>
           <div className="heading">for {inputValue}</div>
         </div>
-          <div href="#results">
-            {bookResults}
-          </div>
+        <div href="#results">
+          {bookResults}
+        </div>
       </>
     );
   }

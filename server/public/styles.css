@@ -104,6 +104,16 @@ body {
   outline: none;
 }
 
+.add-list {
+  background: linear-gradient(#f9f7f7 0%, #3f72af 65%);
+  color: #f9f9f9;
+}
+
+.add-lib {
+  background: linear-gradient(#f9f7f7 0%, #e63946 65%);
+  color: #f9f7f7;
+}
+
 .book-details {
   justify-content: center;
   text-align: center;
@@ -242,13 +252,17 @@ i:active,
   color: #112d4e;
 }
 
-.button:hover {
+.button:hover,
+.add-list:hover,
+.add-lib:hover {
   cursor: pointer;
   color: #e63946;
   background: linear-gradient(#f9f7f7 25%, #a8dadc 95%);
 }
 
-.button:active {
+.button:active,
+.add-lib:active,
+.add-list:active {
   transform: translateY(5px);
   background: linear-gradient(#f9f7f7 25%, #a8dadc 95%);
   box-shadow: 0 5px #112d4e;
@@ -261,6 +275,8 @@ i:active,
   height: 2rem;
   width: 6rem;
   background-color: #e63946;
+
+  /* background: linear-gradient(#f9f7f7 0%, #e63946 70%); */
   color: #f9f7f7;
   align-self: flex-start;
   border-radius: 0.75rem;
