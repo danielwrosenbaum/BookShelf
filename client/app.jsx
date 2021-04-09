@@ -7,6 +7,7 @@ import Results from './pages/results';
 import AppContext from './lib/app-context';
 import PageContainer from './components/page-container';
 import Header from './components/header';
+import Details from './pages/details';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'results') {
       return <Results />;
+    }
+    if (route.path === 'details') {
+      return <Details />;
     }
   }
 

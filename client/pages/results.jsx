@@ -8,6 +8,7 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
+      inputValue: null,
       results: null
     };
     this.handleDescription = this.handleDescription.bind(this);
@@ -49,7 +50,7 @@ export default class Results extends React.Component {
     const newText = text.split(' ').slice(0, 60);
     if (newText.length === 60) {
       const joined = newText.join(' ');
-      return joined + '... (Click More Info to read more)';
+      return joined + '... (Click "Details" to read more)';
     } else {
       const joined = newText.join(' ');
       return joined;
@@ -61,17 +62,16 @@ export default class Results extends React.Component {
   }
 
   render() {
+    const { results, inputValue } = this.state;
     if (!this.state.results) {
       return null;
     }
-
-    const { results, inputValue } = this.state;
     const books = results.items;
     if (!books) {
       return <div className="results-container heading two">Try again!</div>;
     }
     const bookResults = (
-         <div className="results-container">
+      <div className="results-container">
         {
           books.map((book, index) => {
             const title = book.volumeInfo.title;
@@ -81,8 +81,9 @@ export default class Results extends React.Component {
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.handleDescription(text);
+            const googleId = book.id;
             return (
-              <div key={index} className="card">
+              <div key={index} name={title} className="card">
                 <div className="result-info">
                   <img className="thumbnail" src={thumbNail} alt={title} />
                   <div className="book-col">
@@ -91,7 +92,9 @@ export default class Results extends React.Component {
                       <h4 className="heading three no-top no-bottom">by {authors}</h4>
                       <div className="heading three">{year}</div>
                     </div>
-                    <button className="info button">More Info</button>
+                    <a href={`#details?bookId=${googleId}`}>
+                    <button id={googleId} name={title} className="info button">Details</button>
+                    </a>
                   </div>
                   <div className="description">{description}</div>
                 </div>
@@ -106,14 +109,14 @@ export default class Results extends React.Component {
       </div>
     );
     return (
-         <>
-        <div href="#results" className="result-title">
+      <>
+        <div className="result-title">
           <div className="heading two-white">Results</div>
           <div className="heading">for {inputValue}</div>
         </div>
-          <div href="#results">
-            {bookResults}
-          </div>
+        <div>
+          {bookResults}
+        </div>
       </>
     );
   }
