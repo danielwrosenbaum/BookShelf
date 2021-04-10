@@ -9,7 +9,8 @@ export default class Details extends React.Component {
       route: parseRoute(window.location.hash),
       isSaveClicked: false,
       inputValue: null,
-      result: null
+      result: null,
+      info: null
     };
     this.handleAuthor = this.handleAuthor.bind(this);
     this.renderDescription = this.renderDescription.bind(this);
@@ -36,9 +37,16 @@ export default class Details extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+          const authors = this.handleAuthor(result.volumeInfo.authors);
           this.setState({
             inputValue: query,
-            result: result
+            result: result,
+            info: {
+              title: result.volumeInfo.title,
+              author: authors,
+              coverUrl: result.volumeInfo.imageLinks.thumbnail,
+              googleId: result.id
+            }
           });
         }
       )
@@ -59,8 +67,18 @@ export default class Details extends React.Component {
 
   handleSave() {
     const clicked = this.state.isSaveClicked;
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.info)
+    };
+    fetch('/api/bookShelf', req)
+      .then(res => res.json());
     if (!clicked) {
       this.setState({ isSaveClicked: true });
+
       setTimeout(() => {
         this.setState({ isSaveClicked: false });
       }, 4000);
