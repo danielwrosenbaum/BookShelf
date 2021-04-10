@@ -7,7 +7,8 @@ export default class Details extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
-      isSaveClicked: false,
+      isSaved: false,
+      isError: false,
       inputValue: null,
       result: null,
       info: null
@@ -16,6 +17,7 @@ export default class Details extends React.Component {
     this.renderDescription = this.renderDescription.bind(this);
     this.rendered = this.renderedDescription.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleHeading = this.handleHeading.bind(this);
   }
 
   handleAuthor(author) {
@@ -66,7 +68,6 @@ export default class Details extends React.Component {
   }
 
   handleSave() {
-    const clicked = this.state.isSaveClicked;
     const req = {
       method: 'POST',
       headers: {
@@ -75,18 +76,55 @@ export default class Details extends React.Component {
       body: JSON.stringify(this.state.info)
     };
     fetch('/api/bookShelf', req)
-      .then(res => res.json());
-    if (!clicked) {
-      this.setState({ isSaveClicked: true });
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          this.setState({
+            isError: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isError: false
+            });
+          }, 3000);
+        } else {
+          this.setState({
+            isSaved: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isSaved: false
+            });
+          }, 3000);
+        }
+      })
+      .catch(error => console.error(error));
+  }
 
-      setTimeout(() => {
-        this.setState({ isSaveClicked: false });
-      }, 4000);
+  handleHeading() {
+    const { isSaved, isError } = this.state;
+    if (isSaved) {
+      return (
+        <div className="save-header heading five">
+          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+        </div>
+      );
+    } else if (isError) {
+      return (
+        <div className="error-header heading five">
+          <div className="error-title">Already Added to Library</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="details-title">
+          <div className="heading two-white">Details</div>
+        </div>
+      );
     }
   }
 
   render() {
-    const saveClick = this.state.isSaveClicked;
     const book = this.state.result;
     if (!book) return null;
     const title = book.volumeInfo.title;
@@ -100,21 +138,12 @@ export default class Details extends React.Component {
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-      {(saveClick) &&
-      <div className="save-header heading five">
-          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
-        </div>}
-        {(!saveClick) &&
-          <div className="details-title">
-            <div className="heading two-white">Details</div>
-          </div>}
-
+          {this.handleHeading()}
         <div className="details-page">
           <div className="details-container">
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />
             </div>
-
             <div className="book-details">
               <div className="heading one-blue">{title}</div>
               <div className="heading sub">{subTitle}</div>
@@ -139,7 +168,6 @@ export default class Details extends React.Component {
                   <div className="heading four bold">Description</div>
                   {this.renderedDescription()}
                 </div>
-
               </div>
             </div>
             <div className="button-container">

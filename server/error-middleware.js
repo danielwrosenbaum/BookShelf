@@ -6,7 +6,7 @@ function errorMiddleware(err, req, res, next) {
       error: err.message
     });
   } else {
-    console.error(err);
+    console.error('heyheyhey', err);
     res.status(500).json({
       error: 'an unexpected error occurred'
     });
