@@ -18,7 +18,8 @@ export default class Results extends React.Component {
     this.handleAuthor = this.handleAuthor.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleHeading = this.handleHeading.bind(this);
-    this.handleClickedBook = this.handleClickedBook.bind(this);
+    this.handleSavedItem = this.handleSavedItem.bind(this);
+    // this.handleClickedBook = this.handleClickedBook.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,13 @@ export default class Results extends React.Component {
       .catch(error => console.error(error));
   }
 
+  componentDidUpdate() {
+    if (this.state.info) {
+      this.handleSavedItem();
+      this.setState({ info: null });
+    }
+  }
+
   handleDescription(text) {
     if (!text) {
       return '';
@@ -67,27 +75,24 @@ export default class Results extends React.Component {
     return author.join(', ');
   }
 
-  // handleSave() {
-  //   const clicked = this.state.isSaveClicked;
-  //   if (!clicked) {
-  //     this.setState({ isSaveClicked: true });
-  //     setTimeout(() => {
-  //       this.setState({ isSaveClicked: false });
-  //     }, 4000);
-  //   }
-  // }
-  handleClickedBook(event) {
-    // console.log(event.target);
-    // const results = this.state.results;
-    // const closestIcon = event.target.closest('div');
-    // const closeValue = closestIcon.id;
-    // // const info = event.target.props.value;
-    // console.log(closeValue);
-    // // console.log(info);
-
+  handleSave(event) {
+    const { results } = this.state;
+    const books = results.items;
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].id === event.target.id) {
+        this.setState({
+          info: {
+            title: books[i].volumeInfo.title,
+            googleId: books[i].id,
+            coverUrl: books[i].volumeInfo.imageLinks.thumbnail,
+            author: this.handleAuthor(books[i].volumeInfo.authors)
+          }
+        });
+      }
+    }
   }
 
-  handleSave() {
+  handleSavedItem() {
     const req = {
       method: 'POST',
       headers: {
@@ -98,7 +103,6 @@ export default class Results extends React.Component {
     fetch('/api/bookShelf', req)
       .then(res => res.json())
       .then(result => {
-        // console.log(result);
         if (result.error) {
           this.setState({
             isError: true
@@ -120,6 +124,7 @@ export default class Results extends React.Component {
         }
       })
       .catch(error => console.error(error));
+
   }
 
   handleHeading() {
@@ -147,7 +152,7 @@ export default class Results extends React.Component {
   }
 
   render() {
-    // const saveClick = this.state.isSaveClicked;
+
     const { results } = this.state;
     if (!this.state.results) {
       return null;
@@ -168,13 +173,6 @@ export default class Results extends React.Component {
             const text = book.volumeInfo.description;
             const description = this.handleDescription(text);
             const googleId = book.id;
-            // const info = {
-            //   title: book.volumeInfo.title,
-            //   author: this.handleAuthor(author),
-            //   coverUrl: thumbNail,
-            //   googleId: book.id
-
-            // };
             return (
               <div key={index} name={title} className="card">
                 <div className="result-info">
@@ -191,9 +189,9 @@ export default class Results extends React.Component {
                   </div>
                   <div className="description">{description}</div>
                 </div>
-                <div className="card-icons" onClick={this.handleClickedBook}>
+                <div className="card-icons" >
                   <i className="fas fa-plus fa-1x"></i>
-                  <i value={title} className="far fa-heart fa-1x" onClick={this.handleSave} ></i>
+                  <i className="far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
                 </div>
               </div>
             );
@@ -203,15 +201,6 @@ export default class Results extends React.Component {
     );
     return (
       <>
-        {/* {(saveClick) &&
-          <div className="save-header heading five">
-            <div className="save-title">Nice! It is Now Saved in Your Library!</div>
-          </div>}
-          {(!saveClick) &&
-          <div className="result-title">
-            <div className="heading two-white">Results</div>
-            <div className="heading">for {inputValue}</div>
-          </div>} */}
         {this.handleHeading()}
         <div>
           {bookResults}
