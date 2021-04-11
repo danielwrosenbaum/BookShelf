@@ -19,7 +19,6 @@ export default class Results extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleHeading = this.handleHeading.bind(this);
     this.handleSavedItem = this.handleSavedItem.bind(this);
-    // this.handleClickedBook = this.handleClickedBook.bind(this);
   }
 
   componentDidMount() {
@@ -50,13 +49,6 @@ export default class Results extends React.Component {
       .catch(error => console.error(error));
   }
 
-  componentDidUpdate() {
-    if (this.state.info) {
-      this.handleSavedItem();
-      this.setState({ info: null });
-    }
-  }
-
   handleDescription(text) {
     if (!text) {
       return '';
@@ -75,30 +67,30 @@ export default class Results extends React.Component {
     return author.join(', ');
   }
 
-  handleSave(event) {
+  handleSavedItem(target) {
     const { results } = this.state;
     const books = results.items;
     for (let i = 0; i < books.length; i++) {
-      if (books[i].id === event.target.id) {
-        this.setState({
-          info: {
-            title: books[i].volumeInfo.title,
-            googleId: books[i].id,
-            coverUrl: books[i].volumeInfo.imageLinks.thumbnail,
-            author: this.handleAuthor(books[i].volumeInfo.authors)
-          }
-        });
+      if (books[i].id === target.id) {
+        const info = {
+          title: books[i].volumeInfo.title,
+          googleId: books[i].id,
+          coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+          author: this.handleAuthor(books[i].volumeInfo.authors)
+        };
+        return info;
       }
     }
   }
 
-  handleSavedItem() {
+  handleSave(event) {
+    const target = event.target;
     const req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.info)
+      body: JSON.stringify(this.handleSavedItem(target))
     };
     fetch('/api/bookShelf', req)
       .then(res => res.json())
@@ -161,6 +153,7 @@ export default class Results extends React.Component {
     if (!books) {
       return <div className="results-container heading two">Try again!</div>;
     }
+
     const bookResults = (
       <div className="results-container">
         {
