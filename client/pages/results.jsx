@@ -160,8 +160,8 @@ export default class Results extends React.Component {
           books.map((book, index) => {
             const title = book.volumeInfo.title;
             const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
-            const author = book.volumeInfo.authors;
-            const authors = this.handleAuthor(author);
+            const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
+            const authors = (author) ? this.handleAuthor(author) : null;
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.handleDescription(text);

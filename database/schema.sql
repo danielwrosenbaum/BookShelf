@@ -9,7 +9,7 @@ create schema "public";
 create table "public"."library" (
   "libraryId"           serial,
   "title"               text          not null,
-  "author"              text          not null,
+  "author"              text,
   "googleId"            text          not null,
   "coverUrl"            text,
   "addedAt"             timestamptz(6) not null default now(),
