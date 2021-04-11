@@ -7,14 +7,18 @@ export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSaveClicked: false,
+      isSaved: false,
+      isError: false,
       route: parseRoute(window.location.hash),
       inputValue: null,
-      results: null
+      results: null,
+      info: null
     };
     this.handleDescription = this.handleDescription.bind(this);
     this.handleAuthor = this.handleAuthor.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleHeading = this.handleHeading.bind(this);
+    this.handleClickedBook = this.handleClickedBook.bind(this);
   }
 
   componentDidMount() {
@@ -63,19 +67,88 @@ export default class Results extends React.Component {
     return author.join(', ');
   }
 
+  // handleSave() {
+  //   const clicked = this.state.isSaveClicked;
+  //   if (!clicked) {
+  //     this.setState({ isSaveClicked: true });
+  //     setTimeout(() => {
+  //       this.setState({ isSaveClicked: false });
+  //     }, 4000);
+  //   }
+  // }
+  handleClickedBook(event) {
+    // console.log(event.target);
+    // const results = this.state.results;
+    // const closestIcon = event.target.closest('div');
+    // const closeValue = closestIcon.id;
+    // // const info = event.target.props.value;
+    // console.log(closeValue);
+    // // console.log(info);
+
+  }
+
   handleSave() {
-    const clicked = this.state.isSaveClicked;
-    if (!clicked) {
-      this.setState({ isSaveClicked: true });
-      setTimeout(() => {
-        this.setState({ isSaveClicked: false });
-      }, 4000);
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.info)
+    };
+    fetch('/api/bookShelf', req)
+      .then(res => res.json())
+      .then(result => {
+        // console.log(result);
+        if (result.error) {
+          this.setState({
+            isError: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isError: false
+            });
+          }, 3000);
+        } else {
+          this.setState({
+            isSaved: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isSaved: false
+            });
+          }, 3000);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
+  handleHeading() {
+    const { isSaved, isError, inputValue } = this.state;
+    if (isSaved) {
+      return (
+        <div className="save-header heading five">
+          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+        </div>
+      );
+    } else if (isError) {
+      return (
+        <div className="error-header heading five">
+          <div className="error-title">Already Added to Library</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="result-title">
+          <div className="heading two-white">Results</div>
+          <div className="heading">for {inputValue}</div>
+        </div>
+      );
     }
   }
 
   render() {
-    const saveClick = this.state.isSaveClicked;
-    const { results, inputValue } = this.state;
+    // const saveClick = this.state.isSaveClicked;
+    const { results } = this.state;
     if (!this.state.results) {
       return null;
     }
@@ -95,6 +168,13 @@ export default class Results extends React.Component {
             const text = book.volumeInfo.description;
             const description = this.handleDescription(text);
             const googleId = book.id;
+            // const info = {
+            //   title: book.volumeInfo.title,
+            //   author: this.handleAuthor(author),
+            //   coverUrl: thumbNail,
+            //   googleId: book.id
+
+            // };
             return (
               <div key={index} name={title} className="card">
                 <div className="result-info">
@@ -106,14 +186,14 @@ export default class Results extends React.Component {
                       <div className="heading three">{year}</div>
                     </div>
                     <a href={`#details?bookId=${googleId}`}>
-                    <button id={googleId} name={title} className="info button">Details</button>
+                      <button id={googleId} name={title} className="info button">Details</button>
                     </a>
                   </div>
                   <div className="description">{description}</div>
                 </div>
-                <div className="card-icons">
+                <div className="card-icons" onClick={this.handleClickedBook}>
                   <i className="fas fa-plus fa-1x"></i>
-                  <i className="far fa-heart fa-1x" onClick={this.handleSave}></i>
+                  <i value={title} className="far fa-heart fa-1x" onClick={this.handleSave} ></i>
                 </div>
               </div>
             );
@@ -123,7 +203,7 @@ export default class Results extends React.Component {
     );
     return (
       <>
-        {(saveClick) &&
+        {/* {(saveClick) &&
           <div className="save-header heading five">
             <div className="save-title">Nice! It is Now Saved in Your Library!</div>
           </div>}
@@ -131,8 +211,8 @@ export default class Results extends React.Component {
           <div className="result-title">
             <div className="heading two-white">Results</div>
             <div className="heading">for {inputValue}</div>
-          </div>}
-
+          </div>} */}
+        {this.handleHeading()}
         <div>
           {bookResults}
         </div>
