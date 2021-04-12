@@ -73,6 +73,12 @@ body {
   font-size: 1.25rem;
 }
 
+.six {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #112d4e;
+}
+
 .sub {
   color: #112d4e;
   font-size: 1.5rem;
@@ -203,7 +209,7 @@ body {
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 1rem;
-  background: linear-gradient(#f9f7f7 10%, #a8dadc 65%);
+  background: linear-gradient(#f9f7f7 10%, #dbe2ef 65%);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
 }
 
@@ -215,7 +221,19 @@ body {
   display: flex;
 }
 
+.lib-info {
+  display: flex;
+  width: 100%;
+}
+
 .book-col {
+  margin: 0.5rem 0 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lib-col {
   margin: 0.5rem 0 0.5rem 1rem;
   display: flex;
   flex-direction: column;
@@ -372,6 +390,7 @@ i:active {
   max-width: fit-content;
   max-height: 150px;
   align-self: flex-start;
+  box-shadow: 2px 3px 4px #112d4e;
 }
 
 .card-icons {
