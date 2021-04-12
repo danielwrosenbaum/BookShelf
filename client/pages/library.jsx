@@ -7,6 +7,10 @@ export default class Library extends React.Component {
     };
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <>

@@ -13,6 +13,19 @@ app.use(staticMiddleware);
 
 app.use(jsonMiddleware);
 
+app.get('/api/bookShelf/library', (req, res, next) => {
+  // const { title, author, googleId, coverUrl } = req.body;
+  const sql = `
+  select *
+    from "library"
+  `;
+  db.query(sql)
+    .then(result => {
+      // console.log(result);
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
 app.post('/api/bookShelf', (req, res, next) => {
   const { title, author, googleId, coverUrl } = req.body;
   if (!title || !author || !googleId) {
