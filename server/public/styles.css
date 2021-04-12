@@ -350,12 +350,24 @@ body {
   text-decoration: none;
 }
 
-i:hover {
+.menu-icon:hover {
+  cursor: pointer;
+  color: #a8dadc;
+}
+
+.menu-icon:active {
+  transform: translateY(5px);
+  color: #a8dadc;
+}
+
+.plus-icon:hover,
+.heart-icon:hover {
   cursor: pointer;
   color: #e63946;
 }
 
-i:active {
+.plus-icon:active,
+.heart-icon:active {
   transform: translateY(5px);
   color: #e63946;
 }
@@ -410,6 +422,7 @@ i:active {
   flex-direction: column;
   justify-content: space-between;
   margin-right: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .no-top {

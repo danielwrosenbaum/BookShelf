@@ -176,8 +176,8 @@ export default class Results extends React.Component {
                   <div className="description">{description}</div>
                 </div>
                 <div className="card-icons" >
-                  <i className="fas fa-plus fa-1x"></i>
-                  <i className="far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
+                  <i className="plus-icon fas fa-plus fa-1x"></i>
+                  <i className="heart-icon far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
                 </div>
               </div>
             );
