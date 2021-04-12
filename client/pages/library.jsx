@@ -31,7 +31,6 @@ export default class Library extends React.Component {
             const googleId = book.googleId;
             const author = book.author;
             return (
-
               <div key={index} id={googleId} className="library-card">
                 <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
                   <div className="lib-info no-outline">
@@ -39,7 +38,7 @@ export default class Library extends React.Component {
                     <div className="lib-col">
                       <div>
                         <div className="heading six">{title}</div>
-                        <h4 className="heading three no-top no-bottom">by {author}</h4>
+                        <div className="heading three no-top no-bottom lib-author">by {author}</div>
                       </div>
                     </div>
                   </div>
@@ -53,9 +52,7 @@ export default class Library extends React.Component {
                     <i className="far fa-star"></i>
                     <i className="far fa-star"></i>
                   </div>
-
                 </div>
-
                 <div className="heading bold delete-container">
                   X
                   </div>
