@@ -56,15 +56,12 @@ export default class Library extends React.Component {
                 <div className="delete-container">
                   X
                   </div>
-
               </div>
-
             );
           })
         }
       </div>
     );
-
     return (
       <>
         <div className="details-title">
