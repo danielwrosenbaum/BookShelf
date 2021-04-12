@@ -7,15 +7,16 @@ export default class Details extends React.Component {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
+      isSaved: false,
+      isError: false,
       inputValue: null,
-      result: null
+      result: null,
+      info: null
     };
-    this.handleAuthor = this.handleAuthor.bind(this);
-    this.renderDescription = this.renderDescription.bind(this);
-    this.rendered = this.renderedDescription.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
-  handleAuthor(author) {
+  getAuthor(author) {
     return author.join(', ');
   }
 
@@ -34,9 +35,16 @@ export default class Details extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+          const authors = this.getAuthor(result.volumeInfo.authors);
           this.setState({
             inputValue: query,
-            result: result
+            result: result,
+            info: {
+              title: result.volumeInfo.title,
+              author: authors,
+              coverUrl: result.volumeInfo.imageLinks.thumbnail,
+              googleId: result.id
+            }
           });
         }
       )
@@ -46,7 +54,7 @@ export default class Details extends React.Component {
   renderDescription() {
     const book = this.state.result;
     if (!book) return null;
-    const text = book.volumeInfo.description;
+    const text = (book.volumeInfo.description) ? book.volumeInfo.description : 'No Description Available.';
     const clean = DOMPurify.sanitize(text);
     return { __html: clean };
   }
@@ -55,29 +63,83 @@ export default class Details extends React.Component {
     return <p dangerouslySetInnerHTML={this.renderDescription()} />;
   }
 
+  handleSave() {
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.info)
+    };
+    fetch('/api/bookShelf', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          this.setState({
+            isError: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isError: false
+            });
+          }, 3000);
+        } else {
+          this.setState({
+            isSaved: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isSaved: false
+            });
+          }, 3000);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
+  renderHeading() {
+    const { isSaved, isError } = this.state;
+    if (isSaved) {
+      return (
+        <div className="save-header heading five">
+          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+        </div>
+      );
+    } else if (isError) {
+      return (
+        <div className="error-header heading five">
+          <div className="error-title">Already Added to Library</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="details-title">
+          <div className="heading two-white">Details</div>
+        </div>
+      );
+    }
+  }
+
   render() {
     const book = this.state.result;
     if (!book) return null;
     const title = book.volumeInfo.title;
     const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
     const author = book.volumeInfo.authors;
-    const authors = this.handleAuthor(author);
+    const authors = this.getAuthor(author);
     const year = parseInt(book.volumeInfo.publishedDate, 10);
-    const isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+    const isbn = (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/A';
     const subTitle = book.volumeInfo.subtitle;
     const category = book.volumeInfo.categories;
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-        <div className="details-title">
-          <div className="heading two-white">Details</div>
-        </div>
+          {this.renderHeading()}
         <div className="details-page">
           <div className="details-container">
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />
             </div>
-
             <div className="book-details">
               <div className="heading one-blue">{title}</div>
               <div className="heading sub">{subTitle}</div>
@@ -102,12 +164,11 @@ export default class Details extends React.Component {
                   <div className="heading four bold">Description</div>
                   {this.renderedDescription()}
                 </div>
-
               </div>
             </div>
             <div className="button-container">
               <button className="details-button add-list">Add to List</button>
-              <button className="details-button add-lib">Read it!</button>
+              <button className="details-button add-lib" onClick={this.handleSave}>{(this.state.isSaved) ? <i className="fas fa-heart fa-2x"></i> : 'Read it!'}</button>
             </div>
           </div>
         </div>

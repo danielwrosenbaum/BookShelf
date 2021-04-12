@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === 'search-page') {
+    if (route.path === 'search-page' || route.path === '') {
       return <SearchPage />;
     }
     if (route.path === 'advanced-search') {

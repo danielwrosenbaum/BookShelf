@@ -16,6 +16,22 @@ body {
   background: linear-gradient(120deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
 }
 
+.save-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  background: linear-gradient(#f9f7f7 0%, #e63946 55%);
+}
+
+.error-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  background: linear-gradient(#f9f7f7 0%, #a8dadc 55%);
+}
+
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
@@ -50,9 +66,17 @@ body {
   color: #112d4e;
 }
 
+.five {
+  font-size: 1.25rem;
+}
+
 .sub {
   color: #112d4e;
   font-size: 1.5rem;
+  font-style: italic;
+}
+
+.italic {
   font-style: italic;
 }
 
@@ -68,6 +92,7 @@ body {
 .results-container {
   margin-bottom: 1rem;
   margin-top: 4.5rem;
+  background-color: #f9f7f7;
 }
 
 .details-page {
@@ -86,6 +111,8 @@ body {
 .details-pic-container {
   margin: 1rem;
   box-shadow: 1px 2px 4px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .button-container {
@@ -254,13 +281,21 @@ body {
   text-decoration: none;
 }
 
-i:hover,
+i:hover {
+  cursor: pointer;
+  color: #e63946;
+}
+
+i:active {
+  transform: translateY(5px);
+  color: #e63946;
+}
+
 .menu-item:hover {
   cursor: pointer;
   color: #a8dadc;
 }
 
-i:active,
 .menu-item:active {
   transform: translateY(5px);
   color: #112d4e;
@@ -337,4 +372,28 @@ i:active,
   top: 1rem;
   text-align: center;
   color: #f9f7f7;
+}
+
+.save-title {
+  position: fixed;
+  width: 90%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 1.35rem;
+  text-align: center;
+  color: #f9f7f7;
+}
+
+.error-title {
+  position: fixed;
+  width: 90%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 1.35rem;
+  text-align: center;
+  color: #112d4e;
 }
