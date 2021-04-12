@@ -9,7 +9,14 @@ export default class Library extends React.Component {
 
   render() {
     return (
-      <div className="library-container"></div>
+      <>
+      <div className="details-title">
+          <div className="heading two-white">Library</div>
+        </div>
+      <div className="library-page">
+        <div className="library-container"></div>
+      </div>
+      </>
     );
   }
 }
