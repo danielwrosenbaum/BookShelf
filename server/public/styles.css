@@ -123,6 +123,10 @@ body {
   width: 90%;
 }
 
+.library-container {
+  background-color: #f9f7f7;
+}
+
 .semi-bold {
   font-weight: 500;
 }
