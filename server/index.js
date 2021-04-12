@@ -18,6 +18,7 @@ app.get('/api/bookShelf/library', (req, res, next) => {
   const sql = `
   select *
     from "library"
+    order by "libraryId"
   `;
   db.query(sql)
     .then(result => {
