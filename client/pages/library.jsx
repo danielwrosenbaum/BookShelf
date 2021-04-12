@@ -33,30 +33,32 @@ export default class Library extends React.Component {
             // const libraryId = book.libraryId;
             return (
 
-               <div key={index} id={googleId} className="library-card">
+              <div key={index} id={googleId} className="library-card">
                 <a className="no-underline" href={`#details?bookId=${googleId}`}>
-                <div className="result-info no-outline">
-                  <img className="thumbnail" src={thumbNail} alt={title} />
-                  <div className="book-col">
-                    <div className="book-info">
-                      <h3 className="heading three no-top">{title}</h3>
-                      <h4 className="heading three no-top no-bottom">by {author}</h4>
-
+                  <div className="result-info no-outline">
+                    <img className="thumbnail" src={thumbNail} alt={title} />
+                    <div className="book-col">
+                      <div className="book-info">
+                        <div className="heading four  no-top no-bottom">{title}</div>
+                        <h4 className="heading three no-top no-bottom">by {author}</h4>
+                      </div>
                     </div>
-
-                      {/* <button id={googleId} name={title} className="info button">Details</button> */}
-
                   </div>
-                </div>
                 </a>
-                <div className="heading rating-container">Rate This Book:
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-
+                <div className="rating-container">
+                  <div>Rate This Book: </div>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
                 </div>
+                {/* <i className="fas fa-minus"></i> */}
+
+                <div className="heading bold delete-container">
+                  X
+                  </div>
+
               </div>
 
             );

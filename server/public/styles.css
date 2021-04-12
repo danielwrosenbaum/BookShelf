@@ -10,6 +10,7 @@ body {
 
 .header {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: 100%;
   height: 4rem;
@@ -18,6 +19,7 @@ body {
 
 .save-header {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: 100%;
   height: 4rem;
@@ -26,6 +28,7 @@ body {
 
 .error-header {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: 100%;
   height: 4rem;
@@ -129,6 +132,13 @@ body {
   margin-top: 4.5rem;
 }
 
+.rating-container {
+  position: absolute;
+  display: flex;
+  top: 80%;
+  left: 35%;
+}
+
 .semi-bold {
   font-weight: 500;
 }
@@ -186,6 +196,7 @@ body {
 }
 
 .library-card {
+  position: relative;
   outline: none;
   display: flex;
   justify-content: space-between;
@@ -210,6 +221,10 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
+/* .book-info {
+  margin-bottom: 1rem;
+} */
 
 .description {
   width: fit-content;
@@ -272,6 +287,7 @@ body {
 
 .menu-icon {
   position: fixed;
+  z-index: 1;
   color: black;
   left: 1rem;
   top: 0.5rem;
@@ -279,6 +295,7 @@ body {
 
 .overlay {
   background-color: #dbe2ef7e;
+  z-index: 1;
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -286,6 +303,7 @@ body {
 
 .modal {
   border-right: solid #112d4e;
+  z-index: 1;
   width: 40%;
   height: 100vh;
   background: linear-gradient(#f9f7f7 15%, #dbe2ef 55%, #3f72af 100%);
@@ -373,6 +391,7 @@ i:active {
 
 .result-title {
   position: fixed;
+  z-index: 1;
   width: 50%;
   left: 0;
   right: 0;
@@ -385,6 +404,7 @@ i:active {
 
 .details-title {
   position: fixed;
+  z-index: 1;
   width: 50%;
   left: 0;
   right: 0;
@@ -396,6 +416,7 @@ i:active {
 }
 
 .save-title {
+  z-index: 1;
   position: fixed;
   width: 90%;
   left: 0;
@@ -408,6 +429,7 @@ i:active {
 }
 
 .error-title {
+  z-index: 1;
   position: fixed;
   width: 90%;
   left: 0;
