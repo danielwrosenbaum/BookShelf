@@ -125,6 +125,8 @@ body {
 
 .library-container {
   background-color: #f9f7f7;
+  margin-bottom: 1rem;
+  margin-top: 4.5rem;
 }
 
 .semi-bold {
@@ -181,6 +183,21 @@ body {
   border-radius: 1rem;
   background: linear-gradient(#f9f7f7 10%, #a8dadc 65%);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
+}
+
+.library-card {
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(#f9f7f7 10%, #a8dadc 65%);
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
+}
+
+.no-underline {
+  text-decoration: none;
 }
 
 .result-info {
