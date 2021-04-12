@@ -14,11 +14,7 @@ export default class Results extends React.Component {
       results: null,
       info: null
     };
-    this.handleDescription = this.handleDescription.bind(this);
-    this.handleAuthor = this.handleAuthor.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleHeading = this.handleHeading.bind(this);
-    this.handleSavedItem = this.handleSavedItem.bind(this);
   }
 
   componentDidMount() {
@@ -49,9 +45,9 @@ export default class Results extends React.Component {
       .catch(error => console.error(error));
   }
 
-  handleDescription(text) {
+  renderDescription(text) {
     if (!text) {
-      return '';
+      return 'No Description Available';
     }
     const newText = text.split(' ').slice(0, 60);
     if (newText.length === 60) {
@@ -63,11 +59,11 @@ export default class Results extends React.Component {
     }
   }
 
-  handleAuthor(author) {
+  getAuthor(author) {
     return author.join(', ');
   }
 
-  handleSavedItem(target) {
+  getSavedItem(target) {
     const { results } = this.state;
     const books = results.items;
     for (let i = 0; i < books.length; i++) {
@@ -76,7 +72,7 @@ export default class Results extends React.Component {
           title: books[i].volumeInfo.title,
           googleId: books[i].id,
           coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
-          author: this.handleAuthor(books[i].volumeInfo.authors)
+          author: this.getAuthor(books[i].volumeInfo.authors)
         };
         return info;
       }
@@ -90,7 +86,7 @@ export default class Results extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.handleSavedItem(target))
+      body: JSON.stringify(this.getSavedItem(target))
     };
     fetch('/api/bookShelf', req)
       .then(res => res.json())
@@ -116,10 +112,9 @@ export default class Results extends React.Component {
         }
       })
       .catch(error => console.error(error));
-
   }
 
-  handleHeading() {
+  renderHeading() {
     const { isSaved, isError, inputValue } = this.state;
     if (isSaved) {
       return (
@@ -144,7 +139,6 @@ export default class Results extends React.Component {
   }
 
   render() {
-
     const { results } = this.state;
     if (!this.state.results) {
       return null;
@@ -153,7 +147,6 @@ export default class Results extends React.Component {
     if (!books) {
       return <div className="results-container heading two">Try again!</div>;
     }
-
     const bookResults = (
       <div className="results-container">
         {
@@ -161,10 +154,10 @@ export default class Results extends React.Component {
             const title = book.volumeInfo.title;
             const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
             const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
-            const authors = (author) ? this.handleAuthor(author) : null;
+            const authors = (author) ? this.getAuthor(author) : null;
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
-            const description = this.handleDescription(text);
+            const description = this.renderDescription(text);
             const googleId = book.id;
             return (
               <div key={index} name={title} className="card">
@@ -194,7 +187,7 @@ export default class Results extends React.Component {
     );
     return (
       <>
-        {this.handleHeading()}
+        {this.renderHeading()}
         <div>
           {bookResults}
         </div>

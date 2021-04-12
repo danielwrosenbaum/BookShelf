@@ -13,14 +13,10 @@ export default class Details extends React.Component {
       result: null,
       info: null
     };
-    this.handleAuthor = this.handleAuthor.bind(this);
-    this.renderDescription = this.renderDescription.bind(this);
-    this.rendered = this.renderedDescription.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleHeading = this.handleHeading.bind(this);
   }
 
-  handleAuthor(author) {
+  getAuthor(author) {
     return author.join(', ');
   }
 
@@ -39,7 +35,7 @@ export default class Details extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          const authors = this.handleAuthor(result.volumeInfo.authors);
+          const authors = this.getAuthor(result.volumeInfo.authors);
           this.setState({
             inputValue: query,
             result: result,
@@ -58,7 +54,7 @@ export default class Details extends React.Component {
   renderDescription() {
     const book = this.state.result;
     if (!book) return null;
-    const text = book.volumeInfo.description;
+    const text = (book.volumeInfo.description) ? book.volumeInfo.description : 'No Description Available.';
     const clean = DOMPurify.sanitize(text);
     return { __html: clean };
   }
@@ -101,7 +97,7 @@ export default class Details extends React.Component {
       .catch(error => console.error(error));
   }
 
-  handleHeading() {
+  renderHeading() {
     const { isSaved, isError } = this.state;
     if (isSaved) {
       return (
@@ -130,15 +126,15 @@ export default class Details extends React.Component {
     const title = book.volumeInfo.title;
     const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
     const author = book.volumeInfo.authors;
-    const authors = this.handleAuthor(author);
+    const authors = this.getAuthor(author);
     const year = parseInt(book.volumeInfo.publishedDate, 10);
-    const isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+    const isbn = (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/A';
     const subTitle = book.volumeInfo.subtitle;
     const category = book.volumeInfo.categories;
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-          {this.handleHeading()}
+          {this.renderHeading()}
         <div className="details-page">
           <div className="details-container">
             <div className='details-pic-container'>
