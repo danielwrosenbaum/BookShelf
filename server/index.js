@@ -14,7 +14,6 @@ app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
 app.get('/api/bookShelf/library', (req, res, next) => {
-  // const { title, author, googleId, coverUrl } = req.body;
   const sql = `
   select *
     from "library"
@@ -22,7 +21,6 @@ app.get('/api/bookShelf/library', (req, res, next) => {
   `;
   db.query(sql)
     .then(result => {
-      // console.log(result);
       res.json(result.rows);
     })
     .catch(err => next(err));

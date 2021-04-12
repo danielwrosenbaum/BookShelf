@@ -4,34 +4,41 @@ body {
   margin: 0;
 }
 
+.header,
+.save-header,
+.error-header,
+.result-title,
+.details-title,
+.save-title,
+.error-title,
+.menu-icon,
+.overlay,
+.modal {
+  z-index: 1;
+}
+
+.header,
+.save-header,
+.error-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+}
+
 .hidden {
   display: none !important;
 }
 
 .header {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  width: 100%;
-  height: 4rem;
   background: linear-gradient(120deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
 }
 
 .save-header {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  width: 100%;
-  height: 4rem;
   background: linear-gradient(#f9f7f7 0%, #e63946 55%);
 }
 
 .error-header {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  width: 100%;
-  height: 4rem;
   background: linear-gradient(#f9f7f7 0%, #a8dadc 55%);
 }
 
@@ -313,7 +320,6 @@ body {
 
 .menu-icon {
   position: fixed;
-  z-index: 1;
   color: black;
   left: 1rem;
   top: 0.5rem;
@@ -321,7 +327,6 @@ body {
 
 .overlay {
   background-color: #dbe2ef7e;
-  z-index: 1;
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -329,7 +334,6 @@ body {
 
 .modal {
   border-right: solid #112d4e;
-  z-index: 1;
   width: 40%;
   height: 100vh;
   background: linear-gradient(#f9f7f7 15%, #dbe2ef 55%, #3f72af 100%);
@@ -416,54 +420,35 @@ i:active {
   margin-block-end: 0;
 }
 
-.result-title {
+.result-title,
+.details-title,
+.save-title,
+.error-title {
   position: fixed;
-  z-index: 1;
-  width: 50%;
+  width: 75%;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  top: 0;
   text-align: center;
-  color: #f9f7f7;
 }
 
-.details-title {
-  position: fixed;
-  z-index: 1;
-  width: 50%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  top: 1rem;
-  text-align: center;
-  color: #f9f7f7;
-}
-
+.result-title,
+.details-title,
 .save-title {
-  z-index: 1;
-  position: fixed;
-  width: 90%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  top: 1.35rem;
-  text-align: center;
   color: #f9f7f7;
+}
+
+.result-title {
+  top: 0;
+}
+
+.details-title,
+.save-title,
+.error-title {
+  top: 0.75rem;
 }
 
 .error-title {
-  z-index: 1;
-  position: fixed;
-  width: 90%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  top: 1.35rem;
-  text-align: center;
   color: #112d4e;
 }
