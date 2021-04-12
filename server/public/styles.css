@@ -143,6 +143,18 @@ body {
   display: flex;
   top: 80%;
   left: 35%;
+  font-size: 0.85rem;
+}
+
+.star-container {
+  margin-left: 0.5rem;
+}
+
+.delete-container {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #112d4e;
 }
 
 .semi-bold {

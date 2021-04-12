@@ -53,7 +53,7 @@ export default class Library extends React.Component {
                     <i className="far fa-star"></i>
                   </div>
                 </div>
-                <div className="heading bold delete-container">
+                <div className="delete-container">
                   X
                   </div>
 
