@@ -18,4 +18,25 @@
   .thumbnail {
     max-height: 200px;
   }
+
+  .six {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lib-col {
+    width: 75%;
+  }
+
+  .lib-author {
+    font-size: 1.5rem;
+  }
+
+  .rating-container {
+    font-size: 1.25rem;
+  }
+
+  .delete-container {
+    font-size: 2rem;
+  }
 }
