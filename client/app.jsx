@@ -8,6 +8,7 @@ import AppContext from './lib/app-context';
 import PageContainer from './components/page-container';
 import Header from './components/header';
 import Details from './pages/details';
+import Library from './pages/library';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,6 +39,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'details') {
       return <Details />;
+    }
+    if (route.path === 'library') {
+      return <Library />;
     }
   }
 
