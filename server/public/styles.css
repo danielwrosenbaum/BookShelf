@@ -27,7 +27,7 @@ body {
   top: 0;
   width: 100%;
   height: 4rem;
-  background: linear-gradient(100deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
+  background: linear-gradient(120deg, #f9f7f7da 0%, #3f72af  45%, #112d4e 100%);
 }
 
 .save-header,
@@ -271,16 +271,20 @@ body {
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 1rem;
-  background: linear-gradient(#f9f7f7 10%, #a8dadc 65%);
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
 }
 
 .library-card {
-  background: linear-gradient(#f9f7f7 10%, #dbe2ef 65%);
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 100%);
 }
 
 .reading-list-card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 35%, #3f72af 100%);
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
+}
+
+.library-click {
+  width: 95%;
 }
 
 .reading-list-card,
@@ -293,6 +297,11 @@ body {
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
+}
+
+.reading-list-card:active,
+.library-card:active {
+  transform: translateX(10px);
 }
 
 .no-underline {
@@ -523,12 +532,9 @@ body {
   top: 0.75rem;
 }
 
-.save-title {
-  top: 1.5rem;
-}
-
 .add-title,
-.error-title {
+.error-title,
+.save-title {
   top: 2rem;
 }
 
