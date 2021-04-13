@@ -51,7 +51,7 @@ export default class Library extends React.Component {
                 <div className="rating-container">
                   <div>Rate This Book: </div>
                   <div className='star-container'>
-                    <GetRating id={googleId} value={rating}/>
+                    <GetRating id={googleId} value={rating} />
                   </div>
                 </div>
                 <div className="delete-container">

@@ -2,6 +2,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   margin: 0;
+  background-color: #f9f7f7;
 }
 
 .header,
@@ -192,7 +193,8 @@ body {
   width: 90%;
 }
 
-.library-container {
+.library-container,
+.reading-list-container {
   background-color: #f9f7f7;
   margin-bottom: 1rem;
   margin-top: 4.5rem;
@@ -274,6 +276,15 @@ body {
 }
 
 .library-card {
+  background: linear-gradient(#f9f7f7 10%, #dbe2ef 65%);
+}
+
+.reading-list-card {
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 35%, #3f72af 100%);
+}
+
+.reading-list-card,
+.library-card {
   position: relative;
   outline: none;
   display: flex;
@@ -281,7 +292,6 @@ body {
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 1rem;
-  background: linear-gradient(#f9f7f7 10%, #dbe2ef 65%);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
 }
 

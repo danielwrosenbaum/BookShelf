@@ -30,7 +30,7 @@ export default class ReadingList extends React.Component {
             const googleId = book.googleId;
             const author = book.author;
             return (
-              <div key={index} id={googleId} className="library-card">
+              <div key={index} id={googleId} className="reading-list-card">
                 <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
                   <div className="lib-info no-outline">
                     <div className='pic-container'>
