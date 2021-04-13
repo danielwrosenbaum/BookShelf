@@ -37,11 +37,9 @@ export default class ReadingList extends React.Component {
                       <img className="thumbnail" src={thumbNail} alt={title} />
                     </div>
 
-                    <div className="lib-col">
-                      <div>
+                    <div className="rl-col">
                         <div className="heading six">{title}</div>
-                        <div className="heading three no-top no-bottom lib-author">by {author}</div>
-                      </div>
+                        <div className="heading three no-top lib-author">by {author}</div>
                     </div>
                   </div>
                 </a>

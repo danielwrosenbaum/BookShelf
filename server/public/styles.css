@@ -331,6 +331,13 @@ body {
   justify-content: space-between;
 }
 
+.rl-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .description {
   width: fit-content;
   margin: 2rem;
