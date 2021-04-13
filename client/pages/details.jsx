@@ -213,7 +213,7 @@ export default class Details extends React.Component {
               </div>
             </div>
             <div className="button-container">
-              <button className="details-button add-list" onClick={this.handleAdd}>{(this.state.isAdded) ? <i className="fas fa-check fa-2x"></i> : 'Add to List'}</button>
+              <button className="details-button add-list" onClick={this.handleAdd}>{(this.state.isAdded) ? <i className="blue fas fa-check fa-2x"></i> : 'Add to List'}</button>
               <button className="details-button add-lib" onClick={this.handleSave}>{(this.state.isSaved) ? <i className="fas fa-heart fa-2x"></i> : 'Read it!'}</button>
             </div>
           </div>

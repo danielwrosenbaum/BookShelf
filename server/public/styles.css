@@ -92,6 +92,10 @@ body {
   margin: auto;
 }
 
+.blue {
+  color: #112d4e;
+}
+
 .one-blue {
   font-size: 3rem;
   color: #112d4e;
