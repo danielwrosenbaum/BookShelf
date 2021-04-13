@@ -10,8 +10,26 @@ export default class GetRating extends React.Component {
   }
 
   handleClick(event) {
-    // console.log(event.target);
-    this.setState({ rating: event.target.value });
+    const googleId = event.target.id;
+    const newRating = {
+      stars: event.target.value
+    };
+    this.setState({
+      rating: event.target.value
+    });
+    if (newRating) {
+      fetch(`/api/bookShelf/library/${googleId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newRating)
+      })
+        .then(res => {
+          res.json();
+        });
+    }
+
   }
 
   render() {
@@ -22,7 +40,7 @@ export default class GetRating extends React.Component {
           const stars = index + 1;
           return (
             <label key={index}>
-              <input className="star-radio" type='radio' name="rating" value={stars} onClick={this.handleClick} />
+              <input id={this.props.id} className="star-radio" type='radio' name="rating" value={stars} onClick={this.handleClick} />
               <i className={(stars <= rating) ? 'star-icon fas fa-star' : 'star-icon far fa-star'}></i>
             </label>
 
