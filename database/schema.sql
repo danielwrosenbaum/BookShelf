@@ -12,6 +12,7 @@ create table "public"."library" (
   "author"              text,
   "googleId"            text          not null,
   "coverUrl"            text,
+  "stars"              integer,
   "addedAt"             timestamptz(6) not null default now(),
   primary key ("libraryId"),
   unique ("googleId")

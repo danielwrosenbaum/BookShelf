@@ -1,10 +1,12 @@
 import React from 'react';
+import GetRating from '../components/get-rating';
 
 export default class Library extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: null
+      result: null,
+      rating: null
     };
   }
 
@@ -21,7 +23,6 @@ export default class Library extends React.Component {
     const { result } = this.state;
     if (!result) return null;
     const books = result;
-
     const bookResults = (
       <div className="library-container">
         {
@@ -30,11 +31,15 @@ export default class Library extends React.Component {
             const thumbNail = book.coverUrl;
             const googleId = book.googleId;
             const author = book.author;
+            const rating = book.stars;
             return (
               <div key={index} id={googleId} className="library-card">
                 <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
                   <div className="lib-info no-outline">
-                    <img className="thumbnail" src={thumbNail} alt={title} />
+                    <div className='pic-container'>
+                      <img className="thumbnail" src={thumbNail} alt={title} />
+                    </div>
+
                     <div className="lib-col">
                       <div>
                         <div className="heading six">{title}</div>
@@ -46,11 +51,7 @@ export default class Library extends React.Component {
                 <div className="rating-container">
                   <div>Rate This Book: </div>
                   <div className='star-container'>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
+                    <GetRating id={googleId} value={rating}/>
                   </div>
                 </div>
                 <div className="delete-container">

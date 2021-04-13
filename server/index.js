@@ -25,6 +25,7 @@ app.get('/api/bookShelf/library', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
 app.post('/api/bookShelf', (req, res, next) => {
   const { title, author, googleId, coverUrl } = req.body;
   if (!title || !author || !googleId) {
@@ -49,6 +50,25 @@ app.post('/api/bookShelf', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+app.patch('/api/bookShelf/library/:googleId', (req, res, next) => {
+  const googleId = req.params.googleId;
+  const { stars } = req.body;
+  const sql = `
+  update "library"
+    set "stars" = $1
+    where "googleId" = $2
+    returning *
+  `;
+  const params = [stars, googleId];
+  db.query(sql, params)
+    .then(result => {
+      const [entry] = result.rows;
+      res.status(201).json(entry);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console

@@ -131,6 +131,10 @@ body {
   border-radius: 0.25rem;
 }
 
+.pic-container {
+  min-height: 130px;
+}
+
 .button-container {
   position: fixed;
   top: 92%;
@@ -243,6 +247,8 @@ body {
 .lib-info {
   display: flex;
   width: 100%;
+
+  /* margin-bottom: 1rem; */
 }
 
 .book-col {
@@ -350,12 +356,24 @@ body {
   text-decoration: none;
 }
 
-i:hover {
+.menu-icon:hover {
+  cursor: pointer;
+  color: #a8dadc;
+}
+
+.menu-icon:active {
+  transform: translateY(5px);
+  color: #a8dadc;
+}
+
+.plus-icon:hover,
+.heart-icon:hover {
   cursor: pointer;
   color: #e63946;
 }
 
-i:active {
+.plus-icon:active,
+.heart-icon:active {
   transform: translateY(5px);
   color: #e63946;
 }
@@ -410,6 +428,7 @@ i:active {
   flex-direction: column;
   justify-content: space-between;
   margin-right: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .no-top {
@@ -451,4 +470,23 @@ i:active {
 
 .error-title {
   color: #112d4e;
+}
+
+.star-radio {
+  display: none;
+}
+
+.red {
+  color: #e63946;
+  transition: color 1000ms;
+}
+
+.star-icon:hover {
+  color: #e63946;
+  cursor: pointer;
+}
+
+.star-icon:active {
+  color: #112d4e;
+  transform: translateY(2px);
 }
