@@ -476,18 +476,17 @@ body {
   display: none;
 }
 
+.red {
+  color: #e63946;
+  transition: color 1000ms;
+}
+
 .star-icon:hover {
   color: #e63946;
   cursor: pointer;
-  font-size: 1.5rem;
 }
 
 .star-icon:active {
   color: #112d4e;
-  transform: translateY(3px);
-}
-
-.red {
-  color: #e63946;
-  transition: color 1000ms;
+  transform: translateY(2px);
 }

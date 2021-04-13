@@ -53,12 +53,6 @@ app.post('/api/bookShelf', (req, res, next) => {
 
 app.patch('/api/bookShelf/library/:googleId', (req, res, next) => {
   const googleId = req.params.googleId;
-  if (!googleId) {
-    res.status(400).json({
-      error: 'googleId is required'
-    });
-    return;
-  }
   const { stars } = req.body;
   const sql = `
   update "library"

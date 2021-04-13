@@ -17,19 +17,16 @@ export default class GetRating extends React.Component {
     this.setState({
       rating: event.target.value
     });
-    if (newRating) {
-      fetch(`/api/bookShelf/library/${googleId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(newRating)
-      })
-        .then(res => {
-          res.json();
-        });
-    }
-
+    fetch(`/api/bookShelf/library/${googleId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(newRating)
+    })
+      .then(res => {
+        res.json();
+      });
   }
 
   render() {
