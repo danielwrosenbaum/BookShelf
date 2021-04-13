@@ -135,7 +135,7 @@ export default class Details extends React.Component {
   }
 
   renderHeading() {
-    const { isSaved, isError } = this.state;
+    const { isSaved, isError, isAdded } = this.state;
     if (isSaved) {
       return (
         <div className="save-header heading five">
@@ -146,6 +146,12 @@ export default class Details extends React.Component {
       return (
         <div className="error-header heading five">
           <div className="error-title">Already Added to Library</div>
+        </div>
+      );
+    } else if (isAdded) {
+      return (
+        <div className="add-header heading five">
+          <div className="add-title">Added to Your Reading List!</div>
         </div>
       );
     } else {
