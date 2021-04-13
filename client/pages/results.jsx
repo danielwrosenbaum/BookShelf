@@ -9,12 +9,14 @@ export default class Results extends React.Component {
     this.state = {
       isSaved: false,
       isError: false,
+      isAdded: false,
       route: parseRoute(window.location.hash),
       inputValue: null,
       results: null,
       info: null
     };
     this.handleSave = this.handleSave.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidMount() {
@@ -88,7 +90,7 @@ export default class Results extends React.Component {
       },
       body: JSON.stringify(this.getSavedItem(target))
     };
-    fetch('/api/bookShelf', req)
+    fetch('/api/bookShelf/library', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
@@ -114,8 +116,43 @@ export default class Results extends React.Component {
       .catch(error => console.error(error));
   }
 
+  handleAdd(event) {
+    const target = event.target;
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.getSavedItem(target))
+    };
+    fetch('/api/bookShelf/readingList', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          this.setState({
+            isError: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isError: false
+            });
+          }, 3000);
+        } else {
+          this.setState({
+            isAdded: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isAdded: false
+            });
+          }, 3000);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
   renderHeading() {
-    const { isSaved, isError, inputValue } = this.state;
+    const { isSaved, isError, inputValue, isAdded } = this.state;
     if (isSaved) {
       return (
         <div className="save-header heading five">
@@ -128,6 +165,10 @@ export default class Results extends React.Component {
           <div className="error-title">Already Added to Library</div>
         </div>
       );
+    } else if (isAdded) {
+      <div className="add-header heading five">
+        <div className="add-title">Added to Your Reading List!</div>
+      </div>;
     } else {
       return (
         <div className="result-title">
@@ -176,7 +217,7 @@ export default class Results extends React.Component {
                   <div className="description">{description}</div>
                 </div>
                 <div className="card-icons" >
-                  <i className="plus-icon fas fa-plus fa-1x"></i>
+                  <i className="plus-icon fas fa-plus fa-1x" id={googleId} onClick={this.handleAdd}></i>
                   <i className="heart-icon far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
                 </div>
               </div>

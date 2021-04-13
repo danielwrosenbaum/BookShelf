@@ -17,3 +17,15 @@ create table "public"."library" (
   primary key ("libraryId"),
   unique ("googleId")
 );
+
+create table "public"."readingList" (
+  "libraryId"           serial,
+  "title"               text          not null,
+  "author"              text,
+  "googleId"            text          not null,
+  "coverUrl"            text,
+  "stars"              integer,
+  "addedAt"             timestamptz(6) not null default now(),
+  primary key ("libraryId"),
+  unique ("googleId")
+);

@@ -71,7 +71,7 @@ export default class Details extends React.Component {
       },
       body: JSON.stringify(this.state.info)
     };
-    fetch('/api/bookShelf', req)
+    fetch('/api/bookShelf/library', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
