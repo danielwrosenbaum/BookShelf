@@ -11,6 +11,7 @@ export default class Details extends React.Component {
       isError: false,
       isAdded: false,
       inputValue: null,
+      target: null,
       result: null,
       info: null
     };
@@ -65,7 +66,8 @@ export default class Details extends React.Component {
     return <p dangerouslySetInnerHTML={this.renderDescription()} />;
   }
 
-  handleSave() {
+  handleSave(event) {
+    this.setState({ target: 'Library' });
     const req = {
       method: 'POST',
       headers: {
@@ -100,6 +102,7 @@ export default class Details extends React.Component {
   }
 
   handleAdd() {
+    this.setState({ target: 'Reading List' });
 
     const req = {
       method: 'POST',
@@ -135,7 +138,7 @@ export default class Details extends React.Component {
   }
 
   renderHeading() {
-    const { isSaved, isError, isAdded } = this.state;
+    const { isSaved, isError, isAdded, target } = this.state;
     if (isSaved) {
       return (
         <div className="save-header heading five">
@@ -145,7 +148,7 @@ export default class Details extends React.Component {
     } else if (isError) {
       return (
         <div className="error-header heading five">
-          <div className="error-title">Already Added!</div>
+          <div className="error-title">{`Already Added to ${target}`}</div>
         </div>
       );
     } else if (isAdded) {
@@ -210,7 +213,7 @@ export default class Details extends React.Component {
               </div>
             </div>
             <div className="button-container">
-              <button className="details-button add-list" onClick={this.handleAdd}>Add to List</button>
+              <button className="details-button add-list" onClick={this.handleAdd}>{(this.state.isAdded) ? <i className="fas fa-check fa-2x"></i> : 'Add to List'}</button>
               <button className="details-button add-lib" onClick={this.handleSave}>{(this.state.isSaved) ? <i className="fas fa-heart fa-2x"></i> : 'Read it!'}</button>
             </div>
           </div>

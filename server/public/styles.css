@@ -13,6 +13,7 @@ body {
 .save-title,
 .error-title,
 .add-title,
+.icon,
 .menu-icon,
 .pop-up,
 .overlay,
@@ -62,32 +63,29 @@ body {
   width: 30%;
 }
 
-/* .error {
-  width: 35%;
-  color: #112d4e;
-} */
-
 .hidden {
   display: none !important;
 }
 
 .save-header,
 .saved {
-  background-color: #e63947e0;
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #e63946f8 65%);
 }
 
 .error-header {
-  background-color: #f1faeee0;
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #a8dadcf8 65%);
 }
 
 .add-header,
 .added {
-  background-color: #3f72afe0;
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #3f71aff8 65%);
 }
 
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
+  width: 80%;
+  margin: auto;
 }
 
 .one-blue {
@@ -370,6 +368,8 @@ body {
   color: black;
   left: 1rem;
   top: 0.5rem;
+
+  /* z-index: 2; */
 }
 
 .overlay {
@@ -486,11 +486,10 @@ body {
 .error-title,
 .add-title {
   position: fixed;
-  width: 75%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  margin: auto;
   text-align: center;
 }
 
@@ -520,7 +519,8 @@ body {
 
 .error-title {
   color: #112d4e;
-  font-size: 1.55rem;
+
+  /* font-size: 1.55rem; */
 }
 
 .star-radio {
