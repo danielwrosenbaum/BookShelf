@@ -131,6 +131,10 @@ body {
   border-radius: 0.25rem;
 }
 
+.pic-container {
+  min-height: 130px;
+}
+
 .button-container {
   position: fixed;
   top: 92%;
@@ -243,6 +247,8 @@ body {
 .lib-info {
   display: flex;
   width: 100%;
+
+  /* margin-bottom: 1rem; */
 }
 
 .book-col {
@@ -361,7 +367,8 @@ body {
 }
 
 .plus-icon:hover,
-.heart-icon:hover {
+.heart-icon:hover,
+.star-icon:hover {
   cursor: pointer;
   color: #e63946;
 }
@@ -464,4 +471,8 @@ body {
 
 .error-title {
   color: #112d4e;
+}
+
+.star-radio {
+  display: none;
 }

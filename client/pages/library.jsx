@@ -1,11 +1,14 @@
 import React from 'react';
+import GetRating from '../components/get-rating';
 
 export default class Library extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: null
+      result: null,
+      rating: null
     };
+    // this.handleRating = this.handleRating.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +37,10 @@ export default class Library extends React.Component {
               <div key={index} id={googleId} className="library-card">
                 <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
                   <div className="lib-info no-outline">
-                    <img className="thumbnail" src={thumbNail} alt={title} />
+                    <div className='pic-container'>
+                      <img className="thumbnail" src={thumbNail} alt={title} />
+                    </div>
+
                     <div className="lib-col">
                       <div>
                         <div className="heading six">{title}</div>
@@ -46,11 +52,7 @@ export default class Library extends React.Component {
                 <div className="rating-container">
                   <div>Rate This Book: </div>
                   <div className='star-container'>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
-                    <i className="far fa-star"></i>
+                    <GetRating />
                   </div>
                 </div>
                 <div className="delete-container">
