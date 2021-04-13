@@ -166,9 +166,11 @@ export default class Results extends React.Component {
         </div>
       );
     } else if (isAdded) {
+      return (
       <div className="add-header heading five">
         <div className="add-title">Added to Your Reading List!</div>
-      </div>;
+      </div>
+      );
     } else {
       return (
         <div className="result-title">
@@ -176,6 +178,25 @@ export default class Results extends React.Component {
           <div className="heading">for {inputValue}</div>
         </div>
       );
+    }
+  }
+
+  renderModal() {
+    const { isSaved, isError, isAdded } = this.state;
+    if (isSaved) {
+      return (
+        <div className='pop-up saved'>Saved!</div>
+      );
+    } else if (isAdded) {
+      return (
+        <div className='pop-up added'>Added!</div>
+      );
+    } else if (isError) {
+      return (
+        <div className='pop-up error'>Try Again.</div>
+      );
+    } else {
+      return null;
     }
   }
 
@@ -231,7 +252,9 @@ export default class Results extends React.Component {
         {this.renderHeading()}
         <div>
           {bookResults}
+
         </div>
+        {this.renderModal()}
       </>
     );
   }
