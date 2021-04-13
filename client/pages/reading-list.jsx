@@ -4,7 +4,17 @@ export default class ReadingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      result: null
     };
+  }
+
+  componentDidMount() {
+    fetch('/api/bookShelf/readingList')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ result });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
