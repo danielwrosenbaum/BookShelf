@@ -22,6 +22,7 @@ export default class Library extends React.Component {
 
   render() {
     const { result } = this.state;
+    // console.log(result);
     if (!result) return null;
     const books = result;
 
@@ -33,6 +34,7 @@ export default class Library extends React.Component {
             const thumbNail = book.coverUrl;
             const googleId = book.googleId;
             const author = book.author;
+            const rating = book.stars;
             return (
               <div key={index} id={googleId} className="library-card">
                 <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
@@ -52,7 +54,7 @@ export default class Library extends React.Component {
                 <div className="rating-container">
                   <div>Rate This Book: </div>
                   <div className='star-container'>
-                    <GetRating />
+                    <GetRating id={googleId} value={rating}/>
                   </div>
                 </div>
                 <div className="delete-container">
