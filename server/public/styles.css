@@ -484,7 +484,7 @@ body {
 
 .star-icon:active {
   color: #112d4e;
-  transform: translateY(4px);
+  transform: translateY(3px);
 }
 
 .red {
