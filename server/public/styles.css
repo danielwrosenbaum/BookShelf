@@ -367,8 +367,7 @@ body {
 }
 
 .plus-icon:hover,
-.heart-icon:hover,
-.star-icon:hover {
+.heart-icon:hover {
   cursor: pointer;
   color: #e63946;
 }
@@ -475,4 +474,20 @@ body {
 
 .star-radio {
   display: none;
+}
+
+.star-icon:hover {
+  color: #e63946;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.star-icon:active {
+  color: #112d4e;
+  transform: translateY(4px);
+}
+
+.red {
+  color: #e63946;
+  transition: color 1000ms;
 }
