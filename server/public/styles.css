@@ -163,7 +163,7 @@ body {
 
 .details-page {
   min-height: 100vh;
-  background: linear-gradient(#f9f7f7 35%, #dbe2ef 55%, #3f72af 100%);
+  background: linear-gradient(#f9f7f7 0%, #dbe2ef 50%, #3f72af 100%);
 }
 
 .details-container {
