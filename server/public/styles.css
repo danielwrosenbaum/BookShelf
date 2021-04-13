@@ -57,6 +57,10 @@ body {
   box-shadow: 5px 5px 10px #112d4e;
 }
 
+.icon {
+  height: 100%;
+}
+
 .saved,
 .added {
   color: #f9f7f7;
@@ -368,8 +372,6 @@ body {
   color: black;
   left: 1rem;
   top: 0.5rem;
-
-  /* z-index: 2; */
 }
 
 .overlay {
@@ -486,9 +488,8 @@ body {
 .error-title,
 .add-title {
   position: fixed;
-  width: 90%;
-  left: 5%;
-  right: 5%;
+  left: 10%;
+  right: 10%;
   margin: auto;
   text-align: center;
 }
@@ -519,8 +520,6 @@ body {
 
 .error-title {
   color: #112d4e;
-
-  /* font-size: 1.55rem; */
 }
 
 .star-radio {

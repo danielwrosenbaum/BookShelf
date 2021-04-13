@@ -191,10 +191,6 @@ export default class Results extends React.Component {
       return (
         <div className='pop-up added'>Added!</div>
       );
-    // } else if (isError) {
-    //   return (
-    //     <div className='pop-up error'>Try Again</div>
-    //   );
     } else {
       return null;
     }
