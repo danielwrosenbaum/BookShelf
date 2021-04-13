@@ -62,10 +62,10 @@ body {
   width: 30%;
 }
 
-.error {
+/* .error {
   width: 35%;
   color: #112d4e;
-}
+} */
 
 .hidden {
   display: none !important;
@@ -76,8 +76,7 @@ body {
   background-color: #e63947e0;
 }
 
-.error-header,
-.error {
+.error-header {
   background-color: #f1faeee0;
 }
 
@@ -521,6 +520,7 @@ body {
 
 .error-title {
   color: #112d4e;
+  font-size: 1.55rem;
 }
 
 .star-radio {

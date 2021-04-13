@@ -162,7 +162,7 @@ export default class Results extends React.Component {
     } else if (isError) {
       return (
         <div className="error-header heading five">
-          <div className="error-title">Already Added to Library</div>
+          <div className="error-title">Already Added!</div>
         </div>
       );
     } else if (isAdded) {
@@ -182,7 +182,7 @@ export default class Results extends React.Component {
   }
 
   renderModal() {
-    const { isSaved, isError, isAdded } = this.state;
+    const { isSaved, isAdded } = this.state;
     if (isSaved) {
       return (
         <div className='pop-up saved'>Saved!</div>
@@ -191,10 +191,10 @@ export default class Results extends React.Component {
       return (
         <div className='pop-up added'>Added!</div>
       );
-    } else if (isError) {
-      return (
-        <div className='pop-up error'>Try Again.</div>
-      );
+    // } else if (isError) {
+    //   return (
+    //     <div className='pop-up error'>Try Again</div>
+    //   );
     } else {
       return null;
     }

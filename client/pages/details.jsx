@@ -99,14 +99,14 @@ export default class Details extends React.Component {
       .catch(error => console.error(error));
   }
 
-  handleAdd(event) {
-    const target = event.target;
+  handleAdd() {
+
     const req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.getSavedItem(target))
+      body: JSON.stringify(this.state.info)
     };
     fetch('/api/bookShelf/readingList', req)
       .then(res => res.json())
@@ -145,7 +145,7 @@ export default class Details extends React.Component {
     } else if (isError) {
       return (
         <div className="error-header heading five">
-          <div className="error-title">Already Added to Library</div>
+          <div className="error-title">Already Added!</div>
         </div>
       );
     } else if (isAdded) {
@@ -210,7 +210,7 @@ export default class Details extends React.Component {
               </div>
             </div>
             <div className="button-container">
-              <button className="details-button add-list">Add to List</button>
+              <button className="details-button add-list" onClick={this.handleAdd}>Add to List</button>
               <button className="details-button add-lib" onClick={this.handleSave}>{(this.state.isSaved) ? <i className="fas fa-heart fa-2x"></i> : 'Read it!'}</button>
             </div>
           </div>
