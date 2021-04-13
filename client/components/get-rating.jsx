@@ -43,7 +43,6 @@ export default class GetRating extends React.Component {
               <input id={this.props.id} className="star-radio" type='radio' name="rating" value={stars} onClick={this.handleClick} />
               <i className={(stars <= rating) ? 'star-icon fas fa-star' : 'star-icon far fa-star'}></i>
             </label>
-
           );
         })}
       </div>

@@ -8,7 +8,6 @@ export default class Library extends React.Component {
       result: null,
       rating: null
     };
-    // this.handleRating = this.handleRating.bind(this);
   }
 
   componentDidMount() {
@@ -22,10 +21,8 @@ export default class Library extends React.Component {
 
   render() {
     const { result } = this.state;
-    // console.log(result);
     if (!result) return null;
     const books = result;
-
     const bookResults = (
       <div className="library-container">
         {
