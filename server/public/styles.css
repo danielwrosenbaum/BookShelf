@@ -20,14 +20,25 @@ body {
   z-index: 1;
 }
 
-.header,
-.save-header,
-.error-header,
-.add-header {
+.header {
   position: fixed;
   top: 0;
   width: 100%;
   height: 4rem;
+  background: linear-gradient(100deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
+}
+
+.save-header,
+.error-header,
+.add-header {
+  position: fixed;
+  top: 0.75rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  box-shadow: 5px 5px 10px #112d4e;
 }
 
 .pop-up {
@@ -40,8 +51,9 @@ body {
   text-align: center;
   background-color: black;
   border-radius: 1rem;
-  font-size: 1.5rem;
-  padding: 0.5rem;
+  font-size: 1.25rem;
+  padding: 0.5rem 0.25rem;
+  box-shadow: 5px 5px 10px #112d4e;
 }
 
 .saved,
@@ -59,26 +71,19 @@ body {
   display: none !important;
 }
 
-.header {
-  background: linear-gradient(120deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
-}
-
 .save-header,
 .saved {
-  background: linear-gradient(#f9f7f7 0%, #e63946 55%);
-  box-shadow: 5px 5px 10px #112d4e;
+  background-color: #e63947e0;
 }
 
 .error-header,
 .error {
-  background: linear-gradient(#f9f7f7 0%, #f1faee 55%);
-  box-shadow: 5px 5px 10px #112d4e;
+  background-color: #f1faeee0;
 }
 
 .add-header,
 .added {
-  background: linear-gradient(#f9f7f7 0%, #3f72af 55%);
-  box-shadow: 5px 5px 10px #112d4e;
+  background-color: #3f72afe0;
 }
 
 .heading {
@@ -501,14 +506,17 @@ body {
   top: 0;
 }
 
-.details-title,
-.save-title {
+.details-title {
   top: 0.75rem;
+}
+
+.save-title {
+  top: 1.5rem;
 }
 
 .add-title,
 .error-title {
-  top: 1rem;
+  top: 2rem;
 }
 
 .error-title {
