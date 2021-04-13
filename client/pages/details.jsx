@@ -9,11 +9,13 @@ export default class Details extends React.Component {
       route: parseRoute(window.location.hash),
       isSaved: false,
       isError: false,
+      isAdded: false,
       inputValue: null,
       result: null,
       info: null
     };
     this.handleSave = this.handleSave.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   getAuthor(author) {
@@ -90,6 +92,41 @@ export default class Details extends React.Component {
           setTimeout(() => {
             this.setState({
               isSaved: false
+            });
+          }, 3000);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
+  handleAdd(event) {
+    const target = event.target;
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.getSavedItem(target))
+    };
+    fetch('/api/bookShelf/readingList', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          this.setState({
+            isError: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isError: false
+            });
+          }, 3000);
+        } else {
+          this.setState({
+            isAdded: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isAdded: false
             });
           }, 3000);
         }
