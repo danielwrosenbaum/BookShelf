@@ -7,44 +7,93 @@ body {
 .header,
 .save-header,
 .error-header,
+.add-header,
 .result-title,
 .details-title,
 .save-title,
 .error-title,
+.add-title,
+.icon,
 .menu-icon,
+.pop-up,
 .overlay,
 .modal {
   z-index: 1;
 }
 
-.header,
-.save-header,
-.error-header {
+.header {
   position: fixed;
   top: 0;
   width: 100%;
   height: 4rem;
+  background: linear-gradient(100deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
+}
+
+.save-header,
+.error-header,
+.add-header {
+  position: fixed;
+  top: 0.75rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  box-shadow: 5px 5px 10px #112d4e;
+}
+
+.pop-up {
+  position: fixed;
+  top: 90%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: black;
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  padding: 0.5rem 0.25rem;
+  box-shadow: 5px 5px 10px #112d4e;
+}
+
+.icon {
+  height: 100%;
+}
+
+.saved,
+.added {
+  color: #f9f7f7;
+  width: 30%;
 }
 
 .hidden {
   display: none !important;
 }
 
-.header {
-  background: linear-gradient(120deg, #f9f7f7da 5%, #112d4ea9  35%, #112d4e 100%);
-}
-
-.save-header {
-  background: linear-gradient(#f9f7f7 0%, #e63946 55%);
+.save-header,
+.saved {
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #e63946f8 65%);
 }
 
 .error-header {
-  background: linear-gradient(#f9f7f7 0%, #a8dadc 55%);
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #a8dadcf8 65%);
+}
+
+.add-header,
+.added {
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #3f71aff8 65%);
 }
 
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
+  width: 80%;
+  margin: auto;
+}
+
+.blue {
+  color: #112d4e;
 }
 
 .one-blue {
@@ -247,8 +296,6 @@ body {
 .lib-info {
   display: flex;
   width: 100%;
-
-  /* margin-bottom: 1rem; */
 }
 
 .book-col {
@@ -442,19 +489,19 @@ body {
 .result-title,
 .details-title,
 .save-title,
-.error-title {
+.error-title,
+.add-title {
   position: fixed;
-  width: 75%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  left: 10%;
+  right: 10%;
+  margin: auto;
   text-align: center;
 }
 
 .result-title,
 .details-title,
-.save-title {
+.save-title,
+.add-title {
   color: #f9f7f7;
 }
 
@@ -462,10 +509,17 @@ body {
   top: 0;
 }
 
-.details-title,
-.save-title,
-.error-title {
+.details-title {
   top: 0.75rem;
+}
+
+.save-title {
+  top: 1.5rem;
+}
+
+.add-title,
+.error-title {
+  top: 2rem;
 }
 
 .error-title {

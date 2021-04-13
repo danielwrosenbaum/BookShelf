@@ -9,11 +9,14 @@ export default class Details extends React.Component {
       route: parseRoute(window.location.hash),
       isSaved: false,
       isError: false,
+      isAdded: false,
       inputValue: null,
+      target: null,
       result: null,
       info: null
     };
     this.handleSave = this.handleSave.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   getAuthor(author) {
@@ -63,7 +66,8 @@ export default class Details extends React.Component {
     return <p dangerouslySetInnerHTML={this.renderDescription()} />;
   }
 
-  handleSave() {
+  handleSave(event) {
+    this.setState({ target: 'Library' });
     const req = {
       method: 'POST',
       headers: {
@@ -71,7 +75,7 @@ export default class Details extends React.Component {
       },
       body: JSON.stringify(this.state.info)
     };
-    fetch('/api/bookShelf', req)
+    fetch('/api/bookShelf/library', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
@@ -97,8 +101,44 @@ export default class Details extends React.Component {
       .catch(error => console.error(error));
   }
 
+  handleAdd() {
+    this.setState({ target: 'Reading List' });
+
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.info)
+    };
+    fetch('/api/bookShelf/readingList', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          this.setState({
+            isError: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isError: false
+            });
+          }, 3000);
+        } else {
+          this.setState({
+            isAdded: true
+          });
+          setTimeout(() => {
+            this.setState({
+              isAdded: false
+            });
+          }, 3000);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
   renderHeading() {
-    const { isSaved, isError } = this.state;
+    const { isSaved, isError, isAdded, target } = this.state;
     if (isSaved) {
       return (
         <div className="save-header heading five">
@@ -108,7 +148,13 @@ export default class Details extends React.Component {
     } else if (isError) {
       return (
         <div className="error-header heading five">
-          <div className="error-title">Already Added to Library</div>
+          <div className="error-title">{`Already Added to ${target}`}</div>
+        </div>
+      );
+    } else if (isAdded) {
+      return (
+        <div className="add-header heading five">
+          <div className="add-title">Added to Your Reading List!</div>
         </div>
       );
     } else {
@@ -167,7 +213,7 @@ export default class Details extends React.Component {
               </div>
             </div>
             <div className="button-container">
-              <button className="details-button add-list">Add to List</button>
+              <button className="details-button add-list" onClick={this.handleAdd}>{(this.state.isAdded) ? <i className="blue fas fa-check fa-2x"></i> : 'Add to List'}</button>
               <button className="details-button add-lib" onClick={this.handleSave}>{(this.state.isSaved) ? <i className="fas fa-heart fa-2x"></i> : 'Read it!'}</button>
             </div>
           </div>
