@@ -22,7 +22,6 @@ export default class ReadingList extends React.Component {
   }
 
   handleBuyClick(event) {
-    // console.log('target', event.target.value);
     this.setState({
       isBuyClicked: true,
       targetTitle: event.target.value

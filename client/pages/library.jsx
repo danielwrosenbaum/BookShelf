@@ -52,22 +52,35 @@ export default class Library extends React.Component {
                     <img className="thumbnail" src={thumbNail} alt={title} />
                   </div>
                   <div className="lib-col">
-                    <div className="sub-heading six">{title}</div>
-                    <div className="sub-heading three">by {author}</div>
-                      <a href={`#details?bookId=${googleId}`}>
+                    <div className="sub-col">
+                      <div className="sub-heading six">{title}</div>
+                      <div className="sub-heading three">by {author}</div>
+                      <a className="button-anchor" href={`#details?bookId=${googleId}`}>
                         <button className="lib-details button">Details</button>
                       </a>
+                    </div>
+                    {/* <div className="sub-heading six">{title}</div>
+                    <div className="sub-heading three">by {author}</div>
+                    <a className="button-anchor" href={`#details?bookId=${googleId}`}>
+                      <button className="lib-details button">Details</button>
+                    </a> */}
+                    <div id="rate" className="rating-container">
+                      <div>Rate This Book: </div>
+                      <div className='star-container'>
+                        <GetRating id={googleId} value={rating} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div id="rate" className="rating-container">
+                {/* <div id="rate" className="rating-container">
                   <div>Rate This Book: </div>
                   <div className='star-container'>
                     <GetRating id={googleId} value={rating} />
                   </div>
-                </div>
+                </div> */}
                 <div className="delete-container">
                   <i className="fas fa-times"></i>
-                  </div>
+                </div>
               </div>
             );
           })

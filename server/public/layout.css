@@ -22,6 +22,7 @@
 
   .thumbnail {
     max-height: 200px;
+    width: auto;
   }
 
   .six {
@@ -35,6 +36,20 @@
 
   .lib-author {
     font-size: 1.5rem;
+  }
+
+  .rl-buy,
+  .rl-info,
+  .lib-details {
+    height: 2.5rem;
+    width: 6.5rem;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  .rl-button-container {
+    /* max-width: 500px; */
+    width: 400px;
+    margin-left: 2rem;
   }
 
   .rating-container {

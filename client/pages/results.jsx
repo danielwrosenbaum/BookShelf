@@ -224,14 +224,17 @@ export default class Results extends React.Component {
                   <img className="thumbnail" src={thumbNail} alt={title} />
                   </div>
                   <div className="book-col">
-                    <div className="book-info">
-                      <h3 className="heading three no-top">{title}</h3>
-                      <h4 className="heading three no-top no-bottom">by {authors}</h4>
-                      <div className="heading three">{year}</div>
+                    <div className="sub-col">
+                      <div className="sub-heading six">{title}</div>
+                      <div className="sub-heading three">by {authors}</div>
+                      <div className="sub-heading three">{year}</div>
+                      <a className="button-anchor" href={`#details?bookId=${googleId}`}>
+                        <button id={googleId} name={title} className="lib-details button">Details</button>
+                      </a>
                     </div>
-                    <a href={`#details?bookId=${googleId}`}>
-                      <button id={googleId} name={title} className="info button">Details</button>
-                    </a>
+                    {/* <a className="button-anchor" href={`#details?bookId=${googleId}`}>
+                      <button id={googleId} name={title} className="lib-details button">Details</button>
+                    </a> */}
                   </div>
                   <div className="description">{description}</div>
                 </div>
