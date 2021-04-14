@@ -34,19 +34,6 @@ export default class Library extends React.Component {
             const rating = book.stars;
             return (
               <div key={googleId} id={googleId} className="library-card">
-                {/* <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
-                  <div className="lib-info no-outline">
-                    <div className='pic-container'>
-                      <img className="thumbnail" src={thumbNail} alt={title} />
-                    </div>
-                    <div className="lib-col">
-                      <div>
-                        <div className="sub-heading six">{title}</div>
-                        <div className="sub-heading three lib-author">by {author}</div>
-                      </div>
-                    </div>
-                  </div>
-                </a> */}
                 <div className="lib-info">
                   <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
@@ -59,11 +46,6 @@ export default class Library extends React.Component {
                         <button className="lib-details button">Details</button>
                       </a>
                     </div>
-                    {/* <div className="sub-heading six">{title}</div>
-                    <div className="sub-heading three">by {author}</div>
-                    <a className="button-anchor" href={`#details?bookId=${googleId}`}>
-                      <button className="lib-details button">Details</button>
-                    </a> */}
                     <div id="rate" className="rating-container">
                       <div>Rate This Book: </div>
                       <div className='star-container'>
@@ -72,12 +54,6 @@ export default class Library extends React.Component {
                     </div>
                   </div>
                 </div>
-                {/* <div id="rate" className="rating-container">
-                  <div>Rate This Book: </div>
-                  <div className='star-container'>
-                    <GetRating id={googleId} value={rating} />
-                  </div>
-                </div> */}
                 <div className="delete-container">
                   <i className="fas fa-times"></i>
                 </div>

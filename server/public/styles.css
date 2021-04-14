@@ -180,8 +180,6 @@ body {
   margin-top: 4rem;
   background-color: #f9f7f7;
   width: 100%;
-
-  /* box-sizing: border-box; */
 }
 
 .details-container {
@@ -197,10 +195,6 @@ body {
   box-shadow: 1px 2px 4px;
   padding: 0.25rem;
   border-radius: 0.25rem;
-}
-
-.pic-container {
-  /* min-height: 130px; */
 }
 
 .button-container {
@@ -233,10 +227,6 @@ body {
   justify-content: space-between;
   margin-top: 2rem;
   width: 100%;
-
-  /* width: 95%; */
-
-  /* max-width: 200px; */
 }
 
 .semi-bold {
@@ -255,8 +245,6 @@ body {
   font-size: 1.15rem;
   box-shadow: 1px 5px 10px #112d4eb2;
   border: 1px solid #112d4eb2;
-
-  /* border: none; */
 }
 
 .add-list {
@@ -312,11 +300,6 @@ body {
   background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
 }
 
-/* .library-click {
-  width: 90%;
-  height: 90%;
-} */
-
 .rl-card,
 .library-card {
   width: 90%;
@@ -334,40 +317,21 @@ body {
   text-decoration: none;
 }
 
-/* .result-info {
-  display: flex;
-} */
-
 .result-info,
 .lib-info,
 .rl-card-info {
   display: flex;
 }
 
-/* .book-col {
-  margin: 0.5rem 0 0.5rem 1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
-
 .book-col,
 .rl-col,
 .lib-col {
   display: flex;
   flex-direction: column;
-
-  /* justify-content: space-between; */
   margin-left: 1rem;
   width: 100%;
 }
 
-/* .sub-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
 .description {
   width: fit-content;
   margin: 2rem;
@@ -607,14 +571,12 @@ body {
 }
 
 .rl-buy {
-  /* align-self: flex-start; */
   color: #112d4e;
   margin-right: 2rem;
   background: linear-gradient(135deg, #f9f7f7 0%, #a8dadc 100%);
 }
 
 .rl-info {
-  /* align-self: flex-end; */
   color: #f9f7f7;
   background: linear-gradient(135deg, #f9f7f7 0%, #e25c67 40%, #e63946 100%);
 }

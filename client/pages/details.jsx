@@ -195,17 +195,17 @@ export default class Details extends React.Component {
     const indieBound = 'https://www.indiebound.org/search/book?keys=';
     if (isBuyClicked) {
       return (
-      <div className="buy-overlay">
-        <div className='buy-modal'>
-          <div className='sub-heading buy-question'> Search indiebound.com for a copy of this book?</div>
-          <div className='buy-buttons'>
-            <button className="buy-no" onClick={this.handleClickBack}>No</button>
-            <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
-              <button className="buy-yes" onClick={this.handleClickBack}>Yes</button>
-            </a>
+        <div className="buy-overlay">
+          <div className='buy-modal'>
+            <div className='sub-heading buy-question'> Search indiebound.com for a copy of this book?</div>
+            <div className='buy-buttons'>
+              <button className="buy-no" onClick={this.handleClickBack}>No</button>
+              <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
+                <button className="buy-yes" onClick={this.handleClickBack}>Yes</button>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
       );
     }
   }
@@ -252,7 +252,6 @@ export default class Details extends React.Component {
                     {isbn}</div>
                   <button className="details-buy sub-heading three bold" onClick={this.handleBuyClick}>Buy Here</button>
                 </div>
-
                 <div className="description-container">
                   <div className="sub-heading four bold">Description</div>
                   {this.renderedDescription()}

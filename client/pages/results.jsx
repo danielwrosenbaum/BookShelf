@@ -232,9 +232,6 @@ export default class Results extends React.Component {
                         <button id={googleId} name={title} className="lib-details button">Details</button>
                       </a>
                     </div>
-                    {/* <a className="button-anchor" href={`#details?bookId=${googleId}`}>
-                      <button id={googleId} name={title} className="lib-details button">Details</button>
-                    </a> */}
                   </div>
                   <div className="description">{description}</div>
                 </div>
