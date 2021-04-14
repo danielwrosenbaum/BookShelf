@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/header';
 
 export default class ReadingList extends React.Component {
   constructor(props) {
@@ -98,6 +99,7 @@ export default class ReadingList extends React.Component {
     );
     return (
       <>
+      <Header />
         <div className="details-title">
           <div className="heading two-white">Reading List</div>
         </div>

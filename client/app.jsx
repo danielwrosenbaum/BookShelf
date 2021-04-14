@@ -6,7 +6,7 @@ import AppDrawer from './components/appdrawer';
 import Results from './pages/results';
 import AppContext from './lib/app-context';
 import PageContainer from './components/page-container';
-import Header from './components/header';
+// import Header from './components/header';
 import Details from './pages/details';
 import Library from './pages/library';
 import ReadingList from './pages/reading-list';
@@ -55,10 +55,10 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
-        {route.path !== 'search-page' &&
+        {/* {route.path !== 'search-page' &&
         route.path !== 'advanced-search' &&
         route.path !== '' &&
-          <Header />}
+          <Header />} */}
           <AppDrawer />
           <PageContainer>
             {this.renderPage()}

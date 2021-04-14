@@ -1,5 +1,6 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
+import Header from '../components/header';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -247,6 +248,7 @@ export default class Results extends React.Component {
     );
     return (
       <>
+      <Header />
         {this.renderHeading()}
         <div className="results-page">
           {bookResults}

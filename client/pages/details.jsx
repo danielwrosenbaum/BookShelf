@@ -1,6 +1,7 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
 import DOMPurify from 'dompurify';
+import Header from '../components/header';
 const apiKey = process.env.API_KEY;
 export default class Details extends React.Component {
   constructor(props) {
@@ -224,6 +225,7 @@ export default class Details extends React.Component {
     const pages = book.volumeInfo.pageCount;
     return (
       <>
+      <Header />
         {this.renderHeading()}
         <div className="details-page">
           {this.renderPopUp()}

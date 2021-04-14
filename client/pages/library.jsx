@@ -1,5 +1,6 @@
 import React from 'react';
 import GetRating from '../components/get-rating';
+import Header from '../components/header';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -65,6 +66,7 @@ export default class Library extends React.Component {
     );
     return (
       <>
+      <Header />
         <div className="details-title">
           <div className="heading two-white">Library</div>
         </div>

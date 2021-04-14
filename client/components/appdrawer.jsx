@@ -56,16 +56,20 @@ export default class AppDrawer extends React.Component {
         <a className={buttonClass} onClick={this.handleClick}><i className="fas fa-bars fa-3x"></i></a>
         <div className={modalClass} onClick={this.handleClick}>
           <div className={'menu'}>
-            <div className="heading two menu-item">Menu</div>
-            <a href="#search-page" className="heading four menu-item">
-              Search
-            </a>
-            <a href="#library" className="heading four menu-item">
-              Library
-            </a>
-            <a href="#reading-list" className="heading four menu-item">
-              Reading List
-            </a>
+            <div className="menu-heading">Menu</div>
+            <ul className="menu-list">
+              <a href="#search-page" className="menu-item">
+                <li>Search</li>
+              </a>
+              <a href="#library" className="menu-item">
+                <li>Library</li>
+              </a>
+              <a href="#reading-list" className="menu-item">
+                <li>Reading List</li>
+              </a>
+
+            </ul>
+
           </div>
         </div>
       </div>
