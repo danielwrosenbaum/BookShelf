@@ -26,20 +26,19 @@ export default class Library extends React.Component {
     const bookResults = (
       <div className="library-container">
         {
-          books.map((book, index) => {
+          books.map(book => {
             const title = book.title;
             const thumbNail = book.coverUrl;
             const googleId = book.googleId;
             const author = book.author;
             const rating = book.stars;
             return (
-              <div key={index} id={googleId} className="library-card">
+              <div key={googleId} id={googleId} className="library-card">
                 <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
                   <div className="lib-info no-outline">
                     <div className='pic-container'>
                       <img className="thumbnail" src={thumbNail} alt={title} />
                     </div>
-
                     <div className="lib-col">
                       <div>
                         <div className="heading six">{title}</div>
@@ -55,7 +54,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  X
+                  <i className="fas fa-times"></i>
                   </div>
               </div>
             );

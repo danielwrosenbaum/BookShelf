@@ -194,7 +194,7 @@ body {
 }
 
 .library-container,
-.reading-list-container {
+.rl-container {
   background-color: #f9f7f7;
   margin-bottom: 1rem;
   margin-top: 4.5rem;
@@ -286,7 +286,7 @@ body {
   background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 100%);
 }
 
-.reading-list-card {
+.rl-card {
   background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
 }
 
@@ -295,7 +295,7 @@ body {
   height: 90%;
 }
 
-.reading-list-card,
+.rl-card,
 .library-card {
   position: relative;
   outline: none;
@@ -315,7 +315,8 @@ body {
   display: flex;
 }
 
-.lib-info {
+.lib-info,
+.rl-card-info {
   display: flex;
   width: 100%;
 }
@@ -328,7 +329,7 @@ body {
 }
 
 .lib-col {
-  margin: 0.5rem 0 0.5rem 1rem;
+  margin: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

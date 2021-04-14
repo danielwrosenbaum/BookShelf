@@ -22,17 +22,16 @@ export default class ReadingList extends React.Component {
     if (!result) return null;
     const books = result;
     const bookResults = (
-      <div className="reading-list-container">
+      <div className="rl-container">
         {
-          books.map((book, index) => {
+          books.map(book => {
             const title = book.title;
             const thumbNail = book.coverUrl;
             const googleId = book.googleId;
             const author = book.author;
             return (
-              <div key={index} id={googleId} className="reading-list-card">
-
-                <div className="lib-info library-click">
+              <div key={googleId} className="rl-card">
+                <div className="rl-card-info">
                   <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
                   </div>
@@ -47,9 +46,8 @@ export default class ReadingList extends React.Component {
                     </div>
                   </div>
                 </div>
-
                 <div className="delete-container">
-                  X
+                  <i className="fas fa-times"></i>
                   </div>
               </div>
             );
@@ -62,7 +60,7 @@ export default class ReadingList extends React.Component {
         <div className="details-title">
           <div className="heading two-white">Reading List</div>
         </div>
-        <div className="reading-list-page">
+        <div className="rl-page">
           {bookResults}
         </div>
       </>
