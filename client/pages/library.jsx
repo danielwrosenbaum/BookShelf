@@ -1,5 +1,6 @@
 import React from 'react';
 import GetRating from '../components/get-rating';
+import Header from '../components/header';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -34,28 +35,29 @@ export default class Library extends React.Component {
             const rating = book.stars;
             return (
               <div key={googleId} id={googleId} className="library-card">
-                <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
-                  <div className="lib-info no-outline">
-                    <div className='pic-container'>
-                      <img className="thumbnail" src={thumbNail} alt={title} />
+                <div className="lib-info">
+                  <div className='pic-container'>
+                    <img className="thumbnail" src={thumbNail} alt={title} />
+                  </div>
+                  <div className="lib-col">
+                    <div className="sub-col">
+                      <div className="sub-heading six">{title}</div>
+                      <div className="sub-heading three">by {author}</div>
+                      <a className="button-anchor" href={`#details?bookId=${googleId}`}>
+                        <button className="lib-details button">Details</button>
+                      </a>
                     </div>
-                    <div className="lib-col">
-                      <div>
-                        <div className="heading six">{title}</div>
-                        <div className="heading three no-top no-bottom lib-author">by {author}</div>
+                    <div id="rate" className="rating-container">
+                      <div>Rate This Book: </div>
+                      <div className='star-container'>
+                        <GetRating id={googleId} value={rating} />
                       </div>
                     </div>
-                  </div>
-                </a>
-                <div id="rate" className="rating-container">
-                  <div>Rate This Book: </div>
-                  <div className='star-container'>
-                    <GetRating id={googleId} value={rating} />
                   </div>
                 </div>
                 <div className="delete-container">
                   <i className="fas fa-times"></i>
-                  </div>
+                </div>
               </div>
             );
           })
@@ -64,6 +66,7 @@ export default class Library extends React.Component {
     );
     return (
       <>
+      <Header />
         <div className="details-title">
           <div className="heading two-white">Library</div>
         </div>

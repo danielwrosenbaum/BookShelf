@@ -7,6 +7,11 @@
     display: block;
   }
 
+  .rl-card,
+  .library-card {
+    width: 95%;
+  }
+
   .book-col {
     width: 25%;
   }
@@ -17,6 +22,7 @@
 
   .thumbnail {
     max-height: 200px;
+    width: auto;
   }
 
   .six {
@@ -32,11 +38,30 @@
     font-size: 1.5rem;
   }
 
+  .rl-buy,
+  .rl-info,
+  .lib-details {
+    height: 2.5rem;
+    width: 6.5rem;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  .rl-button-container {
+    width: 400px;
+    margin-left: 2rem;
+  }
+
   .rating-container {
     font-size: 1.25rem;
   }
 
   .delete-container {
     font-size: 2rem;
+  }
+
+  .buy-modal {
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
   }
 }

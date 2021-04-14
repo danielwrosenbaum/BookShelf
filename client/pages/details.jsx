@@ -1,6 +1,7 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
 import DOMPurify from 'dompurify';
+import Header from '../components/header';
 const apiKey = process.env.API_KEY;
 export default class Details extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Details extends React.Component {
       isSaved: false,
       isError: false,
       isAdded: false,
+      isBuyClicked: false,
       inputValue: null,
       target: null,
       result: null,
@@ -17,6 +19,8 @@ export default class Details extends React.Component {
     };
     this.handleSave = this.handleSave.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleBuyClick = this.handleBuyClick.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   getAuthor(author) {
@@ -101,6 +105,18 @@ export default class Details extends React.Component {
       .catch(error => console.error(error));
   }
 
+  getIsbn(isbn) {
+    let x;
+    for (let i = 0; i < isbn.length; i++) {
+      if (isbn[i].type === 'ISBN_13') {
+        x = isbn[i].identifier;
+      } else {
+        x = isbn[i].identifier;
+      }
+    }
+    return x;
+  }
+
   handleAdd() {
     this.setState({ target: 'Reading List' });
 
@@ -142,7 +158,7 @@ export default class Details extends React.Component {
     if (isSaved) {
       return (
         <div className="save-header heading five">
-          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+          <div className="save-title">Saved to Your Library!</div>
         </div>
       );
     } else if (isError) {
@@ -166,6 +182,35 @@ export default class Details extends React.Component {
     }
   }
 
+  handleBuyClick() {
+    this.setState({ isBuyClicked: true });
+  }
+
+  handleClickBack() {
+    this.setState({ isBuyClicked: false });
+  }
+
+  renderPopUp() {
+    const { isBuyClicked, info } = this.state;
+    const { title } = info;
+    const indieBound = 'https://www.indiebound.org/search/book?keys=';
+    if (isBuyClicked) {
+      return (
+        <div className="buy-overlay">
+          <div className='buy-modal'>
+            <div className='sub-heading buy-question'> Search indiebound.com for a copy of this book?</div>
+            <div className='buy-buttons'>
+              <button className="buy-no" onClick={this.handleClickBack}>No</button>
+              <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
+                <button className="buy-yes" onClick={this.handleClickBack}>Yes</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
     const book = this.state.result;
     if (!book) return null;
@@ -174,14 +219,16 @@ export default class Details extends React.Component {
     const author = book.volumeInfo.authors;
     const authors = this.getAuthor(author);
     const year = parseInt(book.volumeInfo.publishedDate, 10);
-    const isbn = (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/A';
+    const isbn = (book.volumeInfo.industryIdentifiers) ? this.getIsbn(book.volumeInfo.industryIdentifiers) : 'N/A';
     const subTitle = book.volumeInfo.subtitle;
     const category = book.volumeInfo.categories;
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-          {this.renderHeading()}
+      <Header />
+        {this.renderHeading()}
         <div className="details-page">
+          {this.renderPopUp()}
           <div className="details-container">
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />
@@ -191,23 +238,24 @@ export default class Details extends React.Component {
               <div className="heading sub">{subTitle}</div>
               <div className="heading four">by {authors}</div>
               <div className="small-details">
-                <div className="heading four bold">Book Details</div>
+                <div className="sub-heading four bold">Book Details</div>
                 <div className="small-details-insert">
                   <div className="three">
                     <span className="semi-bold">Genre: </span>
                     {category}</div>
                   <div className="three">
                     <span className="semi-bold">Published: </span>
-                  {year}</div>
+                    {year}</div>
                   <div className="three">
                     <span className="semi-bold">Pages: </span>
                     {pages}</div>
                   <div className="three">
                     <span className="semi-bold">ISBN: </span>
                     {isbn}</div>
+                  <button className="details-buy sub-heading three bold" onClick={this.handleBuyClick}>Buy Here</button>
                 </div>
                 <div className="description-container">
-                  <div className="heading four bold">Description</div>
+                  <div className="sub-heading four bold">Description</div>
                   {this.renderedDescription()}
                 </div>
               </div>

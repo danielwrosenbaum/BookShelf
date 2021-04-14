@@ -1,5 +1,6 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
+import Header from '../components/header';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -156,7 +157,7 @@ export default class Results extends React.Component {
     if (isSaved) {
       return (
         <div className="save-header heading five">
-          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+          <div className="save-title">Saved to Your Library!</div>
         </div>
       );
     } else if (isError) {
@@ -220,16 +221,18 @@ export default class Results extends React.Component {
             return (
               <div key={index} name={title} className="card">
                 <div className="result-info">
+                  <div className='pic-container'>
                   <img className="thumbnail" src={thumbNail} alt={title} />
+                  </div>
                   <div className="book-col">
-                    <div className="book-info">
-                      <h3 className="heading three no-top">{title}</h3>
-                      <h4 className="heading three no-top no-bottom">by {authors}</h4>
-                      <div className="heading three">{year}</div>
+                    <div className="sub-col">
+                      <div className="sub-heading six">{title}</div>
+                      <div className="sub-heading three">by {authors}</div>
+                      <div className="sub-heading three">{year}</div>
+                      <a className="button-anchor" href={`#details?bookId=${googleId}`}>
+                        <button id={googleId} name={title} className="lib-details button">Details</button>
+                      </a>
                     </div>
-                    <a href={`#details?bookId=${googleId}`}>
-                      <button id={googleId} name={title} className="info button">Details</button>
-                    </a>
                   </div>
                   <div className="description">{description}</div>
                 </div>
@@ -245,8 +248,9 @@ export default class Results extends React.Component {
     );
     return (
       <>
+      <Header />
         {this.renderHeading()}
-        <div>
+        <div className="results-page">
           {bookResults}
 
         </div>
