@@ -101,6 +101,18 @@ export default class Details extends React.Component {
       .catch(error => console.error(error));
   }
 
+  getIsbn(isbn) {
+    let x;
+    for (let i = 0; i < isbn.length; i++) {
+      if (isbn[i].type === 'ISBN_13') {
+        x = isbn[i].identifier;
+      } else {
+        x = isbn[i].identifier;
+      }
+    }
+    return x;
+  }
+
   handleAdd() {
     this.setState({ target: 'Reading List' });
 
@@ -142,7 +154,7 @@ export default class Details extends React.Component {
     if (isSaved) {
       return (
         <div className="save-header heading five">
-          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+          <div className="save-title">Saved to Your Library!</div>
         </div>
       );
     } else if (isError) {
@@ -167,6 +179,8 @@ export default class Details extends React.Component {
   }
 
   render() {
+    const indieBound = 'https://www.indiebound.org/search/book?keys=';
+    // const bookShop = 'https://bookshop.org/books';
     const book = this.state.result;
     if (!book) return null;
     const title = book.volumeInfo.title;
@@ -174,7 +188,7 @@ export default class Details extends React.Component {
     const author = book.volumeInfo.authors;
     const authors = this.getAuthor(author);
     const year = parseInt(book.volumeInfo.publishedDate, 10);
-    const isbn = (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/A';
+    const isbn = (book.volumeInfo.industryIdentifiers) ? this.getIsbn(book.volumeInfo.industryIdentifiers) : 'N/A';
     const subTitle = book.volumeInfo.subtitle;
     const category = book.volumeInfo.categories;
     const pages = book.volumeInfo.pageCount;
@@ -205,7 +219,13 @@ export default class Details extends React.Component {
                   <div className="three">
                     <span className="semi-bold">ISBN: </span>
                     {isbn}</div>
+
+                  <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
+                    <button className="details-buy sub-heading three bold">Buy Here</button>
+                  </a>
+
                 </div>
+
                 <div className="description-container">
                   <div className="sub-heading four bold">Description</div>
                   {this.renderedDescription()}

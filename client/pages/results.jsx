@@ -156,7 +156,7 @@ export default class Results extends React.Component {
     if (isSaved) {
       return (
         <div className="save-header heading five">
-          <div className="save-title">Nice! It is Now Saved in Your Library!</div>
+          <div className="save-title">Saved to Your Library!</div>
         </div>
       );
     } else if (isError) {

@@ -37,7 +37,7 @@ body {
   top: 0.75rem;
   height: 4rem;
   border-radius: 0.5rem;
-  width: 90%;
+  width: 95%;
   left: 5%;
   right: 5%;
   box-shadow: 5px 5px 10px #112d4e;
@@ -227,7 +227,7 @@ body {
 .rl-button-container {
   display: flex;
   justify-content: space-between;
-  margin: 0.25rem 1rem;
+  margin-top: 1.5rem;
   width: 95%;
 }
 
@@ -245,8 +245,8 @@ body {
   border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
-  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
-  outline: none;
+  box-shadow: 2px 5px 7px #112d4e;
+  border: none;
 }
 
 .add-list {
@@ -513,6 +513,7 @@ body {
 .rl-buy {
   background-color: #a8dadc;
   color: #112d4e;
+  margin-right: 3rem;
 }
 
 .rl-info {
@@ -558,8 +559,12 @@ body {
 .result-title,
 .details-title,
 .save-title,
-.error-title,
 .add-title {
+  color: #f9f7f7;
+}
+
+.result-title,
+.details-title {
   position: fixed;
   left: 15%;
   right: 15%;
@@ -567,11 +572,15 @@ body {
   text-align: center;
 }
 
-.result-title,
-.details-title,
 .save-title,
+.error-title,
 .add-title {
-  color: #f9f7f7;
+  top: 2rem;
+  position: fixed;
+  left: 5%;
+  right: 5%;
+  margin: auto;
+  text-align: center;
 }
 
 .result-title {
@@ -580,12 +589,6 @@ body {
 
 .details-title {
   top: 0.75rem;
-}
-
-.add-title,
-.error-title,
-.save-title {
-  top: 2rem;
 }
 
 .error-title {
@@ -609,4 +612,25 @@ body {
 .star-icon:active {
   color: #112d4e;
   transform: translateY(2px);
+}
+
+.details-buy {
+  margin: 1rem 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 3px -3px #112d4e;
+  border: 1px solid #112d4e;
+  outline: none;
+  background: linear-gradient(120deg, #f9f7f7 0%, #a8dadc 50%);
+  font-size: 1rem;
+  padding: 0.25rem 1rem;
+}
+
+.details-buy:hover {
+  cursor: pointer;
+  background: linear-gradient(120deg, #f9f7f7 0%, #e63946 50%);
+  color: #f9f7f7;
+}
+
+.details-buy:active {
+  transform: translateY(3px);
 }
