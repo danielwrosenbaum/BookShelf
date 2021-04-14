@@ -11,6 +11,7 @@ export default class ReadingList extends React.Component {
     };
     this.handleBuyClick = this.handleBuyClick.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +19,7 @@ export default class ReadingList extends React.Component {
       .then(res => res.json())
       .then(result => {
         this.setState({ result });
+        // console.log('result:', result);
       })
       .catch(error => console.error(error));
   }
@@ -37,8 +39,26 @@ export default class ReadingList extends React.Component {
     });
   }
 
-  renderPopUp() {
+  handleDelete(event) {
+    const googleId = event.target.id;
+    const req = {
+      method: 'DELETE'
+    };
+    fetch(`/api/bookShelf/readingList/${googleId}`, req)
+      .then(result => {
+        return result;
+      })
+      .catch(error => console.error(error));
+    fetch('/api/bookShelf/readingList')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ result });
+      })
+      .catch(error => console.error(error));
 
+  }
+
+  renderPopUp() {
     const { isBuyClicked, targetTitle } = this.state;
     const title = targetTitle;
     const indieBound = 'https://www.indiebound.org/search/book?keys=';
@@ -89,7 +109,7 @@ export default class ReadingList extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i className="fas fa-times"></i>
+                  <i id={googleId} className="fas fa-times" onClick={this.handleDelete}></i>
                   </div>
               </div>
             );
