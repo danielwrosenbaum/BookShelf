@@ -9,6 +9,7 @@ import PageContainer from './components/page-container';
 import Header from './components/header';
 import Details from './pages/details';
 import Library from './pages/library';
+import ReadingList from './pages/reading-list';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,6 +43,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'library') {
       return <Library />;
+    }
+    if (route.path === 'reading-list') {
+      return <ReadingList />;
     }
   }
 
