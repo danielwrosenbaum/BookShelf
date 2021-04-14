@@ -191,7 +191,7 @@ export default class Details extends React.Component {
               <div className="heading sub">{subTitle}</div>
               <div className="heading four">by {authors}</div>
               <div className="small-details">
-                <div className="heading four bold">Book Details</div>
+                <div className="sub-heading four bold">Book Details</div>
                 <div className="small-details-insert">
                   <div className="three">
                     <span className="semi-bold">Genre: </span>
@@ -207,7 +207,7 @@ export default class Details extends React.Component {
                     {isbn}</div>
                 </div>
                 <div className="description-container">
-                  <div className="heading four bold">Description</div>
+                  <div className="sub-heading four bold">Description</div>
                   {this.renderedDescription()}
                 </div>
               </div>

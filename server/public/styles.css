@@ -93,6 +93,11 @@ body {
   margin: auto;
 }
 
+.sub-heading {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+
 .blue {
   color: #112d4e;
 }
@@ -318,7 +323,7 @@ body {
 .lib-info,
 .rl-card-info {
   display: flex;
-  width: 100%;
+  width: 90%;
 }
 
 .book-col {
@@ -329,16 +334,15 @@ body {
 }
 
 .lib-col {
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin: 1rem;
+  width: 100%;
 }
 
 .rl-col {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-left: 1rem;
   width: 100%;
 }
 
@@ -557,8 +561,8 @@ body {
 .error-title,
 .add-title {
   position: fixed;
-  left: 10%;
-  right: 10%;
+  left: 15%;
+  right: 15%;
   margin: auto;
   text-align: center;
 }

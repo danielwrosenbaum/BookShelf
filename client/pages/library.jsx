@@ -40,10 +40,10 @@ export default class Library extends React.Component {
                       <img className="thumbnail" src={thumbNail} alt={title} />
                     </div>
                     <div className="lib-col">
-                      <div>
-                        <div className="heading six">{title}</div>
-                        <div className="heading three no-top no-bottom lib-author">by {author}</div>
-                      </div>
+                      {/* <div> */}
+                        <div className="sub-heading six">{title}</div>
+                        <div className="sub-heading three lib-author">by {author}</div>
+                      {/* </div> */}
                     </div>
                   </div>
                 </a>
