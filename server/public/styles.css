@@ -219,6 +219,13 @@ body {
   color: #112d4e;
 }
 
+.rl-button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 1rem;
+  width: 95%;
+}
+
 .semi-bold {
   font-weight: 500;
 }
@@ -284,7 +291,8 @@ body {
 }
 
 .library-click {
-  width: 95%;
+  width: 90%;
+  height: 90%;
 }
 
 .reading-list-card,
@@ -297,11 +305,6 @@ body {
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
-}
-
-.reading-list-card:active,
-.library-card:active {
-  transform: translateX(10px);
 }
 
 .no-underline {
@@ -487,6 +490,41 @@ body {
   color: #f9f7f7;
   align-self: flex-start;
   border-radius: 0.75rem;
+}
+
+.rl-buy,
+.rl-info {
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0.75rem;
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  height: 2rem;
+  width: 5rem;
+  font-size: 1rem;
+  margin: 0.25rem;
+}
+
+.rl-buy {
+  background-color: #a8dadc;
+  color: #112d4e;
+}
+
+.rl-info {
+  color: #f9f7f7;
+  background-color: #e63946;
+}
+
+.rl-info:hover,
+.rl-buy:hover {
+  cursor: pointer;
+  color: #112d4e;
+  background-color: #dbe2ef;
+}
+
+.rl-info:active,
+.rl-buy:active {
+  transform: translateY(5px);
 }
 
 .thumbnail {
