@@ -10,6 +10,7 @@ export default class Details extends React.Component {
       isSaved: false,
       isError: false,
       isAdded: false,
+      isBuyClicked: false,
       inputValue: null,
       target: null,
       result: null,
@@ -17,6 +18,8 @@ export default class Details extends React.Component {
     };
     this.handleSave = this.handleSave.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleBuyClick = this.handleBuyClick.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   getAuthor(author) {
@@ -178,8 +181,39 @@ export default class Details extends React.Component {
     }
   }
 
-  render() {
+  handleBuyClick() {
+    this.setState({ isBuyClicked: true });
+  }
+
+  handleClickBack() {
+    this.setState({ isBuyClicked: false });
+  }
+
+  renderPopUp() {
+    const { isBuyClicked, info } = this.state;
+
+    const { title } = info;
     const indieBound = 'https://www.indiebound.org/search/book?keys=';
+    if (isBuyClicked) {
+      return (
+      <div className="buy-overlay">
+        <div className='buy-modal'>
+          <div className='buy-question'> Search indiebound.com for a copy of this book?</div>
+          <div className='buy-buttons'>
+            <button className="buy-no" onClick={this.handleClickBack}>No</button>
+            <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
+              <button className="buy-yes" onClick={this.handleClickBack}>Yes</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      );
+    }
+
+  }
+
+  render() {
+
     // const bookShop = 'https://bookshop.org/books';
     const book = this.state.result;
     if (!book) return null;
@@ -194,8 +228,10 @@ export default class Details extends React.Component {
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-          {this.renderHeading()}
+        {this.renderHeading()}
         <div className="details-page">
+          {this.renderPopUp()}
+
           <div className="details-container">
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />
@@ -212,7 +248,7 @@ export default class Details extends React.Component {
                     {category}</div>
                   <div className="three">
                     <span className="semi-bold">Published: </span>
-                  {year}</div>
+                    {year}</div>
                   <div className="three">
                     <span className="semi-bold">Pages: </span>
                     {pages}</div>
@@ -220,9 +256,9 @@ export default class Details extends React.Component {
                     <span className="semi-bold">ISBN: </span>
                     {isbn}</div>
 
-                  <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
-                    <button className="details-buy sub-heading three bold">Buy Here</button>
-                  </a>
+                  {/* <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'> */}
+                  <button className="details-buy sub-heading three bold" onClick={this.handleBuyClick}>Buy Here</button>
+                  {/* </a> */}
 
                 </div>
 

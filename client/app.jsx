@@ -57,6 +57,7 @@ export default class App extends React.Component {
         <>
         {route.path !== 'search-page' &&
         route.path !== 'advanced-search' &&
+        route.path !== '' &&
           <Header />}
           <AppDrawer />
           <PageContainer>

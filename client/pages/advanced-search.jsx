@@ -57,7 +57,7 @@ export default class AdvancedSearch extends React.Component {
   render() {
     return (
       <div className="search-container advanced">
-        <div className="heading two">Advanced Search</div>
+        <div className="sub-heading two">Advanced Search</div>
         <form name="title" className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="heading three">Search by Title</div>
