@@ -198,7 +198,7 @@ export default class Details extends React.Component {
       return (
       <div className="buy-overlay">
         <div className='buy-modal'>
-          <div className='buy-question'> Search indiebound.com for a copy of this book?</div>
+          <div className='sub-heading buy-question'> Search indiebound.com for a copy of this book?</div>
           <div className='buy-buttons'>
             <button className="buy-no" onClick={this.handleClickBack}>No</button>
             <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
@@ -213,8 +213,6 @@ export default class Details extends React.Component {
   }
 
   render() {
-
-    // const bookShop = 'https://bookshop.org/books';
     const book = this.state.result;
     if (!book) return null;
     const title = book.volumeInfo.title;
@@ -255,11 +253,7 @@ export default class Details extends React.Component {
                   <div className="three">
                     <span className="semi-bold">ISBN: </span>
                     {isbn}</div>
-
-                  {/* <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'> */}
                   <button className="details-buy sub-heading three bold" onClick={this.handleBuyClick}>Buy Here</button>
-                  {/* </a> */}
-
                 </div>
 
                 <div className="description-container">

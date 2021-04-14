@@ -39,4 +39,10 @@
   .delete-container {
     font-size: 2rem;
   }
+
+  .buy-modal {
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+  }
 }
