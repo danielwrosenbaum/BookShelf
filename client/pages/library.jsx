@@ -34,19 +34,31 @@ export default class Library extends React.Component {
             const rating = book.stars;
             return (
               <div key={googleId} id={googleId} className="library-card">
-                <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
+                {/* <a className="no-underline library-click" href={`#details?bookId=${googleId}`}>
                   <div className="lib-info no-outline">
                     <div className='pic-container'>
                       <img className="thumbnail" src={thumbNail} alt={title} />
                     </div>
                     <div className="lib-col">
-                      {/* <div> */}
+                      <div>
                         <div className="sub-heading six">{title}</div>
                         <div className="sub-heading three lib-author">by {author}</div>
-                      {/* </div> */}
+                      </div>
                     </div>
                   </div>
-                </a>
+                </a> */}
+                <div className="lib-info">
+                  <div className='pic-container'>
+                    <img className="thumbnail" src={thumbNail} alt={title} />
+                  </div>
+                  <div className="lib-col">
+                    <div className="sub-heading six">{title}</div>
+                    <div className="sub-heading three">by {author}</div>
+                      <a href={`#details?bookId=${googleId}`}>
+                        <button className="lib-details button">Details</button>
+                      </a>
+                  </div>
+                </div>
                 <div id="rate" className="rating-container">
                   <div>Rate This Book: </div>
                   <div className='star-container'>

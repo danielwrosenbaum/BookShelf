@@ -161,15 +161,27 @@ body {
   height: 100vh;
 }
 
-.results-container {
-  margin-bottom: 1rem;
-  margin-top: 4.5rem;
-  background-color: #f9f7f7;
+.details-page,
+.library-page,
+.rl-page,
+.results-page {
+  min-height: 100%;
+  padding-top: 0.5rem;
 }
 
 .details-page {
-  min-height: 100vh;
   background: linear-gradient(#f9f7f7 0%, #dbe2ef 50%, #3f72af 100%);
+}
+
+.results-container,
+.library-container,
+.rl-container {
+  margin-bottom: 1rem;
+  margin-top: 4rem;
+  background-color: #f9f7f7;
+  width: 100%;
+
+  /* box-sizing: border-box; */
 }
 
 .details-container {
@@ -188,7 +200,7 @@ body {
 }
 
 .pic-container {
-  min-height: 130px;
+  /* min-height: 130px; */
 }
 
 .button-container {
@@ -199,16 +211,16 @@ body {
   width: 90%;
 }
 
-.library-container,
-.rl-container {
+/* {
   background-color: #f9f7f7;
   margin-bottom: 1rem;
-  margin-top: 4.5rem;
-}
+  margin-top: 4rem;
+} */
 
 .rating-container {
   position: absolute;
   display: flex;
+  margin: 0.5rem;
   top: 80%;
   left: 35%;
   font-size: 0.85rem;
@@ -230,6 +242,7 @@ body {
   justify-content: space-between;
   margin-top: 1.5rem;
   width: 95%;
+  max-width: 200px;
 }
 
 .semi-bold {
@@ -245,19 +258,21 @@ body {
   height: 50px;
   border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  box-shadow: 2px 5px 7px #112d4e;
-  border: none;
+  font-size: 1.15rem;
+  box-shadow: 1px 5px 10px #112d4eb2;
+  border: 1px solid #112d4eb2;
+
+  /* border: none; */
 }
 
 .add-list {
-  background: linear-gradient(#f9f7f7 0%, #3f72af 65%);
-  color: #f9f9f9;
+  background: linear-gradient(150deg, #f9f7f7 0%, #3f72af 60%);
+  color: #f1faee;
 }
 
 .add-lib {
-  background: linear-gradient(#f9f7f7 0%, #e63946 65%);
-  color: #f9f7f7;
+  background: linear-gradient(150deg, #f9f7f7 0%, #e63946 60%);
+  color: #f1faee;
 }
 
 .book-details {
@@ -278,14 +293,20 @@ body {
   margin: 1rem;
 }
 
-.card {
+.card,
+.rl-card,
+.library-card {
   display: flex;
   justify-content: space-between;
-  margin: 1rem;
+  width: 90%;
+  margin: 1rem auto;
   padding: 0.5rem;
   border-radius: 1rem;
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
+}
+
+.card {
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
 }
 
 .library-card {
@@ -296,18 +317,19 @@ body {
   background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
 }
 
-.library-click {
+/* .library-click {
   width: 90%;
   height: 90%;
-}
+} */
 
 .rl-card,
 .library-card {
+  width: 90%;
+  margin: 1rem auto;
   position: relative;
   outline: none;
   display: flex;
   justify-content: space-between;
-  margin: 1rem;
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
@@ -324,27 +346,23 @@ body {
 .lib-info,
 .rl-card-info {
   display: flex;
-  width: 90%;
 }
 
 .book-col {
   margin: 0.5rem 0 0.5rem 1rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.rl-col,
 .lib-col {
-  margin: 1rem;
-  width: 100%;
-}
-
-.rl-col {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin-left: 1rem;
-  width: 100%;
+  width: 80%;
 }
 
 .description {
@@ -558,13 +576,18 @@ body {
   border-radius: 0.75rem;
 }
 
+.lib-details {
+  margin: 1rem 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .rl-buy,
 .rl-info {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0.75rem;
   outline: none;
-  height: 2rem;
-  width: 5rem;
+  height: 35px;
+  width: 80px;
   font-size: 1rem;
   margin: 0.25rem;
   box-shadow: 0 3px 7px #112d4e94;
@@ -573,7 +596,7 @@ body {
 
 .rl-buy {
   color: #112d4e;
-  margin-right: 3rem;
+  margin-right: 2rem;
   background: linear-gradient(135deg, #f9f7f7 0%, #a8dadc 100%);
 }
 
@@ -590,8 +613,9 @@ body {
 }
 
 .thumbnail {
-  max-width: fit-content;
-  max-height: 150px;
+  width: 100%;
+
+  /* max-height: 150px; */
   align-self: flex-start;
   box-shadow: 2px 3px 4px #112d4e;
 }

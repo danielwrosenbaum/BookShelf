@@ -191,7 +191,6 @@ export default class Details extends React.Component {
 
   renderPopUp() {
     const { isBuyClicked, info } = this.state;
-
     const { title } = info;
     const indieBound = 'https://www.indiebound.org/search/book?keys=';
     if (isBuyClicked) {
@@ -209,7 +208,6 @@ export default class Details extends React.Component {
       </div>
       );
     }
-
   }
 
   render() {
@@ -229,7 +227,6 @@ export default class Details extends React.Component {
         {this.renderHeading()}
         <div className="details-page">
           {this.renderPopUp()}
-
           <div className="details-container">
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />

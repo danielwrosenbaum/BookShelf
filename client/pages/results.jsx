@@ -220,7 +220,9 @@ export default class Results extends React.Component {
             return (
               <div key={index} name={title} className="card">
                 <div className="result-info">
+                  <div className='pic-container'>
                   <img className="thumbnail" src={thumbNail} alt={title} />
+                  </div>
                   <div className="book-col">
                     <div className="book-info">
                       <h3 className="heading three no-top">{title}</h3>
@@ -246,7 +248,7 @@ export default class Results extends React.Component {
     return (
       <>
         {this.renderHeading()}
-        <div>
+        <div className="results-page">
           {bookResults}
 
         </div>

@@ -4,8 +4,12 @@ export default class ReadingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: null
+      isBuyClicked: false,
+      result: null,
+      targetTitle: null
     };
+    this.handleBuyClick = this.handleBuyClick.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   componentDidMount() {
@@ -15,6 +19,44 @@ export default class ReadingList extends React.Component {
         this.setState({ result });
       })
       .catch(error => console.error(error));
+  }
+
+  handleBuyClick(event) {
+    // console.log('target', event.target.value);
+    this.setState({
+      isBuyClicked: true,
+      targetTitle: event.target.value
+
+    });
+  }
+
+  handleClickBack() {
+    this.setState({
+      isBuyClicked: false,
+      targetTitle: null
+    });
+  }
+
+  renderPopUp() {
+
+    const { isBuyClicked, targetTitle } = this.state;
+    const title = targetTitle;
+    const indieBound = 'https://www.indiebound.org/search/book?keys=';
+    if (isBuyClicked) {
+      return (
+        <div className="buy-overlay">
+          <div className='buy-modal'>
+            <div className='sub-heading buy-question'> Search indiebound.com for a copy of this book?</div>
+            <div className='buy-buttons'>
+              <button className="buy-no" onClick={this.handleClickBack}>No</button>
+              <a href={`${indieBound}${title}`} target="_blank" rel='noreferrer'>
+                <button className="buy-yes" onClick={this.handleClickBack}>Yes</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
   render() {
@@ -39,7 +81,7 @@ export default class ReadingList extends React.Component {
                     <div className="sub-heading six">{title}</div>
                     <div className="sub-heading three">by {author}</div>
                     <div className="rl-button-container">
-                      <button className="rl-buy">Buy It!</button>
+                      <button value={title} className="rl-buy" onClick={this.handleBuyClick}>Buy It!</button>
                       <a href={`#details?bookId=${googleId}`}>
                         <button className="rl-info">Details</button>
                       </a>
@@ -61,6 +103,7 @@ export default class ReadingList extends React.Component {
           <div className="heading two-white">Reading List</div>
         </div>
         <div className="rl-page">
+          {this.renderPopUp()}
           {bookResults}
         </div>
       </>
