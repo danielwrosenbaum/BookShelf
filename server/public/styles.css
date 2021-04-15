@@ -186,7 +186,7 @@ body {
 }
 
 .details-container {
-  height: 100vh;
+  min-height: 100vh;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
