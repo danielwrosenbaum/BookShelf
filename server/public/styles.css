@@ -500,13 +500,15 @@ body {
 }
 
 .plus-icon:hover,
-.heart-icon:hover {
+.heart-icon:hover,
+.delete-button:hover {
   cursor: pointer;
   color: #e63946;
 }
 
 .plus-icon:active,
-.heart-icon:active {
+.heart-icon:active,
+.delete-button:active {
   transform: translateY(5px);
   color: #e63946;
 }

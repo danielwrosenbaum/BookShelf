@@ -75,7 +75,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i id={googleId} className="fas fa-times" onClick={this.handleDelete}></i>
+                  <i id={googleId} className="delete-button fas fa-times" onClick={this.handleDelete}></i>
                 </div>
               </div>
             );
