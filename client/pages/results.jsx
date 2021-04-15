@@ -207,18 +207,9 @@ export default class Results extends React.Component {
     }
   }
 
-  render() {
-    const { results, isLoading } = this.state;
-    if (isLoading) {
-      return <Loader />;
-    }
-    if (!this.state.results) {
-      return null;
-    }
+  getResults() {
+    const { results } = this.state;
     const books = results.items;
-    if (!books) {
-      return <div className="results-container heading two">Try again!</div>;
-    }
     const bookResults = (
       <div className="results-container">
         {
@@ -230,9 +221,8 @@ export default class Results extends React.Component {
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.renderDescription(text);
-
             const googleId = book.id;
-            return (
+            const oneBook = (
               <div key={index} name={title} className="card">
                 <div className="result-info">
                   <div className='pic-container'>
@@ -256,17 +246,32 @@ export default class Results extends React.Component {
                 </div>
               </div>
             );
+            return oneBook;
           })
         }
       </div>
     );
+    return bookResults;
+  }
+
+  render() {
+    const { results, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
+    if (!this.state.results) {
+      return null;
+    }
+    const books = results.items;
+    if (!books) {
+      return <div className="results-container heading two">Try again!</div>;
+    }
     return (
       <>
         <Header />
         {this.renderHeading()}
         <div className="results-page">
-          {bookResults}
-
+          {this.getResults()}
         </div>
         {this.renderModal()}
       </>
