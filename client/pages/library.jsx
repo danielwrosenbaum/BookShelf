@@ -9,6 +9,7 @@ export default class Library extends React.Component {
       result: null,
       targetId: null,
       isDeleteClicked: false,
+      deleteTitle: null,
       rating: null
     };
     this.handleDelete = this.handleDelete.bind(this);
@@ -26,19 +27,22 @@ export default class Library extends React.Component {
   }
 
   handleClick(event) {
+    const title = event.target.getAttribute('name');
     this.setState({
       isDeleteClicked: true,
-      targetId: event.target.id
+      targetId: event.target.id,
+      deleteTitle: title
     });
   }
 
   renderDeleteModal() {
-    const { isDeleteClicked, targetId } = this.state;
+    const { isDeleteClicked, targetId, deleteTitle } = this.state;
+    const title = deleteTitle;
     if (isDeleteClicked) {
       return (
         <div className="delete-overlay">
           <div className='delete-modal'>
-            <div className='sub-heading buy-question'> Delete this book from your Library?</div>
+            <div className='sub-heading buy-question'> Delete <span className="italic bold">{title}</span> from your Library?</div>
             <div className='delete-buttons'>
               <button className="delete-no" onClick={this.handleClickBack}>No</button>
               <button id={targetId} className="delete-yes" onClick={this.handleDelete}>Yes</button>
@@ -112,7 +116,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i id={googleId} className="delete-button fas fa-times" onClick={this.handleClick}></i>
+                  <i id={googleId} name={title} className="delete-button fas fa-times" onClick={this.handleClick}></i>
                 </div>
               </div>
             );
