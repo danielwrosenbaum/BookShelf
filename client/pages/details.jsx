@@ -45,6 +45,7 @@ export default class Details extends React.Component {
       .then(
         result => {
           const authors = this.getAuthor(result.volumeInfo.authors);
+          const thumbNail = (result.volumeInfo.imageLinks) ? result.volumeInfo.imageLinks.thumbnail : null;
           this.setState({
             isLoading: false,
             inputValue: query,
@@ -52,7 +53,7 @@ export default class Details extends React.Component {
             info: {
               title: result.volumeInfo.title,
               author: authors,
-              coverUrl: result.volumeInfo.imageLinks.thumbnail,
+              coverUrl: thumbNail,
               googleId: result.id
             }
           });

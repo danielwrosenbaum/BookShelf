@@ -51,6 +51,13 @@ export default class Results extends React.Component {
       .catch(error => console.error(error));
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.errorSaveTimer);
+    clearTimeout(this.errorAddTimer);
+    clearTimeout(this.saveTimer);
+    clearTimeout(this.addTimer);
+  }
+
   renderDescription(text) {
     if (!text) {
       return 'No Description Available';
@@ -101,7 +108,7 @@ export default class Results extends React.Component {
           this.setState({
             isError: true
           });
-          setTimeout(() => {
+          this.errorSaveTimer = setTimeout(() => {
             this.setState({
               isError: false
             });
@@ -110,7 +117,7 @@ export default class Results extends React.Component {
           this.setState({
             isSaved: true
           });
-          setTimeout(() => {
+          this.saveTimer = setTimeout(() => {
             this.setState({
               isSaved: false
             });
@@ -136,7 +143,7 @@ export default class Results extends React.Component {
           this.setState({
             isError: true
           });
-          setTimeout(() => {
+          this.errorAddTimer = setTimeout(() => {
             this.setState({
               isError: false
             });
@@ -145,7 +152,7 @@ export default class Results extends React.Component {
           this.setState({
             isAdded: true
           });
-          setTimeout(() => {
+          this.addTimer = setTimeout(() => {
             this.setState({
               isAdded: false
             });
