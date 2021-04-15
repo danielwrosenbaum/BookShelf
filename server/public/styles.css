@@ -399,11 +399,23 @@ body {
   height: 100vh;
 }
 
+.modal-container {
+  display: flex;
+}
+
+.modal-hidden {
+  width: 0;
+  opacity: 0;
+  transition: width 0.5s, opacity 0.5s;
+}
+
 .modal {
   border-right: solid #112d4e;
+  opacity: 1;
   width: 300px;
   height: 100vh;
   background: linear-gradient(#f9f7f7f1 15%, #dbe2eff1 55%, #3f72aff1 100%);
+  transition: width 0.5s, opacity 0.5s;
 }
 
 .delete-overlay,

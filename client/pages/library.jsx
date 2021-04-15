@@ -26,12 +26,10 @@ export default class Library extends React.Component {
   }
 
   handleClick(event) {
-
     this.setState({
       isDeleteClicked: true,
       targetId: event.target.id
     });
-
   }
 
   renderDeleteModal() {
