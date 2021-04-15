@@ -1,11 +1,13 @@
 import React from 'react';
 import Header from '../components/header';
+import Loader from '../components/loader';
 
 export default class ReadingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isBuyClicked: false,
+      isLoading: false,
       result: null,
       targetId: null,
       isDeleteClicked: false,
@@ -18,10 +20,14 @@ export default class ReadingList extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
     fetch('/api/bookShelf/readingList')
       .then(res => res.json())
       .then(result => {
-        this.setState({ result });
+        this.setState({
+          result,
+          isLoading: false
+        });
 
       })
       .catch(error => console.error(error));
@@ -115,7 +121,10 @@ export default class ReadingList extends React.Component {
   }
 
   render() {
-    const { result } = this.state;
+    const { result, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     if (!result) return null;
     const books = result;
     const bookResults = (

@@ -1,6 +1,7 @@
 import React from 'react';
 import GetRating from '../components/get-rating';
 import Header from '../components/header';
+import Loader from '../components/loader';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export default class Library extends React.Component {
     this.state = {
       result: null,
       targetId: null,
+      isLoading: false,
       isDeleteClicked: false,
       deleteTitle: null,
       rating: null
@@ -18,10 +20,14 @@ export default class Library extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
     fetch('/api/bookShelf/library')
       .then(res => res.json())
       .then(result => {
-        this.setState({ result });
+        this.setState({
+          result,
+          isLoading: false
+        });
       })
       .catch(error => console.error(error));
   }
@@ -81,7 +87,10 @@ export default class Library extends React.Component {
   }
 
   render() {
-    const { result } = this.state;
+    const { result, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     if (!result) return null;
     const books = result;
     const bookResults = (

@@ -425,6 +425,7 @@ body {
 
 .delete-modal,
 .buy-modal {
+  color: #112d4e;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -715,4 +716,41 @@ body {
 .rl-buy:active {
   transform: translateY(3px);
   box-shadow: 0 5px 5px #112d4ed5;
+}
+
+#circle6 {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50px;
+  width: 50px;
+  margin: -25px 0 0 -25px;
+  border: 4px #112d4e solid;
+  border-top: 10px #dbe2ef solid;
+  border-right: 10px #a8dadc solid;
+  border-bottom: 10px #3f72af solid;
+  border-left: 10px #112d4e solid;
+  border-radius: 50%;
+  animation: spin6 1s infinite linear;
+}
+
+@-webkit-keyframes spin6 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin6 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
 import Header from '../components/header';
+import Loader from '../components/loader';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -11,6 +12,7 @@ export default class Results extends React.Component {
       isSaved: false,
       isError: false,
       isAdded: false,
+      isLoading: false,
       route: parseRoute(window.location.hash),
       inputValue: null,
       results: null,
@@ -21,6 +23,7 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
     const searchTerms = this.state.route.params;
     function getParams() {
       const newArr = [];
@@ -40,6 +43,7 @@ export default class Results extends React.Component {
       .then(
         result => {
           this.setState({
+            isLoading: false,
             inputValue: query,
             results: result
           });
@@ -198,7 +202,10 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     if (!this.state.results) {
       return null;
     }
