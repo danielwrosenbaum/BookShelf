@@ -9,9 +9,28 @@ export default class Library extends React.Component {
       result: null,
       rating: null
     };
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
+    fetch('/api/bookShelf/library')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ result });
+      })
+      .catch(error => console.error(error));
+  }
+
+  handleDelete(event) {
+    const googleId = event.target.id;
+    const req = {
+      method: 'DELETE'
+    };
+    fetch(`/api/bookShelf/library/${googleId}`, req)
+      .then(result => {
+        return result;
+      })
+      .catch(error => console.error(error));
     fetch('/api/bookShelf/library')
       .then(res => res.json())
       .then(result => {
@@ -56,7 +75,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i className="fas fa-times"></i>
+                  <i id={googleId} className="fas fa-times" onClick={this.handleDelete}></i>
                 </div>
               </div>
             );

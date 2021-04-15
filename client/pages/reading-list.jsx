@@ -55,7 +55,6 @@ export default class ReadingList extends React.Component {
         this.setState({ result });
       })
       .catch(error => console.error(error));
-
   }
 
   renderPopUp() {
