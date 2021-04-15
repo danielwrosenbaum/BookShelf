@@ -12,7 +12,7 @@ export default class Results extends React.Component {
       isSaved: false,
       isError: false,
       isAdded: false,
-      isLoading: false,
+      isLoading: true,
       route: parseRoute(window.location.hash),
       inputValue: null,
       results: null,
@@ -23,7 +23,6 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     const searchTerms = this.state.route.params;
     function getParams() {
       const newArr = [];

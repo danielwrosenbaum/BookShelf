@@ -13,7 +13,7 @@ export default class Details extends React.Component {
       isError: false,
       isAdded: false,
       isBuyClicked: false,
-      isLoading: false,
+      isLoading: true,
       inputValue: null,
       target: null,
       result: null,
@@ -30,7 +30,6 @@ export default class Details extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     const searchTerms = this.state.route.params;
     function getParams() {
       const newArr = [];

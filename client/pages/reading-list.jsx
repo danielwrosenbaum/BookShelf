@@ -7,7 +7,7 @@ export default class ReadingList extends React.Component {
     super(props);
     this.state = {
       isBuyClicked: false,
-      isLoading: false,
+      isLoading: true,
       result: null,
       targetId: null,
       isDeleteClicked: false,
@@ -20,7 +20,6 @@ export default class ReadingList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     fetch('/api/bookShelf/readingList')
       .then(res => res.json())
       .then(result => {

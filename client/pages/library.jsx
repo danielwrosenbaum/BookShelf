@@ -9,7 +9,7 @@ export default class Library extends React.Component {
     this.state = {
       result: null,
       targetId: null,
-      isLoading: false,
+      isLoading: true,
       isDeleteClicked: false,
       deleteTitle: null,
       rating: null
@@ -20,7 +20,6 @@ export default class Library extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     fetch('/api/bookShelf/library')
       .then(res => res.json())
       .then(result => {
