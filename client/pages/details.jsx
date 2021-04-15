@@ -2,6 +2,7 @@ import React from 'react';
 import parseRoute from '../lib/parse-route';
 import DOMPurify from 'dompurify';
 import Header from '../components/header';
+import Loader from '../components/loader';
 const apiKey = process.env.API_KEY;
 export default class Details extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class Details extends React.Component {
       isError: false,
       isAdded: false,
       isBuyClicked: false,
+      isLoading: true,
       inputValue: null,
       target: null,
       result: null,
@@ -44,6 +46,7 @@ export default class Details extends React.Component {
         result => {
           const authors = this.getAuthor(result.volumeInfo.authors);
           this.setState({
+            isLoading: false,
             inputValue: query,
             result: result,
             info: {
@@ -212,6 +215,10 @@ export default class Details extends React.Component {
   }
 
   render() {
+    const { isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     const book = this.state.result;
     if (!book) return null;
     const title = book.volumeInfo.title;

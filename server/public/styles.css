@@ -2,6 +2,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   margin: 0;
+  box-sizing: border-box;
   background-color: #f9f7f7;
 }
 
@@ -12,7 +13,6 @@ body {
 .menu-icon,
 .pop-up,
 .overlay,
-.buy-overlay,
 .modal {
   z-index: 2;
 }
@@ -281,11 +281,11 @@ body {
 .card,
 .rl-card,
 .library-card {
+  margin: 1rem;
   height: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  margin: 1rem auto;
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
@@ -301,19 +301,6 @@ body {
 
 .rl-card {
   background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
-}
-
-.rl-card,
-.library-card {
-  width: 90%;
-  margin: 1rem auto;
-  position: relative;
-  outline: none;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
 }
 
 .no-underline {
@@ -339,6 +326,7 @@ body {
   width: fit-content;
   margin: 2rem;
   color: #112d4e;
+  overflow: hidden;
 }
 
 .home {
@@ -408,13 +396,26 @@ body {
   height: 100vh;
 }
 
+.modal-container {
+  display: flex;
+}
+
+.modal-hidden {
+  width: 0;
+  opacity: 0;
+  transition: width 0.5s, opacity 0.5s;
+}
+
 .modal {
   border-right: solid #112d4e;
+  opacity: 1;
   width: 300px;
   height: 100vh;
   background: linear-gradient(#f9f7f7f1 15%, #dbe2eff1 55%, #3f72aff1 100%);
+  transition: width 0.5s, opacity 0.5s;
 }
 
+.delete-overlay,
 .buy-overlay {
   background: linear-gradient(-135deg, #f9f7f7c2 0%, #112d4ec2 75%, #0a1c30c2 100%);
   position: fixed;
@@ -422,7 +423,9 @@ body {
   height: 100vh;
 }
 
+.delete-modal,
 .buy-modal {
+  color: #112d4e;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -442,10 +445,12 @@ body {
   background: linear-gradient(-135deg, #f9f7f7 0%, #dbe2ef 75%);
 }
 
+.delete-question,
 .buy-question {
   font-size: 1.25rem;
 }
 
+.delete-buttons,
 .buy-buttons {
   display: flex;
   justify-content: space-between;
@@ -453,6 +458,8 @@ body {
   margin-top: 1rem;
 }
 
+.delete-no,
+.delete-yes,
 .buy-no,
 .buy-yes {
   font-family: 'Montserrat', sans-serif;
@@ -467,10 +474,12 @@ body {
   outline: none;
 }
 
+.delete-no,
 .buy-no {
   background-color: #3f72af;
 }
 
+.delete-yes,
 .buy-yes {
   background-color: #a8dadc;
 }
@@ -500,13 +509,15 @@ body {
 }
 
 .plus-icon:hover,
-.heart-icon:hover {
+.heart-icon:hover,
+.delete-button:hover {
   cursor: pointer;
   color: #e63946;
 }
 
 .plus-icon:active,
-.heart-icon:active {
+.heart-icon:active,
+.delete-button:active {
   transform: translateY(5px);
   color: #e63946;
 }
@@ -687,6 +698,8 @@ body {
 }
 
 .details-buy:hover,
+.delete-yes:hover,
+.delete-no:hover,
 .buy-no:hover,
 .buy-yes:hover {
   cursor: pointer;
@@ -695,10 +708,49 @@ body {
 }
 
 .details-buy:active,
+.delete-no:active,
+.delete-yes:active,
 .buy-no:active,
 .buy-yes:active,
 .rl-info:active,
 .rl-buy:active {
   transform: translateY(3px);
   box-shadow: 0 5px 5px #112d4ed5;
+}
+
+#circle6 {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50px;
+  width: 50px;
+  margin: -25px 0 0 -25px;
+  border: 4px #112d4e solid;
+  border-top: 10px #dbe2ef solid;
+  border-right: 10px #a8dadc solid;
+  border-bottom: 10px #3f72af solid;
+  border-left: 10px #112d4e solid;
+  border-radius: 50%;
+  animation: spin6 1s infinite linear;
+}
+
+@-webkit-keyframes spin6 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin6 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }

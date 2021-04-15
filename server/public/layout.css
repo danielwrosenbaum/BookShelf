@@ -7,11 +7,6 @@
     display: block;
   }
 
-  .rl-card,
-  .library-card {
-    width: 95%;
-  }
-
   .book-col {
     width: 25%;
   }

@@ -107,6 +107,38 @@ app.patch('/api/bookShelf/library/:googleId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/bookShelf/:table/:googleId', (req, res, next) => {
+  const table = req.params.table;
+  const googleId = req.params.googleId;
+  let sql;
+  if (table === 'library') {
+    sql = `
+  delete from "library"
+    where "googleId" = $1
+    returning *
+`;
+  } else if (table === 'readingList') {
+    sql = `
+  delete from "readingList"
+    where "googleId" = $1
+    returning *
+  `;
+  }
+  const values = [googleId];
+  db.query(sql, values)
+    .then(result => {
+      const book = result.rows[0];
+      if (!book) {
+        res.status(404).json({
+          error: `Cannot find book with ID of ${googleId}, please try again.`
+        });
+      } else {
+        res.status(204).json(book);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console

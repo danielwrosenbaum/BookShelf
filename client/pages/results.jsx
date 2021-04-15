@@ -1,6 +1,7 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
 import Header from '../components/header';
+import Loader from '../components/loader';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -11,6 +12,7 @@ export default class Results extends React.Component {
       isSaved: false,
       isError: false,
       isAdded: false,
+      isLoading: true,
       route: parseRoute(window.location.hash),
       inputValue: null,
       results: null,
@@ -40,6 +42,7 @@ export default class Results extends React.Component {
       .then(
         result => {
           this.setState({
+            isLoading: false,
             inputValue: query,
             results: result
           });
@@ -168,9 +171,9 @@ export default class Results extends React.Component {
       );
     } else if (isAdded) {
       return (
-      <div className="add-header heading five">
-        <div className="add-title">Added to Your Reading List!</div>
-      </div>
+        <div className="add-header heading five">
+          <div className="add-title">Added to Your Reading List!</div>
+        </div>
       );
     } else {
       return (
@@ -198,7 +201,10 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     if (!this.state.results) {
       return null;
     }
@@ -217,12 +223,13 @@ export default class Results extends React.Component {
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.renderDescription(text);
+
             const googleId = book.id;
             return (
               <div key={index} name={title} className="card">
                 <div className="result-info">
                   <div className='pic-container'>
-                  <img className="thumbnail" src={thumbNail} alt={title} />
+                    <img className="thumbnail" src={thumbNail} alt={title} />
                   </div>
                   <div className="book-col">
                     <div className="sub-col">
@@ -248,7 +255,7 @@ export default class Results extends React.Component {
     );
     return (
       <>
-      <Header />
+        <Header />
         {this.renderHeading()}
         <div className="results-page">
           {bookResults}

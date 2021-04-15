@@ -1,17 +1,82 @@
 import React from 'react';
 import GetRating from '../components/get-rating';
 import Header from '../components/header';
+import Loader from '../components/loader';
 
 export default class Library extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       result: null,
+      targetId: null,
+      isLoading: true,
+      isDeleteClicked: false,
+      deleteTitle: null,
       rating: null
     };
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   componentDidMount() {
+    fetch('/api/bookShelf/library')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          result,
+          isLoading: false
+        });
+      })
+      .catch(error => console.error(error));
+  }
+
+  handleClick(event) {
+    const title = event.target.getAttribute('name');
+    this.setState({
+      isDeleteClicked: true,
+      targetId: event.target.id,
+      deleteTitle: title
+    });
+  }
+
+  renderDeleteModal() {
+    const { isDeleteClicked, targetId, deleteTitle } = this.state;
+    const title = deleteTitle;
+    if (isDeleteClicked) {
+      return (
+        <div className="delete-overlay">
+          <div className='delete-modal'>
+            <div className='sub-heading buy-question'> Delete <span className="italic bold">{title}</span> from your Library?</div>
+            <div className='delete-buttons'>
+              <button className="delete-no" onClick={this.handleClickBack}>No</button>
+              <button id={targetId} className="delete-yes" onClick={this.handleDelete}>Yes</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  handleClickBack() {
+    this.setState({
+      taregetId: null,
+      isDeleteClicked: false
+    });
+  }
+
+  handleDelete(event) {
+    const { targetId } = this.state;
+    const googleId = targetId;
+    this.setState({ isDeleteClicked: false });
+    const req = {
+      method: 'DELETE'
+    };
+    fetch(`/api/bookShelf/library/${googleId}`, req)
+      .then(result => {
+        return result;
+      })
+      .catch(error => console.error(error));
     fetch('/api/bookShelf/library')
       .then(res => res.json())
       .then(result => {
@@ -21,7 +86,10 @@ export default class Library extends React.Component {
   }
 
   render() {
-    const { result } = this.state;
+    const { result, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     if (!result) return null;
     const books = result;
     const bookResults = (
@@ -56,7 +124,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i className="fas fa-times"></i>
+                  <i id={googleId} name={title} className="delete-button fas fa-times" onClick={this.handleClick}></i>
                 </div>
               </div>
             );
@@ -71,6 +139,7 @@ export default class Library extends React.Component {
           <div className="heading two-white">Library</div>
         </div>
         <div className="library-page">
+          {this.renderDeleteModal()}
           {bookResults}
         </div>
       </>

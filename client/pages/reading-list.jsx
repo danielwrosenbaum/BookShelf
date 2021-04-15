@@ -1,23 +1,33 @@
 import React from 'react';
 import Header from '../components/header';
+import Loader from '../components/loader';
 
 export default class ReadingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isBuyClicked: false,
+      isLoading: true,
       result: null,
+      targetId: null,
+      isDeleteClicked: false,
       targetTitle: null
     };
     this.handleBuyClick = this.handleBuyClick.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
     fetch('/api/bookShelf/readingList')
       .then(res => res.json())
       .then(result => {
-        this.setState({ result });
+        this.setState({
+          result,
+          isLoading: false
+        });
+
       })
       .catch(error => console.error(error));
   }
@@ -31,14 +41,46 @@ export default class ReadingList extends React.Component {
   }
 
   handleClickBack() {
+    const { isDeleteClicked } = this.state;
+    if (isDeleteClicked) {
+      this.setState({ isDeleteClicked: false });
+    }
     this.setState({
       isBuyClicked: false,
       targetTitle: null
     });
   }
 
-  renderPopUp() {
+  handleDeleteClick(event) {
+    const title = event.target.getAttribute('name');
+    this.setState({
+      isDeleteClicked: true,
+      targetId: event.target.id,
+      deleteTitle: title
+    });
+  }
 
+  handleDelete(event) {
+    const { targetId } = this.state;
+    const googleId = targetId;
+    this.setState({ isDeleteClicked: false });
+    const req = {
+      method: 'DELETE'
+    };
+    fetch(`/api/bookShelf/readingList/${googleId}`, req)
+      .then(result => {
+        return result;
+      })
+      .catch(error => console.error(error));
+    fetch('/api/bookShelf/readingList')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ result });
+      })
+      .catch(error => console.error(error));
+  }
+
+  renderPopUp() {
     const { isBuyClicked, targetTitle } = this.state;
     const title = targetTitle;
     const indieBound = 'https://www.indiebound.org/search/book?keys=';
@@ -59,8 +101,29 @@ export default class ReadingList extends React.Component {
     }
   }
 
+  renderDeleteModal() {
+    const { isDeleteClicked, targetId, deleteTitle } = this.state;
+    const title = deleteTitle;
+    if (isDeleteClicked) {
+      return (
+        <div className="delete-overlay">
+          <div className='delete-modal'>
+            <div className='sub-heading buy-question'>Delete <span className='italic bold'>{title}</span> from your Reading List?</div>
+            <div className='delete-buttons'>
+              <button className="delete-no" onClick={this.handleClickBack}>No</button>
+              <button id={targetId} className="delete-yes" onClick={this.handleDelete}>Yes</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
-    const { result } = this.state;
+    const { result, isLoading } = this.state;
+    if (isLoading) {
+      return <Loader />;
+    }
     if (!result) return null;
     const books = result;
     const bookResults = (
@@ -89,7 +152,7 @@ export default class ReadingList extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i className="fas fa-times"></i>
+                  <i id={googleId} name={title} className="delete-button fas fa-times" onClick={this.handleDeleteClick}></i>
                   </div>
               </div>
             );
@@ -104,6 +167,7 @@ export default class ReadingList extends React.Component {
           <div className="heading two-white">Reading List</div>
         </div>
         <div className="rl-page">
+          {this.renderDeleteModal()}
           {this.renderPopUp()}
           {bookResults}
         </div>
