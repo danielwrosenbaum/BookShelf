@@ -37,7 +37,7 @@ export default class Results extends React.Component {
       return newArr;
     }
     const query = getParams();
-    fetch(bookURL + query + '&' + 'key=' + apiKey)
+    fetch(bookURL + query + '&maxResults=40&' + 'key=' + apiKey)
       .then(res => res.json())
       .then(
         result => {
