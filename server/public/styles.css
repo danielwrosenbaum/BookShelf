@@ -406,6 +406,7 @@ body {
   background: linear-gradient(#f9f7f7f1 15%, #dbe2eff1 55%, #3f72aff1 100%);
 }
 
+.delete-overlay,
 .buy-overlay {
   background: linear-gradient(-135deg, #f9f7f7c2 0%, #112d4ec2 75%, #0a1c30c2 100%);
   position: fixed;
@@ -413,6 +414,7 @@ body {
   height: 100vh;
 }
 
+.delete-modal,
 .buy-modal {
   box-sizing: border-box;
   display: flex;
@@ -433,10 +435,12 @@ body {
   background: linear-gradient(-135deg, #f9f7f7 0%, #dbe2ef 75%);
 }
 
+.delete-question,
 .buy-question {
   font-size: 1.25rem;
 }
 
+.delete-buttons,
 .buy-buttons {
   display: flex;
   justify-content: space-between;
@@ -444,6 +448,8 @@ body {
   margin-top: 1rem;
 }
 
+.delete-no,
+.delete-yes,
 .buy-no,
 .buy-yes {
   font-family: 'Montserrat', sans-serif;
@@ -458,10 +464,12 @@ body {
   outline: none;
 }
 
+.delete-no,
 .buy-no {
   background-color: #3f72af;
 }
 
+.delete-yes,
 .buy-yes {
   background-color: #a8dadc;
 }
@@ -680,6 +688,8 @@ body {
 }
 
 .details-buy:hover,
+.delete-yes:hover,
+.delete-no:hover,
 .buy-no:hover,
 .buy-yes:hover {
   cursor: pointer;
@@ -688,6 +698,8 @@ body {
 }
 
 .details-buy:active,
+.delete-no:active,
+.delete-yes:active,
 .buy-no:active,
 .buy-yes:active,
 .rl-info:active,

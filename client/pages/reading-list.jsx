@@ -7,11 +7,14 @@ export default class ReadingList extends React.Component {
     this.state = {
       isBuyClicked: false,
       result: null,
+      targetId: null,
+      isDeleteClicked: false,
       targetTitle: null
     };
     this.handleBuyClick = this.handleBuyClick.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +22,7 @@ export default class ReadingList extends React.Component {
       .then(res => res.json())
       .then(result => {
         this.setState({ result });
-        // console.log('result:', result);
+
       })
       .catch(error => console.error(error));
   }
@@ -33,14 +36,27 @@ export default class ReadingList extends React.Component {
   }
 
   handleClickBack() {
+    const { isDeleteClicked } = this.state;
+    if (isDeleteClicked) {
+      this.setState({ isDeleteClicked: false });
+    }
     this.setState({
       isBuyClicked: false,
       targetTitle: null
     });
   }
 
+  handleDeleteClick(event) {
+    this.setState({
+      isDeleteClicked: true,
+      targetId: event.target.id
+    });
+  }
+
   handleDelete(event) {
-    const googleId = event.target.id;
+    const { targetId } = this.state;
+    const googleId = targetId;
+    this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
@@ -78,6 +94,23 @@ export default class ReadingList extends React.Component {
     }
   }
 
+  renderDeleteModal() {
+    const { isDeleteClicked, targetId } = this.state;
+    if (isDeleteClicked) {
+      return (
+        <div className="delete-overlay">
+          <div className='delete-modal'>
+            <div className='sub-heading buy-question'> Delete this book from your Library?</div>
+            <div className='delete-buttons'>
+              <button className="delete-no" onClick={this.handleClickBack}>No</button>
+              <button id={targetId} className="delete-yes" onClick={this.handleDelete}>Yes</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
     const { result } = this.state;
     if (!result) return null;
@@ -108,7 +141,7 @@ export default class ReadingList extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i id={googleId} className="delete-button fas fa-times" onClick={this.handleDelete}></i>
+                  <i id={googleId} className="delete-button fas fa-times" onClick={this.handleDeleteClick}></i>
                   </div>
               </div>
             );
@@ -123,6 +156,7 @@ export default class ReadingList extends React.Component {
           <div className="heading two-white">Reading List</div>
         </div>
         <div className="rl-page">
+          {this.renderDeleteModal()}
           {this.renderPopUp()}
           {bookResults}
         </div>

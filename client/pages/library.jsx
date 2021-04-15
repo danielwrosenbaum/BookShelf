@@ -38,12 +38,12 @@ export default class Library extends React.Component {
     const { isDeleteClicked, targetId } = this.state;
     if (isDeleteClicked) {
       return (
-        <div className="buy-overlay">
-          <div className='buy-modal'>
+        <div className="delete-overlay">
+          <div className='delete-modal'>
             <div className='sub-heading buy-question'> Delete this book from your Library?</div>
-            <div className='buy-buttons'>
-              <button className="buy-no" onClick={this.handleClickBack}>No</button>
-              <button id={targetId} className="buy-yes" onClick={this.handleDelete}>Yes</button>
+            <div className='delete-buttons'>
+              <button className="delete-no" onClick={this.handleClickBack}>No</button>
+              <button id={targetId} className="delete-yes" onClick={this.handleDelete}>Yes</button>
             </div>
           </div>
         </div>
