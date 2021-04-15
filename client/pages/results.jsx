@@ -217,6 +217,7 @@ export default class Results extends React.Component {
             const year = parseInt(book.volumeInfo.publishedDate, 10);
             const text = book.volumeInfo.description;
             const description = this.renderDescription(text);
+
             const googleId = book.id;
             return (
               <div key={index} name={title} className="card">

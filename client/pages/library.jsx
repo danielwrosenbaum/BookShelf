@@ -7,9 +7,13 @@ export default class Library extends React.Component {
     super(props);
     this.state = {
       result: null,
+      targetId: null,
+      isDeleteClicked: false,
       rating: null
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   componentDidMount() {
@@ -21,8 +25,43 @@ export default class Library extends React.Component {
       .catch(error => console.error(error));
   }
 
+  handleClick(event) {
+
+    this.setState({
+      isDeleteClicked: true,
+      targetId: event.target.id
+    });
+
+  }
+
+  renderDeleteModal() {
+    const { isDeleteClicked, targetId } = this.state;
+    if (isDeleteClicked) {
+      return (
+        <div className="buy-overlay">
+          <div className='buy-modal'>
+            <div className='sub-heading buy-question'> Delete this book from your Library?</div>
+            <div className='buy-buttons'>
+              <button className="buy-no" onClick={this.handleClickBack}>No</button>
+              <button id={targetId} className="buy-yes" onClick={this.handleDelete}>Yes</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  handleClickBack() {
+    this.setState({
+      taregetId: null,
+      isDeleteClicked: false
+    });
+  }
+
   handleDelete(event) {
-    const googleId = event.target.id;
+    const { targetId } = this.state;
+    const googleId = targetId;
+    this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
@@ -75,7 +114,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i id={googleId} className="delete-button fas fa-times" onClick={this.handleDelete}></i>
+                  <i id={googleId} className="delete-button fas fa-times" onClick={this.handleClick}></i>
                 </div>
               </div>
             );
@@ -90,6 +129,7 @@ export default class Library extends React.Component {
           <div className="heading two-white">Library</div>
         </div>
         <div className="library-page">
+          {this.renderDeleteModal()}
           {bookResults}
         </div>
       </>
