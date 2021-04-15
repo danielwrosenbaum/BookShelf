@@ -168,9 +168,9 @@ export default class Results extends React.Component {
       );
     } else if (isAdded) {
       return (
-      <div className="add-header heading five">
-        <div className="add-title">Added to Your Reading List!</div>
-      </div>
+        <div className="add-header heading five">
+          <div className="add-title">Added to Your Reading List!</div>
+        </div>
       );
     } else {
       return (
@@ -223,7 +223,7 @@ export default class Results extends React.Component {
               <div key={index} name={title} className="card">
                 <div className="result-info">
                   <div className='pic-container'>
-                  <img className="thumbnail" src={thumbNail} alt={title} />
+                    <img className="thumbnail" src={thumbNail} alt={title} />
                   </div>
                   <div className="book-col">
                     <div className="sub-col">
@@ -249,7 +249,7 @@ export default class Results extends React.Component {
     );
     return (
       <>
-      <Header />
+        <Header />
         {this.renderHeading()}
         <div className="results-page">
           {bookResults}
