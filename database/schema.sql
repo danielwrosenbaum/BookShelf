@@ -42,14 +42,3 @@ create table "public"."readingList" (
    foreign key ("googleId")
     references "books" ("googleId")
 );
-
--- create table "public"."readingList" (
---   "readingListId"           serial,
---   "title"               text          not null,
---   "author"              text,
---   "googleId"            text          not null,
---   "coverUrl"            text,
---   "addedAt"             timestamptz(6) not null default now(),
---   primary key ("readingListId"),
---   unique ("googleId")
--- );
