@@ -54,7 +54,8 @@ export default class Details extends React.Component {
               title: result.volumeInfo.title,
               author: authors,
               coverUrl: thumbNail,
-              googleId: result.id
+              bookId: result.id,
+              rating: null
             }
           });
         }
@@ -76,14 +77,17 @@ export default class Details extends React.Component {
 
   handleSave(event) {
     this.setState({ target: 'Library' });
+    const { info } = this.state;
+    info.isRead = true;
+    info.rating = 0;
     const req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.info)
+      body: JSON.stringify(info)
     };
-    fetch('/api/bookShelf/library', req)
+    fetch('/api/bookShelf/', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
@@ -123,16 +127,17 @@ export default class Details extends React.Component {
 
   handleAdd() {
     this.setState({ target: 'Reading List' });
-
+    const { info } = this.state;
+    info.isRead = 'false';
+    info.rating = null;
     const req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.info)
+      body: JSON.stringify(info)
     };
-    fetch('/api/bookShelf/readingList', req)
-      .then(res => res.json())
+    fetch('/api/bookShelf/', req)
       .then(result => {
         if (result.error) {
           this.setState({

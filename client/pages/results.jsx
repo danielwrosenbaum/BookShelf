@@ -80,16 +80,32 @@ export default class Results extends React.Component {
   }
 
   getSavedItem(target) {
+    const name = target.getAttribute('name');
     const { results } = this.state;
     const books = results.items;
     for (let i = 0; i < books.length; i++) {
       if (books[i].id === target.id) {
-        const info = {
-          title: books[i].volumeInfo.title,
-          googleId: books[i].id,
-          coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
-          author: this.getAuthor(books[i].volumeInfo.authors)
-        };
+        let info;
+        if (name === 'save') {
+          info = {
+            title: books[i].volumeInfo.title,
+            bookId: books[i].id,
+            coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+            author: this.getAuthor(books[i].volumeInfo.authors),
+            isRead: true,
+            rating: 0
+          };
+        }
+        if (name === 'add') {
+          info = {
+            title: books[i].volumeInfo.title,
+            bookId: books[i].id,
+            coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+            author: this.getAuthor(books[i].volumeInfo.authors),
+            isRead: false,
+            rating: null
+          };
+        }
         return info;
       }
     }
@@ -104,7 +120,7 @@ export default class Results extends React.Component {
       },
       body: JSON.stringify(this.getSavedItem(target))
     };
-    fetch('/api/bookShelf/library', req)
+    fetch('/api/bookShelf/', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
@@ -139,8 +155,7 @@ export default class Results extends React.Component {
       },
       body: JSON.stringify(this.getSavedItem(target))
     };
-    fetch('/api/bookShelf/readingList', req)
-      .then(res => res.json())
+    fetch('/api/bookShelf/', req)
       .then(result => {
         if (result.error) {
           this.setState({
@@ -225,9 +240,9 @@ export default class Results extends React.Component {
         const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
         const text = book.volumeInfo.description;
         const description = this.renderDescription(text);
-        const googleId = book.id;
+        const bookId = book.id;
         const oneBook = (
-              <div key={googleId} name={title} className="card">
+              <div key={bookId} name={title} className="card">
                 <div className="result-info">
                   <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
@@ -239,8 +254,8 @@ export default class Results extends React.Component {
                       <div className="sub-heading three">{year}</div>
                     </div>
                     <div>
-                  <a href={`#details?bookId=${googleId}`}>
-                    <button id={googleId} name={title} className="search-details button">Details</button>
+                  <a href={`#details?bookId=${bookId}`}>
+                    <button id={bookId} name={title} className="search-details button">Details</button>
                   </a>
                     </div>
 
@@ -248,8 +263,8 @@ export default class Results extends React.Component {
                   <div className="description">{description}</div>
                 </div>
                 <div className="card-icons" >
-                  <i className="plus-icon fas fa-plus fa-1x" id={googleId} onClick={this.handleAdd}></i>
-                  <i className="heart-icon far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
+                  <i name="add" className="plus-icon fas fa-plus fa-1x" id={bookId} onClick={this.handleAdd}></i>
+                  <i name="save" className="heart-icon far fa-heart fa-1x" id={bookId} onClick={this.handleSave} ></i>
                 </div>
               </div>
         );

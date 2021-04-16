@@ -6,25 +6,35 @@ drop schema "public" cascade;
 
 create schema "public";
 
-create table "public"."library" (
-  "libraryId"           serial,
+
+create table "public"."users" (
+  "userId"              serial,
+  "username"            text          not null,
+  "hashedPassword"      text          not null,
+  "createdAt"           timestamptz(6)  not null default now(),
+  primary key ("userId"),
+  unique ("username")
+);
+
+create table "public"."books" (
   "title"               text          not null,
   "author"              text,
-  "googleId"            text          not null,
+  "bookId"              text          not null,
   "coverUrl"            text,
-  "stars"              integer,
   "addedAt"             timestamptz(6) not null default now(),
-  primary key ("libraryId"),
-  unique ("googleId")
+  primary key ("bookId")
 );
 
 create table "public"."readingList" (
-  "readingListId"           serial,
-  "title"               text          not null,
-  "author"              text,
-  "googleId"            text          not null,
-  "coverUrl"            text,
-  "addedAt"             timestamptz(6) not null default now(),
-  primary key ("readingListId"),
-  unique ("googleId")
+  "userId"               integer,
+  "title"                text not null,
+  "bookId"               text not null,
+  "rating"               integer,
+  "isRead"               boolean,
+  "addedAt"              timestamptz(6) not null default now(),
+  primary key ("bookId"),
+   foreign key ("userId")
+    references "users" ("userId"),
+   foreign key ("bookId")
+    references "books" ("bookId")
 );
