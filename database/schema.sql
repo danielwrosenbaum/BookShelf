@@ -28,13 +28,14 @@ create table "public"."books" (
 );
 
 create table "public"."readingList" (
-  "userId"               integer not null,
+  -- "userId"               integer not null,
   "googleId"             text not null,
   "rating"               integer,
   "isRead"               boolean,
-   primary key ("userId", "googleId"),
-   foreign key ("userId")
-    references "users" ("userId"),
+  --  primary key ("userId", "googleId"),
+  --  foreign key ("userId")
+  --   references "users" ("userId"),
+  primary key("googleId"),
    foreign key ("googleId")
     references "books" ("googleId")
 );

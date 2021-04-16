@@ -39,29 +39,51 @@ app.get('/api/bookShelf/:table', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/bookShelf/library', (req, res, next) => {
-  const { title, author, googleId, coverUrl } = req.body;
+app.post('/api/bookShelf/', (req, res, next) => {
+  const { title, author, googleId, coverUrl, rating, isRead } = req.body;
   if (!title || !author || !googleId) {
     throw new ClientError(401, 'invalid post');
   }
-  const sql = `
-  insert into "library" ("title", "author", "googleId", "coverUrl")
+  const bookSql = `
+  insert into "books" ("title", "author", "googleId", "coverUrl")
   values ($1, $2, $3, $4)
+  on conflict("googleId")
+  do nothing
   returning *
   `;
-  const params = [title, author, googleId, coverUrl];
-  db.query(sql, params)
+  const readingListSql = `
+  insert into "readingList" ("googleId", "rating", "isRead")
+  values ($1, $2, $3)
+  on conflict("googleId")
+  do nothing
+  returning *
+  `;
+  const bookParams = [title, author, googleId, coverUrl];
+  const listParams = [googleId, rating, isRead];
+  db.query(bookSql, bookParams)
     .then(result => {
-      const newLibraryEntry = {
-        title: result.rows[0].title,
-        author: result.rows[0].author,
-        googleId: result.rows[0].googleId,
-        coverUrl: result.rows[0].coverUrl,
-        addedAt: result.rows[0].addedAt
-      };
-      res.status(201).json(newLibraryEntry);
+      // console.log(result.rows[0]);
+      // const newLibraryEntry = {
+      //   title: result.rows[0].title,
+      //   author: result.rows[0].author,
+      //   googleId: result.rows[0].googleId,
+      //   coverUrl: result.rows[0].coverUrl,
+      //   addedAt: result.rows[0].addedAt
+      // };
+
+      return db.query(readingListSql, listParams)
+        .then(listResult => {
+          // console.log(listResult.rows[0]);
+          const newListEntry = {
+            googleId: listResult.rows[0].googleId,
+            rating: listResult.rows[0].rating,
+            isRead: listResult.rows[0].isRead
+          };
+          res.status(201).json(newListEntry);
+        });
     })
     .catch(err => next(err));
+
 });
 
 app.post('/api/bookShelf/readingList', (req, res, next) => {
