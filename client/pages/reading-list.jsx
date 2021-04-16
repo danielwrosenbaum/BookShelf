@@ -61,12 +61,12 @@ export default class ReadingList extends React.Component {
 
   handleDelete(event) {
     const { targetId } = this.state;
-    const googleId = targetId;
+    const bookId = targetId;
     this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/${googleId}`, req)
+    fetch(`/api/bookShelf/${bookId}`, req)
       .then(result => {
         this.setState({ isLoading: true });
         return result;
@@ -135,10 +135,10 @@ export default class ReadingList extends React.Component {
           books.map(book => {
             const title = book.title;
             const thumbNail = book.coverUrl;
-            const googleId = book.googleId;
+            const bookId = book.bookId;
             const author = book.author;
             return (
-              <div key={googleId} className="rl-card">
+              <div key={bookId} className="rl-card">
                 <div className="rl-card-info">
                   <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
@@ -150,14 +150,14 @@ export default class ReadingList extends React.Component {
                     </div>
                     <div className="rl-button-container">
                       <button value={title} className="rl-buy" onClick={this.handleBuyClick}>Buy It!</button>
-                      <a href={`#details?bookId=${googleId}`}>
+                      <a href={`#details?bookId=${bookId}`}>
                         <button className="rl-info">Details</button>
                       </a>
                     </div>
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i id={googleId} name={title} className="delete-button fas fa-times" onClick={this.handleDeleteClick}></i>
+                  <i id={bookId} name={title} className="delete-button fas fa-times" onClick={this.handleDeleteClick}></i>
                   </div>
               </div>
             );

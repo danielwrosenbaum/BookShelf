@@ -10,14 +10,14 @@ export default class GetRating extends React.Component {
   }
 
   handleClick(event) {
-    const googleId = event.target.id;
+    const bookId = event.target.id;
     const newRating = {
       rating: event.target.value
     };
     this.setState({
       rating: event.target.value
     });
-    fetch(`/api/bookShelf/${googleId}`, {
+    fetch(`/api/bookShelf/${bookId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json'

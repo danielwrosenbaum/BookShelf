@@ -20,17 +20,17 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
     sql = `
   select *
     from "readingList"
-    join "books" using ("googleId")
+    join "books" using ("bookId")
     where "isRead" = 'true'
-    order by "googleId"
+    order by "bookId"
   `;
   } else if (list === 'readingList') {
     sql = `
     select *
     from "readingList"
-    join "books" using ("googleId")
+    join "books" using ("bookId")
     where "isRead" = 'false'
-    order by "googleId"
+    order by "bookId"
     `;
   } else {
     throw new ClientError(401, `${list} is not a valid list.`);
@@ -44,26 +44,26 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
 });
 
 app.post('/api/bookShelf/', (req, res, next) => {
-  const { title, author, googleId, coverUrl, rating, isRead } = req.body;
-  if (!title || !author || !googleId) {
+  const { title, author, bookId, coverUrl, rating, isRead } = req.body;
+  if (!title || !author || !bookId) {
     throw new ClientError(401, 'invalid post');
   }
   const bookSql = `
-  insert into "books" ("title", "author", "googleId", "coverUrl")
+  insert into "books" ("title", "author", "bookId", "coverUrl")
   values ($1, $2, $3, $4)
-  on conflict("googleId")
+  on conflict("bookId")
   do nothing
   returning *
   `;
   const readingListSql = `
-  insert into "readingList" ("title", "googleId", "rating", "isRead")
+  insert into "readingList" ("title", "bookId", "rating", "isRead")
   values ($1, $2, $3, $4)
-  on conflict("googleId")
+  on conflict("bookId")
   do nothing
   returning *
   `;
-  const bookParams = [title, author, googleId, coverUrl];
-  const listParams = [title, googleId, rating, isRead];
+  const bookParams = [title, author, bookId, coverUrl];
+  const listParams = [title, bookId, rating, isRead];
   db.query(bookSql, bookParams)
     .then(result => {
       return db.query(readingListSql, listParams)
@@ -83,16 +83,16 @@ app.post('/api/bookShelf/', (req, res, next) => {
 
 });
 
-app.patch('/api/bookShelf/:googleId', (req, res, next) => {
-  const googleId = req.params.googleId;
+app.patch('/api/bookShelf/:bookId', (req, res, next) => {
+  const bookId = req.params.bookId;
   const { rating } = req.body;
   const sql = `
   update "readingList"
     set "rating" = $1
-    where "googleId" = $2
+    where "bookId" = $2
     returning *
   `;
-  const params = [rating, googleId];
+  const params = [rating, bookId];
   db.query(sql, params)
     .then(result => {
       const [entry] = result.rows;
@@ -101,20 +101,20 @@ app.patch('/api/bookShelf/:googleId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/bookShelf/:googleId', (req, res, next) => {
-  const googleId = req.params.googleId;
+app.delete('/api/bookShelf/:bookId', (req, res, next) => {
+  const bookId = req.params.bookId;
   const sql = `
   delete from "readingList"
-    where "googleId" = $1
+    where "bookId" = $1
     returning *
   `;
-  const values = [googleId];
+  const values = [bookId];
   db.query(sql, values)
     .then(result => {
       const book = result.rows[0];
       if (!book) {
         res.status(404).json({
-          error: `Cannot find book with ID of ${googleId}, please try again.`
+          error: `Cannot find book with ID of ${bookId}, please try again.`
         });
       } else {
         res.status(204).json(book);

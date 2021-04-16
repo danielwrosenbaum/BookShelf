@@ -67,12 +67,12 @@ export default class Library extends React.Component {
 
   handleDelete(event) {
     const { targetId } = this.state;
-    const googleId = targetId;
+    const bookId = targetId;
     this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/${googleId}`, req)
+    fetch(`/api/bookShelf/${bookId}`, req)
       .then(result => {
         return result;
       })
@@ -98,11 +98,11 @@ export default class Library extends React.Component {
           books.map(book => {
             const title = book.title;
             const thumbNail = book.coverUrl;
-            const googleId = book.googleId;
+            const bookId = book.bookId;
             const author = book.author;
             const rating = book.rating;
             return (
-              <div key={googleId} id={googleId} className="library-card">
+              <div key={bookId} id={bookId} className="library-card">
                 <div className="lib-info">
                   <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
@@ -113,13 +113,13 @@ export default class Library extends React.Component {
                         <div className="sub-heading three">by {author}</div>
                     </div>
                     <div className="sub-col">
-                      <a href={`#details?bookId=${googleId}`}>
+                      <a href={`#details?bookId=${bookId}`}>
                         <button className="lib-details button">Details</button>
                       </a>
                       <div id="rate" className="rating-container">
                         <div>Rate Book: </div>
                         <div className='star-container'>
-                          <GetRating id={googleId} value={rating} />
+                          <GetRating id={bookId} value={rating} />
                         </div>
                       </div>
                     </div>
@@ -127,7 +127,7 @@ export default class Library extends React.Component {
                   </div>
                 </div>
                 <div className="delete-container">
-                  <i id={googleId} name={title} className="delete-button fas fa-times" onClick={this.handleClick}></i>
+                  <i id={bookId} name={title} className="delete-button fas fa-times" onClick={this.handleClick}></i>
                 </div>
               </div>
             );

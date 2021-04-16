@@ -54,7 +54,7 @@ export default class Details extends React.Component {
               title: result.volumeInfo.title,
               author: authors,
               coverUrl: thumbNail,
-              googleId: result.id,
+              bookId: result.id,
               rating: null
             }
           });

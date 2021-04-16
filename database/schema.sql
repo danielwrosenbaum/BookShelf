@@ -17,27 +17,25 @@ create table "public"."users" (
 );
 
 create table "public"."books" (
-  "bookId"              serial,
   "title"               text          not null,
   "author"              text,
-  "googleId"            text          not null,
+  "bookId"              text          not null,
   "coverUrl"            text,
   "addedAt"             timestamptz(6) not null default now(),
   primary key ("bookId"),
-  unique ("googleId")
+  unique ("bookId")
 );
 
 create table "public"."readingList" (
   "userId"               integer,
-  "readingListId"        serial,
   "title"                text not null,
-  "googleId"             text not null,
+  "bookId"               text not null,
   "rating"               integer,
   "isRead"               boolean,
   "addedAt"              timestamptz(6) not null default now(),
-  primary key ("googleId"),
+  primary key ("bookId"),
    foreign key ("userId")
     references "users" ("userId"),
-   foreign key ("googleId")
-    references "books" ("googleId")
+   foreign key ("bookId")
+    references "books" ("bookId")
 );
