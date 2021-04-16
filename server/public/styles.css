@@ -169,13 +169,9 @@ button {
 }
 
 .pic-container {
-  /* margin: 0.5rem; */
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* height: 100%;
-  width: auto; */
 }
 
 .search-container {
@@ -194,8 +190,6 @@ button {
   background: linear-gradient(150deg, #f9f7f7 0%, #dbe2ef 100%);
   min-height: 100vh;
   overflow: auto;
-
-  /* padding-top: 0.5rem; */
 }
 
 .details-page {
@@ -205,12 +199,7 @@ button {
 .results-container,
 .library-container,
 .rl-container {
-  /* background: linear-gradient(#f9f7f7 0%, #dbe2ef 100%); */
-
-  /* margin-bottom: 1rem; */
   margin-top: 4.5rem;
-
-  /* background-color: #f9f7f7; */
   width: 100%;
 }
 
@@ -262,11 +251,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  /* padding: 0 1rem; */
   margin: 2rem 1rem 0 1rem;
-
-  /* min-width: 200px; */
 }
 
 .semi-bold {
@@ -320,8 +305,6 @@ button {
 .library-card {
   margin: 0.75rem;
   height: 100%;
-
-  /* box-sizing: border-box; */
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
@@ -358,10 +341,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  /* margin-left: 1rem; */
-
-  /* width: 100%; */
 }
 
 .rl-book-info {
@@ -369,7 +348,6 @@ button {
 }
 
 .description {
-  /* width: fit-content; */
   margin: 2rem;
   color: #112d4e;
   overflow: auto;
@@ -394,9 +372,6 @@ button {
 
 .button,
 .text-box {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   font-family: 'Montserrat', sans-serif;
   border-radius: 1rem;
   text-decoration: none;
@@ -618,8 +593,6 @@ button {
   color: #f9f7f7;
   padding: 0.25rem 0.75rem;
   background: linear-gradient(150deg, #f9f7f7 0%, #e63946 65%);
-
-  /* background-color: #e63946; */
 }
 
 .rl-buy,
@@ -638,8 +611,6 @@ button {
 
 .rl-buy {
   color: #112d4e;
-
-  /* margin-right: 2rem; */
   background: linear-gradient(135deg, #f9f7f7 0%, #a8dadc 100%);
 }
 
@@ -656,7 +627,6 @@ button {
 }
 
 .thumbnail {
-  /* max-width: 100px; */
   height: auto;
   box-shadow: 2px 3px 4px #112d4e;
 }
