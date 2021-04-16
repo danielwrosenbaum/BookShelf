@@ -268,7 +268,7 @@ export default class Results extends React.Component {
     } else {
       setTimeout(() => {
         this.setState({ items: this.state.items + 10 });
-      }, 500);
+      }, 1000);
     }
 
   }
@@ -290,7 +290,7 @@ export default class Results extends React.Component {
         <Header />
         {this.renderHeading()}
         <div className="results-page">
-          <div style={{ height: '99vh', overflow: 'auto' }}>
+          <div style={{ height: '100vh', overflow: 'auto' }}>
             <InfiniteScroll
               loadMore={this.loadMore.bind(this)}
               hasMore={this.state.hasMoreItems}
@@ -299,7 +299,7 @@ export default class Results extends React.Component {
               {this.getResults()}
              {(this.state.hasMoreItems) &&
              <div className="loader-container">
-                <div className="results-loader">...Loading More...</div>
+                <div className="loader"></div>
              </div>}
             </InfiniteScroll>
           </div>
