@@ -30,6 +30,7 @@ create table "public"."books" (
 create table "public"."readingList" (
   -- "userId"               integer not null,
   "readingListId"        serial,
+  "title"                text not null,
   "googleId"             text not null,
   "rating"               integer,
   "isRead"               boolean,

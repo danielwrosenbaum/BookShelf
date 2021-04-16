@@ -80,18 +80,32 @@ export default class Results extends React.Component {
   }
 
   getSavedItem(target) {
+    const name = target.getAttribute('name');
     const { results } = this.state;
     const books = results.items;
     for (let i = 0; i < books.length; i++) {
       if (books[i].id === target.id) {
-        const info = {
-          title: books[i].volumeInfo.title,
-          googleId: books[i].id,
-          coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
-          author: this.getAuthor(books[i].volumeInfo.authors),
-          isRead: true,
-          rating: null
-        };
+        let info;
+        if (name === 'save') {
+          info = {
+            title: books[i].volumeInfo.title,
+            googleId: books[i].id,
+            coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+            author: this.getAuthor(books[i].volumeInfo.authors),
+            isRead: true,
+            rating: 0
+          };
+        }
+        if (name === 'add') {
+          info = {
+            title: books[i].volumeInfo.title,
+            googleId: books[i].id,
+            coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+            author: this.getAuthor(books[i].volumeInfo.authors),
+            isRead: false,
+            rating: null
+          };
+        }
         return info;
       }
     }
@@ -141,7 +155,7 @@ export default class Results extends React.Component {
       },
       body: JSON.stringify(this.getSavedItem(target))
     };
-    fetch('/api/bookShelf/readingList', req)
+    fetch('/api/bookShelf/', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
@@ -250,8 +264,8 @@ export default class Results extends React.Component {
                   <div className="description">{description}</div>
                 </div>
                 <div className="card-icons" >
-                  <i className="plus-icon fas fa-plus fa-1x" id={googleId} onClick={this.handleAdd}></i>
-                  <i className="heart-icon far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
+                  <i name="add" className="plus-icon fas fa-plus fa-1x" id={googleId} onClick={this.handleAdd}></i>
+                  <i name="save" className="heart-icon far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
                 </div>
               </div>
         );

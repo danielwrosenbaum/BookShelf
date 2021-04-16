@@ -56,14 +56,14 @@ app.post('/api/bookShelf/', (req, res, next) => {
   returning *
   `;
   const readingListSql = `
-  insert into "readingList" ("googleId", "rating", "isRead")
-  values ($1, $2, $3)
+  insert into "readingList" ("title", "googleId", "rating", "isRead")
+  values ($1, $2, $3, $4)
   on conflict("googleId")
   do nothing
   returning *
   `;
   const bookParams = [title, author, googleId, coverUrl];
-  const listParams = [googleId, rating, isRead];
+  const listParams = [title, googleId, rating, isRead];
   db.query(bookSql, bookParams)
     .then(result => {
       // console.log(result.rows[0]);
