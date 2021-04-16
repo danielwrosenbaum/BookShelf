@@ -13,23 +13,27 @@ app.use(staticMiddleware);
 
 app.use(jsonMiddleware);
 
-app.get('/api/bookShelf/:table', (req, res, next) => {
-  const table = req.params.table;
+app.get('/api/bookShelf/:list', (req, res, next) => {
+  const list = req.params.list;
   let sql;
-  if (table === 'library') {
+  if (list === 'library') {
     sql = `
   select *
-    from "library"
-    order by "libraryId"
+    from "readingList"
+    join "books" using ("googleId")
+    where "isRead" = 'true'
+    order by "googleId"
   `;
-  } else if (table === 'readingList') {
+  } else if (list === 'readingList') {
     sql = `
     select *
-      from "readingList"
-      order by "readingListId"
+    from "readingList"
+    join "books" using ("googleId")
+    where "isRead" = 'false'
+    order by "googleId"
     `;
   } else {
-    throw new ClientError(401, `${table} is not a valid table.`);
+    throw new ClientError(401, `${list} is not a valid list.`);
   }
 
   db.query(sql)

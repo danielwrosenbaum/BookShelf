@@ -29,9 +29,11 @@ create table "public"."books" (
 
 create table "public"."readingList" (
   -- "userId"               integer not null,
+  "readingListId"        serial,
   "googleId"             text not null,
   "rating"               integer,
   "isRead"               boolean,
+  "addedAt"              timestamptz(6) not null default now(),
   --  primary key ("userId", "googleId"),
   --  foreign key ("userId")
   --   references "users" ("userId"),
