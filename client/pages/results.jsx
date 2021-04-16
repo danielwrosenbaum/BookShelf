@@ -88,7 +88,9 @@ export default class Results extends React.Component {
           title: books[i].volumeInfo.title,
           googleId: books[i].id,
           coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
-          author: this.getAuthor(books[i].volumeInfo.authors)
+          author: this.getAuthor(books[i].volumeInfo.authors),
+          isRead: true,
+          rating: null
         };
         return info;
       }
@@ -104,7 +106,7 @@ export default class Results extends React.Component {
       },
       body: JSON.stringify(this.getSavedItem(target))
     };
-    fetch('/api/bookShelf/library', req)
+    fetch('/api/bookShelf/', req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
