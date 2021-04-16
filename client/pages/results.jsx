@@ -217,16 +217,16 @@ export default class Results extends React.Component {
     const bookResults = (
       <div className="results-container">
         {
-          books.map((book, index) => {
-            const title = book.volumeInfo.title;
-            const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
-            const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
-            const authors = (author) ? this.getAuthor(author) : 'Unknown';
-            const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
-            const text = book.volumeInfo.description;
-            const description = this.renderDescription(text);
-            const googleId = book.id;
-            const oneBook = (
+      books.map((book, index) => {
+        const title = book.volumeInfo.title;
+        const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
+        const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
+        const authors = (author) ? this.getAuthor(author) : 'Unknown';
+        const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
+        const text = book.volumeInfo.description;
+        const description = this.renderDescription(text);
+        const googleId = book.id;
+        const oneBook = (
               <div key={googleId} name={title} className="card">
                 <div className="result-info">
                   <div className='pic-container'>
@@ -237,10 +237,13 @@ export default class Results extends React.Component {
                       <div className="sub-heading six">{title}</div>
                       <div className="sub-heading three">by {authors}</div>
                       <div className="sub-heading three">{year}</div>
-                      <a className="button-anchor" href={`#details?bookId=${googleId}`}>
-                        <button id={googleId} name={title} className="lib-details button">Details</button>
-                      </a>
                     </div>
+                    <div>
+                  <a href={`#details?bookId=${googleId}`}>
+                    <button id={googleId} name={title} className="lib-details button">Details</button>
+                  </a>
+                    </div>
+
                   </div>
                   <div className="description">{description}</div>
                 </div>
@@ -249,13 +252,13 @@ export default class Results extends React.Component {
                   <i className="heart-icon far fa-heart fa-1x" id={googleId} onClick={this.handleSave} ></i>
                 </div>
               </div>
-            );
-            if (index < this.state.items) {
-              bookArr.push(oneBook);
-              return oneBook;
-            }
-            return null;
-          })
+        );
+        if (index < this.state.items) {
+          bookArr.push(oneBook);
+          return oneBook;
+        }
+        return null;
+      })
         }
       </div>
     );

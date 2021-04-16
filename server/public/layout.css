@@ -8,7 +8,7 @@
   }
 
   .book-col {
-    width: 25%;
+    min-width: 25%;
   }
 
   .info {
