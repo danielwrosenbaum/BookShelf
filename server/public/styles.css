@@ -583,16 +583,20 @@ button {
   border-radius: 0.75rem;
 }
 
+.search-details,
 .lib-details {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0.75rem;
-  margin: 1rem 1rem 0.25rem 1rem;
   font-family: 'Montserrat', sans-serif;
   color: #f9f7f7;
   padding: 0.25rem 0.75rem;
   background: linear-gradient(150deg, #f9f7f7 0%, #e63946 65%);
+}
+
+.search-details {
+  margin: 1rem 1rem 0.25rem 1rem;
 }
 
 .rl-buy,
