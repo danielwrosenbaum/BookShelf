@@ -2,6 +2,7 @@ import React from 'react';
 import parseRoute from '../lib/parse-route';
 import Header from '../components/header';
 import Loader from '../components/loader';
+import InfiniteScroll from 'react-infinite-scroller';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -15,6 +16,8 @@ export default class Results extends React.Component {
       isLoading: true,
       route: parseRoute(window.location.hash),
       inputValue: null,
+      items: 10,
+      hasMoreItems: true,
       results: null,
       info: null
     };
@@ -210,6 +213,7 @@ export default class Results extends React.Component {
   getResults() {
     const { results } = this.state;
     const books = results.items;
+    const bookArr = [];
     const bookResults = (
       <div className="results-container">
         {
@@ -217,13 +221,13 @@ export default class Results extends React.Component {
             const title = book.volumeInfo.title;
             const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
             const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
-            const authors = (author) ? this.getAuthor(author) : null;
-            const year = parseInt(book.volumeInfo.publishedDate, 10);
+            const authors = (author) ? this.getAuthor(author) : 'Unknown';
+            const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
             const text = book.volumeInfo.description;
             const description = this.renderDescription(text);
             const googleId = book.id;
             const oneBook = (
-              <div key={index} name={title} className="card">
+              <div key={googleId} name={title} className="card">
                 <div className="result-info">
                   <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
@@ -246,12 +250,28 @@ export default class Results extends React.Component {
                 </div>
               </div>
             );
-            return oneBook;
+            if (index < this.state.items) {
+              bookArr.push(oneBook);
+              return oneBook;
+            }
+            return null;
           })
         }
       </div>
     );
     return bookResults;
+  }
+
+  loadMore() {
+    if (this.state.items === 40) {
+
+      this.setState({ hasMoreItems: false });
+    } else {
+      setTimeout(() => {
+        this.setState({ items: this.state.items + 10 });
+      }, 500);
+    }
+
   }
 
   render() {
@@ -271,7 +291,15 @@ export default class Results extends React.Component {
         <Header />
         {this.renderHeading()}
         <div className="results-page">
-          {this.getResults()}
+          <div style={{ height: '100vh', overflow: 'auto' }}>
+            <InfiniteScroll
+              loadMore={this.loadMore.bind(this)}
+              hasMore={this.state.hasMoreItems}
+              useWindow={false}
+            >
+              {this.getResults()}
+            </InfiniteScroll>{' '}
+          </div>{' '}
         </div>
         {this.renderModal()}
       </>
