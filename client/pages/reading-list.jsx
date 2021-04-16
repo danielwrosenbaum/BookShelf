@@ -67,7 +67,7 @@ export default class ReadingList extends React.Component {
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/readingList/${googleId}`, req)
+    fetch(`/api/bookShelf/${googleId}`, req)
       .then(result => {
         this.setState({ isLoading: true });
         return result;

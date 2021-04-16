@@ -133,25 +133,23 @@ app.patch('/api/bookShelf/readingList/:googleId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/bookShelf/:list/:googleId', (req, res, next) => {
-  const list = req.params.list;
+app.delete('/api/bookShelf/:googleId', (req, res, next) => {
+  // const list = req.params.list;
   const googleId = req.params.googleId;
-  let sql;
-  if (list === 'library') {
-    sql = `
+  // let sql;
+  // if (list === 'library') {
+  const sql = `
   delete from "readingList"
     where "googleId" = $1
-    and "isRead" = 'false'
-    returning *
-`;
-  } else if (list === 'readingList') {
-    sql = `
-  delete from "readingList"
-    where "googleId" = $1
-    and "isRead" = 'true'
     returning *
   `;
-  }
+  //   } else if (list === 'readingList') {
+  //     sql = `
+  //   delete from "readingList"
+  //     where "googleId" = $1
+  //     returning *
+  //   `;
+  //   }
   const values = [googleId];
   db.query(sql, values)
     .then(result => {
