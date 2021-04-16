@@ -90,41 +90,41 @@ app.post('/api/bookShelf/', (req, res, next) => {
 
 });
 
-app.post('/api/bookShelf/readingList', (req, res, next) => {
-  const { title, author, googleId, coverUrl } = req.body;
-  if (!title || !author || !googleId) {
-    throw new ClientError(401, 'invalid post');
-  }
-  const sql = `
-  insert into "readingList" ("title", "author", "googleId", "coverUrl")
-  values ($1, $2, $3, $4)
-  returning *
-  `;
-  const params = [title, author, googleId, coverUrl];
-  db.query(sql, params)
-    .then(result => {
-      const newLibraryEntry = {
-        title: result.rows[0].title,
-        author: result.rows[0].author,
-        googleId: result.rows[0].googleId,
-        coverUrl: result.rows[0].coverUrl,
-        addedAt: result.rows[0].addedAt
-      };
-      res.status(201).json(newLibraryEntry);
-    })
-    .catch(err => next(err));
-});
+// app.post('/api/bookShelf/readingList', (req, res, next) => {
+//   const { title, author, googleId, coverUrl } = req.body;
+//   if (!title || !author || !googleId) {
+//     throw new ClientError(401, 'invalid post');
+//   }
+//   const sql = `
+//   insert into "readingList" ("title", "author", "googleId", "coverUrl")
+//   values ($1, $2, $3, $4)
+//   returning *
+//   `;
+//   const params = [title, author, googleId, coverUrl];
+//   db.query(sql, params)
+//     .then(result => {
+//       const newLibraryEntry = {
+//         title: result.rows[0].title,
+//         author: result.rows[0].author,
+//         googleId: result.rows[0].googleId,
+//         coverUrl: result.rows[0].coverUrl,
+//         addedAt: result.rows[0].addedAt
+//       };
+//       res.status(201).json(newLibraryEntry);
+//     })
+//     .catch(err => next(err));
+// });
 
-app.patch('/api/bookShelf/library/:googleId', (req, res, next) => {
+app.patch('/api/bookShelf/readingList/:googleId', (req, res, next) => {
   const googleId = req.params.googleId;
-  const { stars } = req.body;
+  const { rating } = req.body;
   const sql = `
-  update "library"
-    set "stars" = $1
+  update "readingList"
+    set "rating" = $1
     where "googleId" = $2
     returning *
   `;
-  const params = [stars, googleId];
+  const params = [rating, googleId];
   db.query(sql, params)
     .then(result => {
       const [entry] = result.rows;
