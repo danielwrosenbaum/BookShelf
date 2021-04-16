@@ -138,7 +138,6 @@ export default class Details extends React.Component {
       body: JSON.stringify(info)
     };
     fetch('/api/bookShelf/', req)
-      .then(res => res.json())
       .then(result => {
         if (result.error) {
           this.setState({
