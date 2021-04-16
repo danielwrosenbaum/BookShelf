@@ -69,13 +69,17 @@ export default class ReadingList extends React.Component {
     };
     fetch(`/api/bookShelf/readingList/${googleId}`, req)
       .then(result => {
+        this.setState({ isLoading: true });
         return result;
       })
       .catch(error => console.error(error));
     fetch('/api/bookShelf/readingList')
       .then(res => res.json())
       .then(result => {
-        this.setState({ result });
+        this.setState({
+          result,
+          isLoading: false
+        });
       })
       .catch(error => console.error(error));
   }
