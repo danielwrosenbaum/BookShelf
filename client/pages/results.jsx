@@ -240,7 +240,7 @@ export default class Results extends React.Component {
                     </div>
                     <div>
                   <a href={`#details?bookId=${googleId}`}>
-                    <button id={googleId} name={title} className="lib-details button">Details</button>
+                    <button id={googleId} name={title} className="search-details button">Details</button>
                   </a>
                     </div>
 
