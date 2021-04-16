@@ -264,7 +264,6 @@ export default class Results extends React.Component {
 
   loadMore() {
     if (this.state.items === 40) {
-
       this.setState({ hasMoreItems: false });
     } else {
       setTimeout(() => {
@@ -291,15 +290,19 @@ export default class Results extends React.Component {
         <Header />
         {this.renderHeading()}
         <div className="results-page">
-          <div style={{ height: '100vh', overflow: 'auto' }}>
+          <div style={{ height: '99vh', overflow: 'auto' }}>
             <InfiniteScroll
               loadMore={this.loadMore.bind(this)}
               hasMore={this.state.hasMoreItems}
               useWindow={false}
             >
               {this.getResults()}
-            </InfiniteScroll>{' '}
-          </div>{' '}
+             {(this.state.hasMoreItems) &&
+             <div className="loader-container">
+                <div className="results-loader">...Loading More...</div>
+             </div>}
+            </InfiniteScroll>
+          </div>
         </div>
         {this.renderModal()}
       </>

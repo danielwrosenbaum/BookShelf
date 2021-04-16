@@ -755,3 +755,15 @@ body {
     transform: rotate(359deg);
   }
 }
+
+.loader-container {
+  margin: 1rem;
+}
+
+.results-loader {
+  color: #112d4e;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Raleway', sans-serif;
+}
