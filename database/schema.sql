@@ -22,8 +22,7 @@ create table "public"."books" (
   "bookId"              text          not null,
   "coverUrl"            text,
   "addedAt"             timestamptz(6) not null default now(),
-  primary key ("bookId"),
-  unique ("bookId")
+  primary key ("bookId")
 );
 
 create table "public"."readingList" (
