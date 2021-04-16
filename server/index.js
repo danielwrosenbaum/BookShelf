@@ -115,7 +115,7 @@ app.post('/api/bookShelf/', (req, res, next) => {
 //     .catch(err => next(err));
 // });
 
-app.patch('/api/bookShelf/readingList/:googleId', (req, res, next) => {
+app.patch('/api/bookShelf/:googleId', (req, res, next) => {
   const googleId = req.params.googleId;
   const { rating } = req.body;
   const sql = `

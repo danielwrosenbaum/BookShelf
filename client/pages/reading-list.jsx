@@ -27,7 +27,6 @@ export default class ReadingList extends React.Component {
           result,
           isLoading: false
         });
-
       })
       .catch(error => console.error(error));
   }

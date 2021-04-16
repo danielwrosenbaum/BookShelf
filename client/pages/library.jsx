@@ -72,7 +72,7 @@ export default class Library extends React.Component {
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/library/${googleId}`, req)
+    fetch(`/api/bookShelf/${googleId}`, req)
       .then(result => {
         return result;
       })
@@ -100,7 +100,7 @@ export default class Library extends React.Component {
             const thumbNail = book.coverUrl;
             const googleId = book.googleId;
             const author = book.author;
-            const rating = book.stars;
+            const rating = book.rating;
             return (
               <div key={googleId} id={googleId} className="library-card">
                 <div className="lib-info">
