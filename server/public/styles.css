@@ -95,12 +95,33 @@ button {
   margin: auto;
 }
 
+.menu-heading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* box-shadow: 1px 2px 4px #112d4e;
+  border: 1px solid #112d4e;
+  margin: 0.75rem 0.75rem 0 0.75rem;
+  border-radius: 1rem; */
+}
+
 .menu-heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
   margin: 2rem auto;
   font-size: 2.5rem;
   color: #112d4e;
+}
+
+.menu-list {
+  border-radius: 0.5rem;
+
+  /* box-shadow: inset 1px 2px 4px #112d4e; */
+
+  /* border: 1px solid #112d4e; */
+  margin: 0.75rem;
+  height: 100%;
 }
 
 .sub-heading {
@@ -431,11 +452,13 @@ button {
 }
 
 .modal {
-  border-right: solid #112d4e;
+  /* border-right: solid #112d4e; */
   opacity: 1;
   width: 300px;
   height: 100vh;
-  background: linear-gradient(#f9f7f7f1 15%, #dbe2eff1 55%, #3f72aff1 100%);
+  background: linear-gradient(-120deg, #f9f7f7f1 0%, #dbe2eff1 55%, #3f72aff1 100%);
+
+  /* background: linear-gradient(-120deg, #3f72aff1 0%, #e63946f1 100%); */
   transition: width 0.5s, opacity 0.5s;
 }
 
@@ -511,6 +534,13 @@ button {
 .menu {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-shadow: 2px 4px 7px #112d4e;
+  border: 1px solid #112d4e;
+
+  /* border-radius: 1rem; */
+
+  /* margin: 0.5rem; */
 }
 
 .menu-item {
