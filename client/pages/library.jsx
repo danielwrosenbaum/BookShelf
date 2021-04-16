@@ -109,18 +109,21 @@ export default class Library extends React.Component {
                   </div>
                   <div className="lib-col">
                     <div className="sub-col">
-                      <div className="sub-heading six">{title}</div>
-                      <div className="sub-heading three">by {author}</div>
-                      <a className="button-anchor" href={`#details?bookId=${googleId}`}>
+                        <div className="sub-heading six">{title}</div>
+                        <div className="sub-heading three">by {author}</div>
+                    </div>
+                    <div className="sub-col">
+                      <a href={`#details?bookId=${googleId}`}>
                         <button className="lib-details button">Details</button>
                       </a>
-                    </div>
-                    <div id="rate" className="rating-container">
-                      <div>Rate This Book: </div>
-                      <div className='star-container'>
-                        <GetRating id={googleId} value={rating} />
+                      <div id="rate" className="rating-container">
+                        <div>Rate Book: </div>
+                        <div className='star-container'>
+                          <GetRating id={googleId} value={rating} />
+                        </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
                 <div className="delete-container">

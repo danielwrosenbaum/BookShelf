@@ -145,8 +145,10 @@ export default class ReadingList extends React.Component {
                     <img className="thumbnail" src={thumbNail} alt={title} />
                   </div>
                   <div className="rl-col">
-                    <div className="sub-heading six">{title}</div>
-                    <div className="sub-heading three">by {author}</div>
+                    <div className="rl-book-info">
+                      <div className="sub-heading six">{title}</div>
+                      <div className="sub-heading three">by {author}</div>
+                    </div>
                     <div className="rl-button-container">
                       <button value={title} className="rl-buy" onClick={this.handleBuyClick}>Buy It!</button>
                       <a href={`#details?bookId=${googleId}`}>
