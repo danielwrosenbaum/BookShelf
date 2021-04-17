@@ -1,5 +1,6 @@
 import React from 'react';
 import parseRoute from './lib/parse-route';
+import decodeToken from './lib/decode-token';
 import SearchPage from './pages/search-page';
 import AdvancedSearch from './pages/advanced-search';
 import AppDrawer from './components/appdrawer';
@@ -9,6 +10,7 @@ import PageContainer from './components/page-container';
 import Details from './pages/details';
 import Library from './pages/library';
 import ReadingList from './pages/reading-list';
+import Auth from './pages/auth';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,9 +30,9 @@ export default class App extends React.Component {
       this.setState({ route: parseRoute(window.location.hash) });
     }
     );
-    // const token = window.localStorage.getItem('react-context-jwt');
-    // const user = token ? decodeToken(token) : null;
-    // this.setState({ user, isAuthorizing: false });
+    const token = window.localStorage.getItem('react-context-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user, isAuthorizing: false });
   }
 
   handleSignIn(result) {
@@ -48,6 +50,9 @@ export default class App extends React.Component {
     const { route } = this.state;
     if (route.path === 'search-page' || route.path === '') {
       return <SearchPage />;
+    }
+    if (route.path === 'sign-in' || route.path === 'sign-up') {
+      return <Auth />;
     }
     if (route.path === 'advanced-search') {
       return <AdvancedSearch />;

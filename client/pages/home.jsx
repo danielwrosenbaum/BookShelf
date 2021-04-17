@@ -1,12 +1,17 @@
 import React from 'react';
 import SearchPage from './search-page';
-import AppDrawer from '../components/appdrawer';
+// import AppDrawer from '../components/appdrawer';
+import AppContext from '../lib/app-context';
+import Redirect from '../components/redirect';
 
-export default function Home(props) {
-  return (
-    <>
-    <AppDrawer />
-    <SearchPage />
-    </>
-  );
+export default class Home extends React.Component {
+  render() {
+    if (!this.context.user) return <Redirect to="sign-in" />;
+
+    return (
+        <SearchPage />
+    );
+  }
+
 }
+Home.contextType = AppContext;

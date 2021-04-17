@@ -3,6 +3,7 @@ import parseRoute from '../lib/parse-route';
 import DOMPurify from 'dompurify';
 import Header from '../components/header';
 import Loader from '../components/loader';
+import AppContext from '../lib/app-context';
 const apiKey = process.env.API_KEY;
 export default class Details extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ export default class Details extends React.Component {
             inputValue: query,
             result: result,
             info: {
+
               title: result.volumeInfo.title,
               author: authors,
               coverUrl: thumbNail,
@@ -78,8 +80,10 @@ export default class Details extends React.Component {
   handleSave(event) {
     this.setState({ target: 'Library' });
     const { info } = this.state;
+    const { user } = this.context;
     info.isRead = true;
     info.rating = 0;
+    info.userId = user.userId;
     const req = {
       method: 'POST',
       headers: {
@@ -284,3 +288,5 @@ export default class Details extends React.Component {
     );
   }
 }
+
+Details.contextType = AppContext;
