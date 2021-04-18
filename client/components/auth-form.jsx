@@ -6,15 +6,33 @@ export default class AuthForm extends React.Component {
     super(props);
     this.state = {
       username: '',
+      error: false,
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  }
+
+  handleError() {
+    return (
+      <div>
+        <div className="error-pop-up">
+          <div>Incorrect Username or Password</div>
+        </div>
+      </div>
+    );
+  }
+
+  handleClickBack() {
+    this.setState({
+      error: false
+    });
   }
 
   handleSubmit(event) {
@@ -34,11 +52,14 @@ export default class AuthForm extends React.Component {
           window.location.hash = 'sign-in';
         } else if (result.user && result.token) {
           this.props.onSignIn(result);
+        } else {
+          this.setState({ error: true });
         }
       });
   }
 
   render() {
+    const { error } = this.state;
     const { action } = this.props;
     const { handleChange, handleSubmit } = this;
     const alternateActionHref = action === 'sign-up'
@@ -51,7 +72,9 @@ export default class AuthForm extends React.Component {
       ? 'Register'
       : 'Log In';
     return (
-    <form className='sign-in-form'onSubmit={handleSubmit}>
+    <form className='sign-in-form'onSubmit={handleSubmit} onClick={this.handleClickBack}>
+      {(error) &&
+      this.handleError()}
       <div className="sub-col">
         <label htmlFor="username" className="heading three">
           Username

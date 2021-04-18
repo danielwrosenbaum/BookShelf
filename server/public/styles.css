@@ -247,6 +247,22 @@ button {
   background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 30%, #3f71af 100%);
 }
 
+.error-pop-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f9f7f7;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 3rem;
+  padding: 1.5rem;
+  box-shadow: 0 2.5px 7px #112d4ebe;
+  border: 0.5px solid #112d4ebe;
+  border-radius: 0.5rem;
+  background: linear-gradient(120deg, #f9f7f7 0%, #e25c67 30%, #e63946 100%);
+}
+
 .sign-in-box {
   text-align: center;
   margin: 2rem;
