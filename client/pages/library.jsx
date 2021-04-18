@@ -2,6 +2,7 @@ import React from 'react';
 import GetRating from '../components/get-rating';
 import Header from '../components/header';
 import Loader from '../components/loader';
+import AppContext from '../lib/app-context';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -20,7 +21,9 @@ export default class Library extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/bookShelf/library')
+    const { user } = this.context;
+    const userId = user.userId;
+    fetch(`/api/bookShelf/library/${userId}`)
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -67,17 +70,19 @@ export default class Library extends React.Component {
 
   handleDelete(event) {
     const { targetId } = this.state;
+    const { user } = this.context;
+    const userId = user.userId;
     const bookId = targetId;
     this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/${bookId}`, req)
+    fetch(`/api/bookShelf/${bookId}/${userId}`, req)
       .then(result => {
         return result;
       })
       .catch(error => console.error(error));
-    fetch('/api/bookShelf/library')
+    fetch(`/api/bookShelf/library/${userId}`)
       .then(res => res.json())
       .then(result => {
         this.setState({ result });
@@ -149,3 +154,5 @@ export default class Library extends React.Component {
     );
   }
 }
+
+Library.contextType = AppContext;

@@ -10,25 +10,29 @@ export default class AuthPage extends React.Component {
 
     if (user) return <Redirect to="" />;
 
-    const weclomeMessage = route.path === 'sign-in'
-      ? 'Please sign in to continue'
-      : 'Create an account to get started!';
+    const weclomeMessage = (
+      (route.path === 'sign-in')
+        ? 'Please sign in to continue'
+        : 'Create an account to get started!'
+    );
     return (
-      <div className="row pt-5 align-items-center">
-        <div className="col-12 offset-0 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-4 offset-xl-4">
-          <header className="text-center">
-            <h2 className="mb-2">
-              <i className="fas fa-bolt me-2" />
-              Awesome App
-            </h2>
-            <p className="text-muted mb-4">{weclomeMessage}</p>
-          </header>
-          <div className="card p-3 ">
-            <AuthForm
-              key={route.path}
-              action={route.path}
-              onSignIn={handleSignIn} />
+      <div className="sign-in-page">
+        <div className="sign-in-container">
+          <div className="title">
+            <div className="title-heading one-blue">
+              Book Shelf
+            </div>
           </div>
+          <div className='sign-in-box sub-col'>
+            <div className="heading three">{weclomeMessage}</div>
+            <div className="sub-col">
+              <AuthForm
+                key={route.path}
+                action={route.path}
+                onSignIn={handleSignIn} />
+            </div>
+          </div>
+
         </div>
       </div>
     );

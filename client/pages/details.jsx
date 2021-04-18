@@ -132,8 +132,11 @@ export default class Details extends React.Component {
   handleAdd() {
     this.setState({ target: 'Reading List' });
     const { info } = this.state;
+    const { user } = this.context;
     info.isRead = 'false';
     info.rating = null;
+    info.userId = user.userId;
+
     const req = {
       method: 'POST',
       headers: {

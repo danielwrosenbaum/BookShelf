@@ -3,6 +3,7 @@ import parseRoute from '../lib/parse-route';
 import Header from '../components/header';
 import Loader from '../components/loader';
 import InfiniteScroll from 'react-infinite-scroller';
+import AppContext from '../lib/app-context';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -82,6 +83,7 @@ export default class Results extends React.Component {
   getSavedItem(target) {
     const name = target.getAttribute('name');
     const { results } = this.state;
+    const { user } = this.context;
     const books = results.items;
     for (let i = 0; i < books.length; i++) {
       if (books[i].id === target.id) {
@@ -92,6 +94,7 @@ export default class Results extends React.Component {
             bookId: books[i].id,
             coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
             author: this.getAuthor(books[i].volumeInfo.authors),
+            userId: user.userId,
             isRead: true,
             rating: 0
           };
@@ -102,6 +105,7 @@ export default class Results extends React.Component {
             bookId: books[i].id,
             coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
             author: this.getAuthor(books[i].volumeInfo.authors),
+            userId: user.userId,
             isRead: false,
             rating: null
           };
@@ -327,3 +331,5 @@ export default class Results extends React.Component {
     );
   }
 }
+
+Results.contextType = AppContext;

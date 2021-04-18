@@ -71,8 +71,9 @@ app.post('/api/bookShelf/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/bookShelf/:list', (req, res, next) => {
+app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
   const list = req.params.list;
+  const userId = req.params.userId;
   let sql;
   if (list === 'library') {
     sql = `
@@ -80,6 +81,7 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
     from "readingList"
     join "books" using ("bookId")
     where "isRead" = 'true'
+    and "userId" = $1
     order by "bookId"
   `;
   } else if (list === 'readingList') {
@@ -88,13 +90,14 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
     from "readingList"
     join "books" using ("bookId")
     where "isRead" = 'false'
+    and "userId" = $1
     order by "bookId"
     `;
   } else {
     throw new ClientError(401, `${list} is not a valid list.`);
   }
-
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })
@@ -159,14 +162,16 @@ app.patch('/api/bookShelf/:bookId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/bookShelf/:bookId', (req, res, next) => {
+app.delete('/api/bookShelf/:bookId/:userId', (req, res, next) => {
   const bookId = req.params.bookId;
+  const userId = req.params.userId;
   const sql = `
   delete from "readingList"
     where "bookId" = $1
+    and "userId" = $2
     returning *
   `;
-  const values = [bookId];
+  const values = [bookId, userId];
   db.query(sql, values)
     .then(result => {
       const book = result.rows[0];

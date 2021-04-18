@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
 import Loader from '../components/loader';
+import AppContext from '../lib/app-context';
 
 export default class ReadingList extends React.Component {
   constructor(props) {
@@ -20,7 +21,9 @@ export default class ReadingList extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/bookShelf/readingList')
+    const { user } = this.context;
+    const userId = user.userId;
+    fetch(`/api/bookShelf/readingList/${userId}`)
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -61,18 +64,20 @@ export default class ReadingList extends React.Component {
 
   handleDelete(event) {
     const { targetId } = this.state;
+    const { user } = this.context;
+    const userId = user.userId;
     const bookId = targetId;
     this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/${bookId}`, req)
+    fetch(`/api/bookShelf/${bookId}/${userId}`, req)
       .then(result => {
         this.setState({ isLoading: true });
         return result;
       })
       .catch(error => console.error(error));
-    fetch('/api/bookShelf/readingList')
+    fetch(`/api/bookShelf/readingList/${userId}`)
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -180,3 +185,5 @@ export default class ReadingList extends React.Component {
     );
   }
 }
+
+ReadingList.contextType = AppContext;

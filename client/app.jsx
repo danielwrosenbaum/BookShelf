@@ -11,6 +11,7 @@ import Details from './pages/details';
 import Library from './pages/library';
 import ReadingList from './pages/reading-list';
 import Auth from './pages/auth';
+import Home from './pages/home';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -48,7 +49,10 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === 'search-page' || route.path === '') {
+    if (route.path === '') {
+      return <Home />;
+    }
+    if (route.path === 'search-page') {
       return <SearchPage />;
     }
     if (route.path === 'sign-in' || route.path === 'sign-up') {
