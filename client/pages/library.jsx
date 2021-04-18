@@ -73,11 +73,12 @@ export default class Library extends React.Component {
     const { user } = this.context;
     const userId = user.userId;
     const bookId = targetId;
+    const listId = `${userId}-${bookId}-t`;
     this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/${bookId}/${userId}`, req)
+    fetch(`/api/bookShelf/${bookId}/${listId}`, req)
       .then(result => {
         return result;
       })
@@ -91,6 +92,7 @@ export default class Library extends React.Component {
   }
 
   render() {
+    const { user } = this.context;
     const { result, isLoading } = this.state;
     if (isLoading) {
       return <Loader />;
@@ -106,6 +108,7 @@ export default class Library extends React.Component {
             const bookId = book.bookId;
             const author = book.author;
             const rating = book.rating;
+            const listId = `${user.userId}-${book.bookId}-t`;
             return (
               <div key={bookId} id={bookId} className="library-card">
                 <div className="lib-info">
@@ -124,7 +127,7 @@ export default class Library extends React.Component {
                       <div id="rate" className="rating-container">
                         <div>Rate Book: </div>
                         <div className='star-container'>
-                          <GetRating id={bookId} value={rating} />
+                          <GetRating id={bookId} value={rating} name={listId}/>
                         </div>
                       </div>
                     </div>

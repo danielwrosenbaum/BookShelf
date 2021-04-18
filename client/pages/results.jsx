@@ -96,6 +96,7 @@ export default class Results extends React.Component {
             author: this.getAuthor(books[i].volumeInfo.authors),
             userId: user.userId,
             isRead: true,
+            listId: `${user.userId}-${books[i].id}-t`,
             rating: 0
           };
         }
@@ -107,6 +108,7 @@ export default class Results extends React.Component {
             author: this.getAuthor(books[i].volumeInfo.authors),
             userId: user.userId,
             isRead: false,
+            listId: `${user.userId}-${books[i].id}-f`,
             rating: null
           };
         }

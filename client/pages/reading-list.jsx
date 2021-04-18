@@ -67,11 +67,12 @@ export default class ReadingList extends React.Component {
     const { user } = this.context;
     const userId = user.userId;
     const bookId = targetId;
+    const listId = `${userId}-${bookId}-f`;
     this.setState({ isDeleteClicked: false });
     const req = {
       method: 'DELETE'
     };
-    fetch(`/api/bookShelf/${bookId}/${userId}`, req)
+    fetch(`/api/bookShelf/${bookId}/${listId}`, req)
       .then(result => {
         this.setState({ isLoading: true });
         return result;

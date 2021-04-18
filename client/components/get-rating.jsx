@@ -4,7 +4,8 @@ export default class GetRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: this.props.value
+      rating: this.props.value,
+      listId: this.props.name
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -12,7 +13,8 @@ export default class GetRating extends React.Component {
   handleClick(event) {
     const bookId = event.target.id;
     const newRating = {
-      rating: event.target.value
+      rating: event.target.value,
+      listId: this.props.name
     };
     this.setState({
       rating: event.target.value

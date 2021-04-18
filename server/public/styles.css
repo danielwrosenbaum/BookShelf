@@ -99,6 +99,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   /* box-shadow: 1px 2px 4px #112d4e;
   border: 1px solid #112d4e;
@@ -249,6 +250,18 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.sign-menu-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sign-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .details-page,

@@ -84,6 +84,7 @@ export default class Details extends React.Component {
     info.isRead = true;
     info.rating = 0;
     info.userId = user.userId;
+    info.listId = `${user.userId}-${info.bookId}-t`;
     const req = {
       method: 'POST',
       headers: {
@@ -136,6 +137,7 @@ export default class Details extends React.Component {
     info.isRead = 'false';
     info.rating = null;
     info.userId = user.userId;
+    info.listId = `${user.userId}-${info.bookId}-f`;
 
     const req = {
       method: 'POST',

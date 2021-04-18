@@ -105,7 +105,7 @@ app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
 });
 
 app.post('/api/bookShelf/', (req, res, next) => {
-  const { title, author, bookId, coverUrl, rating, isRead, userId } = req.body;
+  const { title, author, bookId, coverUrl, rating, isRead, userId, listId } = req.body;
   if (!title || !author || !bookId) {
     throw new ClientError(401, 'invalid post');
   }
@@ -117,14 +117,12 @@ app.post('/api/bookShelf/', (req, res, next) => {
   returning *
   `;
   const readingListSql = `
-  insert into "readingList" ("title", "bookId", "rating", "isRead", "userId")
-  values ($1, $2, $3, $4, $5)
-  on conflict("bookId")
-  do nothing
+  insert into "readingList" ("title", "bookId", "rating", "isRead", "userId", "listId")
+  values ($1, $2, $3, $4, $5, $6)
   returning *
   `;
   const bookParams = [title, author, bookId, coverUrl];
-  const listParams = [title, bookId, rating, isRead, userId];
+  const listParams = [title, bookId, rating, isRead, userId, listId];
   db.query(bookSql, bookParams)
     .then(result => {
       return db.query(readingListSql, listParams)
@@ -146,14 +144,15 @@ app.post('/api/bookShelf/', (req, res, next) => {
 
 app.patch('/api/bookShelf/:bookId', (req, res, next) => {
   const bookId = req.params.bookId;
-  const { rating } = req.body;
+  const { rating, listId } = req.body;
   const sql = `
   update "readingList"
     set "rating" = $1
     where "bookId" = $2
+    and "listId" = $3
     returning *
   `;
-  const params = [rating, bookId];
+  const params = [rating, bookId, listId];
   db.query(sql, params)
     .then(result => {
       const [entry] = result.rows;
@@ -162,16 +161,16 @@ app.patch('/api/bookShelf/:bookId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/bookShelf/:bookId/:userId', (req, res, next) => {
+app.delete('/api/bookShelf/:bookId/:listId', (req, res, next) => {
   const bookId = req.params.bookId;
-  const userId = req.params.userId;
+  const listId = req.params.listId;
   const sql = `
   delete from "readingList"
     where "bookId" = $1
-    and "userId" = $2
+    and "listId" = $2
     returning *
   `;
-  const values = [bookId, userId];
+  const values = [bookId, listId];
   db.query(sql, values)
     .then(result => {
       const book = result.rows[0];

@@ -69,21 +69,20 @@ export default class AppDrawer extends React.Component {
           <div className={modalClass} onClick={this.handleClick}>
             <div className={this.hideMenu()}>
               <div className='menu-heading-container'>
-                <div>
+                <div className="sign-menu-container">
                   {user !== null &&
-                    <button className="btn btn-dark" onClick={handleSignOut}>
+                    <a href='' className="sign-button submit" onClick={handleSignOut}>
                       Sign out
-                <i className="ms-2 fas fa-sign-out-alt" />
-                    </button>
+                    </a>
                   }
                   {user === null &&
                     <>
-                      <a href="#sign-in" className="btn btn-primary">
+                      <a href="#sign-in" className="sign-button submit">
                         Sign In
-                </a>
-                      <a href="#sign-up" className="btn btn-dark">
+                          </a>
+                      <a href="#sign-up" className="sign-button submit">
                         Sign Up
-                </a>
+                           </a>
                     </>
                   }
                 </div>
