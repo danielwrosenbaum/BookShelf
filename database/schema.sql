@@ -26,14 +26,13 @@ create table "public"."books" (
 );
 
 create table "public"."readingList" (
-  "listId"               text not null,
   "userId"               integer,
   "title"                text not null,
   "bookId"               text not null,
   "rating"               integer,
   "isRead"               boolean,
   "addedAt"              timestamptz(6) not null default now(),
-  primary key ("listId"),
+  primary key ("userId", "bookId"),
    foreign key ("userId")
     references "users" ("userId"),
    foreign key ("bookId")

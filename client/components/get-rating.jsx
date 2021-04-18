@@ -1,20 +1,21 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class GetRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: this.props.value,
-      listId: this.props.name
+      rating: this.props.value
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(event) {
     const bookId = event.target.id;
+    const { user } = this.context;
     const newRating = {
       rating: event.target.value,
-      listId: this.props.name
+      userId: user.userId
     };
     this.setState({
       rating: event.target.value
@@ -48,3 +49,5 @@ export default class GetRating extends React.Component {
     );
   }
 }
+
+GetRating.contextType = AppContext;
