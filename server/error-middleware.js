@@ -11,7 +11,7 @@ function errorMiddleware(err, req, res, next) {
       error: 'invalid access token'
     });
   } else {
-    console.error('heyheyhey', err);
+    console.error('error', err);
     res.status(500).json({
       error: 'an unexpected error occurred'
     });

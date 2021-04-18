@@ -4,6 +4,7 @@ import Header from '../components/header';
 import Loader from '../components/loader';
 import InfiniteScroll from 'react-infinite-scroller';
 import AppContext from '../lib/app-context';
+import SignIn from '../components/sign-in';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -15,6 +16,7 @@ export default class Results extends React.Component {
       isError: false,
       isAdded: false,
       isLoading: true,
+      redirect: null,
       route: parseRoute(window.location.hash),
       inputValue: null,
       items: 10,
@@ -24,6 +26,7 @@ export default class Results extends React.Component {
     };
     this.handleSave = this.handleSave.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleClickBack = this.handleClickBack.bind(this);
   }
 
   componentDidMount() {
@@ -119,6 +122,11 @@ export default class Results extends React.Component {
 
   handleSave(event) {
     const target = event.target;
+    const { user } = this.context;
+    if (!user) {
+      this.setState({ redirect: 'save' });
+      return null;
+    }
     const req = {
       method: 'POST',
       headers: {
@@ -153,6 +161,11 @@ export default class Results extends React.Component {
   }
 
   handleAdd(event) {
+    const { user } = this.context;
+    if (!user) {
+      this.setState({ redirect: 'add' });
+      return null;
+    }
     const target = event.target;
     const req = {
       method: 'POST',
@@ -162,6 +175,7 @@ export default class Results extends React.Component {
       body: JSON.stringify(this.getSavedItem(target))
     };
     fetch('/api/bookShelf/', req)
+      .then(res => res.json())
       .then(result => {
         if (result.error) {
           this.setState({
@@ -184,6 +198,16 @@ export default class Results extends React.Component {
         }
       })
       .catch(error => console.error(error));
+  }
+
+  handleClickBack() {
+    const { redirect } = this.state;
+    if (redirect) {
+      this.setState({ redirect: null });
+    } else {
+      return null;
+    }
+
   }
 
   renderHeading() {
@@ -298,7 +322,7 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const { results, isLoading } = this.state;
+    const { results, isLoading, redirect } = this.state;
     if (isLoading) {
       return <Loader />;
     }
@@ -313,13 +337,14 @@ export default class Results extends React.Component {
       <>
         <Header />
         {this.renderHeading()}
-        <div className="results-page">
+        <div className="results-page" onClick={this.handleClickBack}>
+          {(redirect) &&
+            <SignIn id={redirect} />}
           <div style={{ height: '100vh', overflow: 'auto' }}>
             <InfiniteScroll
               loadMore={this.loadMore.bind(this)}
               hasMore={this.state.hasMoreItems}
-              useWindow={false}
-            >
+              useWindow={false}>
               {this.getResults()}
              {(this.state.hasMoreItems) &&
              <div className="loader-container">

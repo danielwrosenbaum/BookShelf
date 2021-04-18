@@ -136,7 +136,8 @@ app.post('/api/bookShelf/', (req, res, next) => {
           } else {
             throw new ClientError(401, 'already added!');
           }
-        });
+        })
+        .catch(err => next(err));
     })
     .catch(err => next(err));
 

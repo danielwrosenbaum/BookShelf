@@ -30,8 +30,6 @@ button {
   width: 100%;
   height: 4rem;
   background: linear-gradient(120deg, #f9f7f7da 0%, #3f72af  45%, #112d4e 100%);
-
-  /* border-bottom: 10px solid linear-gradient(120deg, #f9f7f7da 0%, #3f72af  45%, #112d4e 100%); */
   border-bottom: 1px solid #112d4ed5;
   box-shadow: 1px 1px 5px #112d4ed5;
 }
@@ -109,11 +107,6 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  /* box-shadow: 1px 2px 4px #112d4e;
-  border: 1px solid #112d4e;
-  margin: 0.75rem 0.75rem 0 0.75rem;
-  border-radius: 1rem; */
 }
 
 .menu-heading {
@@ -126,10 +119,6 @@ button {
 
 .menu-list {
   border-radius: 0.5rem;
-
-  /* box-shadow: inset 1px 2px 4px #112d4e; */
-
-  /* border: 1px solid #112d4e; */
   margin: 0.75rem;
   height: 100%;
 }
@@ -149,11 +138,7 @@ button {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 3rem;
-
-  /* color: #f9f7f7; */
   text-align: center;
-
-  /* text-shadow: 1px 1px 1px #; */
   margin: auto;
 }
 
@@ -232,24 +217,34 @@ button {
   height: 100vh;
 }
 
-/* .sign-in-page {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 100%);
-  height: 100vh;
-} */
-.sign-in-page-img {
-  opacity: 0.5;
-  z-index: 0;
-}
-
 .sign-in-container {
   display: flex;
-
-  /* width: 75%; */
   margin: 10%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   z-index: 2;
+}
+
+.pop-up-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.sign-in-pop-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  margin: 0 auto;
+  box-shadow: 0 2.5px 7px #112d4ebe;
+  border: 0.5px solid #112d4ebe;
+  border-radius: 0.5rem;
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 30%, #3f71af 100%);
 }
 
 .sign-in-box {
@@ -273,19 +268,12 @@ button {
 .sign-in-button-container {
   width: 100%;
   display: flex;
-
-  /* flex-direction: row; */
   justify-content: space-evenly;
 }
 
 .sign-menu-container {
   display: flex;
   flex-direction: column;
-
-  /* justify-content: space-evenly;
-  align-items: center; */
-
-  /* width: 100%; */
 }
 
 .sign-button {
@@ -299,8 +287,6 @@ button {
   min-width: 100px;
   min-height: 30px;
   font-size: 1rem;
-
-  /* padding: 0.5rem 1rem; */
   box-shadow: 0 3px 7px #112d4e94;
   border: 1px solid #112d4e94;
   outline: none;
@@ -310,20 +296,19 @@ button {
 .library-page,
 .rl-page,
 .results-page {
-  background: linear-gradient(#f9f7f7e8 0%, #dbe2efb4 85%), url("https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg");
+  background: linear-gradient(#f9f7f7e8 0%, #dbe2efb4 85%), url("library.jpeg");
   min-height: 100vh;
   overflow: auto;
 }
 
 .sign-in-page {
-  /* background: linear-gradient(150deg, #f9f7f75d 0%, #dbe2ef5d 100%); */
   min-height: 100vh;
   overflow: auto;
 }
 
 .sign-in-page,
 .home {
-  background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg");
+  background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("library.jpeg");
 }
 
 .details-page {
@@ -488,8 +473,7 @@ button {
 }
 
 .advanced {
-  /* background-image: linear-gradient(#f9f7f7 10%, #ef7d85 65%, #e63946 95%); */
-  background: linear-gradient(#f9f7f7bb 0%, #ef7d8588 75%, #e6394770  100%), url("https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg");
+  background: linear-gradient(#f9f7f7bb 0%, #ef7d8588 75%, #e6394770  100%), url("library.jpeg");
 }
 
 .search-form {
@@ -551,11 +535,6 @@ button {
   height: 100%;
 }
 
-.modal-container {
-  display: flex;
-  height: 100vh;
-}
-
 .modal-hidden {
   width: 0;
   opacity: 0;
@@ -563,16 +542,12 @@ button {
 }
 
 .modal {
-  /* border-right: solid #112d4e; */
+  height: 100vh;
   border: 1px solid #3f72aff1;
   box-shadow: 1px 2px 5px #3f72aff1;
   opacity: 1;
   width: 300px;
-
-  /* height: 95; */
   background: linear-gradient(-120deg, #f9f7f7f1 0%, #dbe2eff1 55%, #3f72aff1 100%);
-
-  /* background: linear-gradient(-120deg, #3f72aff1 0%, #e63946f1 100%); */
   transition: width 0.5s, opacity 0.5s;
 }
 
@@ -651,10 +626,6 @@ button {
   height: 100%;
   box-shadow: 2px 4px 7px #112d4e;
   border: 1px solid #112d4e;
-
-  /* border-radius: 1rem; */
-
-  /* margin: 0.5rem; */
 }
 
 .menu-item {

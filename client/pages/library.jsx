@@ -134,7 +134,6 @@ export default class Library extends React.Component {
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
                 <div className="delete-container">

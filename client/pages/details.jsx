@@ -4,7 +4,9 @@ import DOMPurify from 'dompurify';
 import Header from '../components/header';
 import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
+import SignIn from '../components/sign-in';
 const apiKey = process.env.API_KEY;
+
 export default class Details extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ export default class Details extends React.Component {
       isBuyClicked: false,
       isLoading: true,
       inputValue: null,
+      redirect: null,
       target: null,
       result: null,
       info: null
@@ -52,7 +55,6 @@ export default class Details extends React.Component {
             inputValue: query,
             result: result,
             info: {
-
               title: result.volumeInfo.title,
               author: authors,
               coverUrl: thumbNail,
@@ -78,9 +80,13 @@ export default class Details extends React.Component {
   }
 
   handleSave(event) {
+    const { user } = this.context;
+    if (!user) {
+      this.setState({ redirect: 'save' });
+      return null;
+    }
     this.setState({ target: 'Library' });
     const { info } = this.state;
-    const { user } = this.context;
     info.isRead = true;
     info.rating = 0;
     info.userId = user.userId;
@@ -131,9 +137,13 @@ export default class Details extends React.Component {
   }
 
   handleAdd() {
+    const { user } = this.context;
+    if (!user) {
+      this.setState({ redirect: 'add' });
+      return null;
+    }
     this.setState({ target: 'Reading List' });
     const { info } = this.state;
-    const { user } = this.context;
     info.isRead = 'false';
     info.rating = null;
     info.userId = user.userId;
@@ -147,6 +157,7 @@ export default class Details extends React.Component {
       body: JSON.stringify(info)
     };
     fetch('/api/bookShelf/', req)
+      .then(res => res.json())
       .then(result => {
         if (result.error) {
           this.setState({
@@ -205,7 +216,13 @@ export default class Details extends React.Component {
   }
 
   handleClickBack() {
-    this.setState({ isBuyClicked: false });
+    const { redirect } = this.state;
+    this.setState({
+      isBuyClicked: false
+    });
+    if (redirect) {
+      this.setState({ redirect: null });
+    }
   }
 
   renderPopUp() {
@@ -230,7 +247,7 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, redirect } = this.state;
     if (isLoading) {
       return <Loader />;
     }
@@ -247,10 +264,12 @@ export default class Details extends React.Component {
     const pages = book.volumeInfo.pageCount;
     return (
       <>
-      <Header />
+        <Header />
         {this.renderHeading()}
-        <div className="details-page">
+        <div className="details-page" onClick={this.handleClickBack}>
           {this.renderPopUp()}
+          {(redirect) &&
+            <SignIn id={redirect} />}
           <div className="details-container">
             <div className='details-pic-container'>
               <img src={thumbNail} alt={title} />

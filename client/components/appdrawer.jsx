@@ -13,8 +13,6 @@ export default class AppDrawer extends React.Component {
 
   handleMessage() {
     const { user } = this.context;
-    // if (!user) return null;
-
     if (!user) {
       return (
         <div className='sub-heading'>Please Sign In</div>

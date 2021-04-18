@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchPage from './search-page';
-// import AppDrawer from '../components/appdrawer';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
 
