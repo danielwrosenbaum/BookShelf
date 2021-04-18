@@ -32,7 +32,7 @@ create table "public"."readingList" (
   "rating"               integer,
   "isRead"               boolean,
   "addedAt"              timestamptz(6) not null default now(),
-  primary key ("bookId"),
+  primary key ("userId", "bookId"),
    foreign key ("userId")
     references "users" ("userId"),
    foreign key ("bookId")

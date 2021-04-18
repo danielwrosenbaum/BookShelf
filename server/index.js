@@ -1,5 +1,7 @@
 require('dotenv/config');
 const express = require('express');
+const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
 const ClientError = require('./client-error');
@@ -13,8 +15,65 @@ app.use(staticMiddleware);
 
 app.use(jsonMiddleware);
 
-app.get('/api/bookShelf/:list', (req, res, next) => {
+app.post('/api/bookShelf/sign-up', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new ClientError(400, 'username and password are required fields');
+  }
+  argon2
+    .hash(password)
+    .then(hashedPassword => {
+      const sql = `
+        insert into "users" ("username", "hashedPassword")
+        values ($1, $2)
+        returning "userId", "username", "createdAt"
+      `;
+      const params = [username, hashedPassword];
+      return db.query(sql, params);
+    })
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201).json(user);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/bookShelf/sign-in', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new ClientError(401, 'invalid login');
+  }
+  const sql = `
+    select "userId",
+           "hashedPassword"
+      from "users"
+     where "username" = $1
+  `;
+  const params = [username];
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        throw new ClientError(401, 'invalid login');
+      }
+      const { userId, hashedPassword } = user;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'invalid login');
+          }
+          const payload = { userId, username };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          res.json({ token, user: payload });
+        });
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
   const list = req.params.list;
+  const userId = req.params.userId;
   let sql;
   if (list === 'library') {
     sql = `
@@ -22,6 +81,7 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
     from "readingList"
     join "books" using ("bookId")
     where "isRead" = 'true'
+    and "userId" = $1
     order by "bookId"
   `;
   } else if (list === 'readingList') {
@@ -30,13 +90,14 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
     from "readingList"
     join "books" using ("bookId")
     where "isRead" = 'false'
+    and "userId" = $1
     order by "bookId"
     `;
   } else {
     throw new ClientError(401, `${list} is not a valid list.`);
   }
-
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })
@@ -44,7 +105,7 @@ app.get('/api/bookShelf/:list', (req, res, next) => {
 });
 
 app.post('/api/bookShelf/', (req, res, next) => {
-  const { title, author, bookId, coverUrl, rating, isRead } = req.body;
+  const { title, author, bookId, coverUrl, rating, isRead, userId } = req.body;
   if (!title || !author || !bookId) {
     throw new ClientError(401, 'invalid post');
   }
@@ -56,14 +117,12 @@ app.post('/api/bookShelf/', (req, res, next) => {
   returning *
   `;
   const readingListSql = `
-  insert into "readingList" ("title", "bookId", "rating", "isRead")
-  values ($1, $2, $3, $4)
-  on conflict("bookId")
-  do nothing
+  insert into "readingList" ("title", "bookId", "rating", "isRead", "userId")
+  values ($1, $2, $3, $4, $5)
   returning *
   `;
   const bookParams = [title, author, bookId, coverUrl];
-  const listParams = [title, bookId, rating, isRead];
+  const listParams = [title, bookId, rating, isRead, userId];
   db.query(bookSql, bookParams)
     .then(result => {
       return db.query(readingListSql, listParams)
@@ -72,12 +131,13 @@ app.post('/api/bookShelf/', (req, res, next) => {
             if (listResult.rows[0].isRead === true) {
               res.status(201).json(listResult.rows[0]);
             } else {
-              res.status(204).json(listResult.rows[0]);
+              res.status(201).json(listResult.rows[0]);
             }
           } else {
             throw new ClientError(401, 'already added!');
           }
-        });
+        })
+        .catch(err => next(err));
     })
     .catch(err => next(err));
 
@@ -85,14 +145,15 @@ app.post('/api/bookShelf/', (req, res, next) => {
 
 app.patch('/api/bookShelf/:bookId', (req, res, next) => {
   const bookId = req.params.bookId;
-  const { rating } = req.body;
+  const { rating, userId } = req.body;
   const sql = `
   update "readingList"
     set "rating" = $1
     where "bookId" = $2
+    and "userId" = $3
     returning *
   `;
-  const params = [rating, bookId];
+  const params = [rating, bookId, userId];
   db.query(sql, params)
     .then(result => {
       const [entry] = result.rows;
@@ -101,14 +162,16 @@ app.patch('/api/bookShelf/:bookId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/bookShelf/:bookId', (req, res, next) => {
+app.delete('/api/bookShelf/:bookId/:userId', (req, res, next) => {
   const bookId = req.params.bookId;
+  const userId = req.params.userId;
   const sql = `
   delete from "readingList"
     where "bookId" = $1
+    and "userId" = $2
     returning *
   `;
-  const values = [bookId];
+  const values = [bookId, userId];
   db.query(sql, values)
     .then(result => {
       const book = result.rows[0];
