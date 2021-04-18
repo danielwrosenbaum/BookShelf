@@ -3,6 +3,7 @@ import GetRating from '../components/get-rating';
 import Header from '../components/header';
 import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
+import Redirect from '../components/redirect';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class Library extends React.Component {
 
   componentDidMount() {
     const { user } = this.context;
+    if (!user) return null;
     const userId = user.userId;
     fetch(`/api/bookShelf/library/${userId}`)
       .then(res => res.json())
@@ -93,6 +95,7 @@ export default class Library extends React.Component {
 
   render() {
     const { user } = this.context;
+    if (!this.context.user) return <Redirect to="sign-in" />;
     const { result, isLoading } = this.state;
     if (isLoading) {
       return <Loader />;

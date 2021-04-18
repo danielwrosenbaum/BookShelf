@@ -11,6 +11,23 @@ export default class AppDrawer extends React.Component {
     };
   }
 
+  handleMessage() {
+    const { user } = this.context;
+    // if (!user) return null;
+
+    if (!user) {
+      return (
+        <div className='sub-heading'>Please Sign In</div>
+      );
+    } else {
+      const { username } = user;
+      const userName = username.charAt(0).toUpperCase() + username.slice(1);
+      return (
+        <div className='sub-heading'>Welcome, <span className='user-name'>{userName}</span>!</div>
+      );
+    }
+  }
+
   handleClick() {
     const isClicked = this.state.isClicked;
     if (!isClicked) {
@@ -70,21 +87,11 @@ export default class AppDrawer extends React.Component {
             <div className={this.hideMenu()}>
               <div className='menu-heading-container'>
                 <div className="sign-menu-container">
-                  {user !== null &&
-                    <a href='' className="sign-button submit" onClick={handleSignOut}>
-                      Sign out
-                    </a>
-                  }
-                  {user === null &&
-                    <>
-                      <a href="#sign-in" className="sign-button submit">
-                        Sign In
-                          </a>
-                      <a href="#sign-up" className="sign-button submit">
-                        Sign Up
-                           </a>
-                    </>
-                  }
+
+                  <div className='sign-in-heading'>
+                    {this.handleMessage()}
+                  </div>
+
                 </div>
                 <div className="menu-heading">Menu</div>
               </div>
@@ -98,6 +105,23 @@ export default class AppDrawer extends React.Component {
                 <a href="#reading-list">
                   <div className="menu-item">Reading List</div>
                 </a>
+              </div>
+              <div className='sign-in-button-container'>
+                {user !== null &&
+                  <a href='' >
+                    <button className="sign-button" onClick={handleSignOut}>Sign out</button>
+                  </a>
+                }
+                {user === null &&
+                  <>
+                    <a href="#sign-in">
+                      <button className='sign-button'>  Sign In</button>
+                    </a>
+                    <a href="#sign-up" >
+                      <button className="sign-button">Sign Up</button>
+                    </a>
+                  </>
+                }
               </div>
             </div>
           </div>

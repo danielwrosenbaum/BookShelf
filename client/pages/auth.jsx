@@ -17,6 +17,7 @@ export default class AuthPage extends React.Component {
     );
     return (
       <div className="sign-in-page">
+        {/* <img className='sign-in-page-img' src="https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg" alt="books"></img> */}
         <div className="sign-in-container">
           <div className="title">
             <div className="title-heading one-blue">

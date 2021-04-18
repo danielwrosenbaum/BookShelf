@@ -45,14 +45,14 @@ export default class AuthForm extends React.Component {
       ? '#sign-in'
       : '#sign-up';
     const alternatActionText = action === 'sign-up'
-      ? 'Sign in instead'
-      : 'Register now';
+      ? 'Sign in'
+      : 'Register';
     const submitButtonText = action === 'sign-up'
       ? 'Register'
       : 'Log In';
     return (
-    <form className="search-form" onSubmit={handleSubmit}>
-      <div>
+    <form className='sign-in-form'onSubmit={handleSubmit}>
+      <div className="sub-col">
         <label htmlFor="username" className="heading three">
           Username
           </label>
@@ -65,7 +65,7 @@ export default class AuthForm extends React.Component {
           onChange={handleChange}
           className="text-box" />
       </div>
-      <div>
+      <div className='sub-col'>
         <label htmlFor="password" className="heading three">
           Password
           </label>
@@ -78,10 +78,10 @@ export default class AuthForm extends React.Component {
           className="text-box" />
       </div>
       <div className="sign-in-button-container">
-          <a className="button submit" href={alternateActionHref}>
+          <a className="sign-button" href={alternateActionHref}>
             {alternatActionText}
           </a>
-        <button type="submit" className="button submit">
+        <button type="submit" className="sign-button">
           {submitButtonText}
         </button>
       </div>
