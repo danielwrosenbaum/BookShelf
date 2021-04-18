@@ -131,7 +131,7 @@ app.post('/api/bookShelf/', (req, res, next) => {
             if (listResult.rows[0].isRead === true) {
               res.status(201).json(listResult.rows[0]);
             } else {
-              res.status(204).json(listResult.rows[0]);
+              res.status(201).json(listResult.rows[0]);
             }
           } else {
             throw new ClientError(401, 'already added!');
