@@ -54,6 +54,11 @@
     position: static;
   }
 
+  .sign-in-box {
+    padding: 2.5rem;
+    font-size: 1.5rem;
+  }
+
   .buy-modal {
     width: 300px;
     height: 200px;
