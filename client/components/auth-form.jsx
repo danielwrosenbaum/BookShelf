@@ -21,7 +21,7 @@ export default class AuthForm extends React.Component {
 
   handleError() {
     return (
-      <div>
+      <div className='error-container'>
         <div className="error-pop-up">
           <div>Incorrect Username or Password</div>
         </div>
