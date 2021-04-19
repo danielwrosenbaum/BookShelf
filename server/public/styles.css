@@ -219,11 +219,14 @@ button {
 
 .sign-in-container {
   display: flex;
-  margin: 10%;
+  height: 100%;
+
+  /* margin: 10%; */
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  z-index: 2;
+
+  /* z-index: 2; */
 }
 
 .pop-up-container {
@@ -248,19 +251,14 @@ button {
 }
 
 .error-pop-up {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #f9f7f7;
-  position: fixed;
-  left: 0;
-  right: 0;
-  margin: 3rem;
-  padding: 1.5rem;
+  position: absolute;
+  margin-top: 2rem;
+  padding: 2rem;
   box-shadow: 0 2.5px 7px #112d4ebe;
   border: 0.5px solid #112d4ebe;
   border-radius: 0.5rem;
-  background: linear-gradient(120deg, #f9f7f7 0%, #e25c67 30%, #e63946 100%);
+  background: linear-gradient(120deg, #f9f7f7 0%, #e25c67d5 30%, #e63946 100%);
 }
 
 .sign-in-box {
@@ -329,6 +327,12 @@ button {
 
 .details-page {
   background: linear-gradient(#f9f7f7 0%, #dbe2ef 50%, #3f72af 100%);
+}
+
+.error-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .results-container,
