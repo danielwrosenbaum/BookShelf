@@ -125,7 +125,7 @@ button {
 .title {
   display: flex;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 5rem;
 }
 
 .title-heading {
@@ -219,6 +219,10 @@ button {
   align-items: center;
 }
 
+.sign-in-container {
+  margin: 1rem;
+}
+
 .sign-in-pop-up {
   padding: 1rem;
   box-shadow: 0 2.5px 7px #112d4ebe;
@@ -240,7 +244,7 @@ button {
 
 .sign-in-box {
   text-align: center;
-  margin: 2rem;
+  margin: 2rem auto;
   padding: 1rem 0;
   box-shadow: 0 2.5px 7px #112d4ebe;
   border: 0.5px solid #112d4ebe;
