@@ -209,14 +209,18 @@ export default class Details extends React.Component {
   }
 
   handleBuyClick() {
+
     this.setState({ isBuyClicked: true });
   }
 
   handleClickBack() {
     const { redirect } = this.state;
-    this.setState({
-      isBuyClicked: false
-    });
+    if (this.state.isBuyClicked) {
+      this.setState({
+        isBuyClicked: false
+      });
+    }
+
     if (redirect) {
       this.setState({ redirect: null });
     }
