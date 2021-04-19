@@ -489,6 +489,7 @@ button {
   font-size: 1rem;
   box-shadow: 1px 3px 5px #112d4e94;
   border: 1px solid #112d4e94;
+  outline: none;
 }
 
 .text-box {
@@ -692,6 +693,7 @@ button {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0.75rem;
   padding: 0.35rem 0.75rem;
+  min-width: 85px;
   font-size: 1rem;
   margin: 0.25rem;
   box-shadow: 0 3px 7px #112d4e94;

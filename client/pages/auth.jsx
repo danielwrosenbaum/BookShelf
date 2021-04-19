@@ -21,7 +21,7 @@ export default class AuthPage extends React.Component {
               Book Shelf
             </div>
           </div>
-          <div className='sign-in-box sub-col'>
+          <div className='sign-in-box'>
             <div className="heading three">{weclomeMessage}</div>
             <div className="sub-col">
               <AuthForm
