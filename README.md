@@ -75,6 +75,7 @@ npm run db:import
 `
 npm run dev
 `
+
 6. Database can bee seen at seen at http://localhost:8081. To examine run the following:
 
 `pgweb --db=bookShelf`
