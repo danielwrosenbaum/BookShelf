@@ -1,3 +1,3 @@
-# final-project
+# BookShelf
 
 A full stack JavaScript solo project.
