@@ -85,25 +85,23 @@ export default class AppDrawer extends React.Component {
             <div className={this.hideMenu()}>
               <div className='menu-heading-container'>
                 <div className="sign-menu-container">
-
                   <div className='sign-in-heading'>
                     {this.handleMessage()}
                   </div>
-
                 </div>
                 <div className="menu-heading">Menu</div>
               </div>
-              <div className="menu-list">
+              <ul className="menu-list">
                 <a href="#search-page">
-                  <div className="menu-item">Search</div>
+                  <li className="menu-item">Search</li>
                 </a>
                 <a href="#library">
-                  <div className="menu-item">Library</div>
+                  <li className="menu-item">Library</li>
                 </a>
                 <a href="#reading-list">
-                  <div className="menu-item">Reading List</div>
+                  <li className="menu-item">Reading List</li>
                 </a>
-              </div>
+              </ul>
               <div className='sign-in-button-container'>
                 {user !== null &&
                   <a href='' >
