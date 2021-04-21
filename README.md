@@ -49,19 +49,27 @@ A full stack JavaScript application for readers who want to keep track of what t
 
 1. Clone the repository.
 
-`git clone https://github.com/danielwrosenbaum/bookshelf
-cd bookshelf`
+`
+git clone https://github.com/danielwrosenbaum/bookshelf
+cd bookshelf
+`
 
 2. Install all dependencies with NPM.
 
-`npm install`
+`
+npm install
+`
 
 3. Import the example database with pgweb.
 
-`npm run db:import`
+`
+npm run db:import
+`
 
 4. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
 
-`npm run dev`
+`
+npm run dev
+`
 
 
