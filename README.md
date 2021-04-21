@@ -60,16 +60,23 @@ cd bookshelf
 npm install
 `
 
-3. Import the example database with pgweb.
+3. Create a new database called bookShelf.
+
+`createdb bookShelf`
+
+4. Import the database schema.
 
 `
 npm run db:import
 `
 
-4. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
+5. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
 
 `
 npm run dev
 `
+6. Database can bee seen at seen at http://localhost:8081. To examine run the following:
+
+`pgweb --db=bookShelf`
 
 
