@@ -18,7 +18,7 @@ export default class AuthPage extends React.Component {
         <div className="sign-in-container">
           <div className="title">
             <div className="title-heading one-blue">
-              Book Shelf
+              BookShelf
             </div>
           </div>
           <div className='sign-in-box'>
