@@ -23,7 +23,7 @@ export default class AuthPage extends React.Component {
           </div>
           <div className='sign-in-box'>
             <div className="heading three">{weclomeMessage}</div>
-            <div className="sub-col">
+            <div className="sign-col">
               <AuthForm
                 key={route.path}
                 action={route.path}
