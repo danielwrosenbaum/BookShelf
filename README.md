@@ -50,7 +50,6 @@ A full stack JavaScript application for readers who want to keep track of what t
 1. Clone the repository.
 
 `git clone https://github.com/danielwrosenbaum/bookshelf
-
 cd bookshelf`
 
 2. Install all dependencies with NPM.
