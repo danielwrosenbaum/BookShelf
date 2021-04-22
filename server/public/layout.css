@@ -65,3 +65,9 @@
     margin: 0 auto;
   }
 }
+
+@media screen and (orientation: landscape) {
+  .advanced {
+    height: 100%;
+  }
+}

@@ -112,7 +112,7 @@ export default class AppDrawer extends React.Component {
                 {user === null &&
                   <>
                     <a href="#sign-in">
-                      <button className='sign-button'>  Sign In</button>
+                      <button className='sign-button'>Sign In</button>
                     </a>
                     <a href="#sign-up" >
                       <button className="sign-button">Sign Up</button>
