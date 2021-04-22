@@ -927,3 +927,21 @@ button {
     box-shadow: 0 2.5em 0 0;
   }
 }
+
+.error-box {
+  position: relative;
+  background: linear-gradient(#f9f7f7 25%, #dbe2ef 95%);
+  height: 100vh;
+}
+
+.network-error {
+  font-size: 1.5rem;
+  position: absolute;
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem;
+  top: 30%;
+  background: linear-gradient(150deg, #f9f7f7f8 0%, #a8dadcf8 65%);
+  box-shadow: 0 2.5px 7px #112d4ebe;
+  border: 1px solid #112d4ebe;
+}

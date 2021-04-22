@@ -3,11 +3,13 @@ import Header from '../components/header';
 import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
+import Error from '../components/error';
 
 export default class ReadingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      networkError: false,
       isBuyClicked: false,
       isLoading: true,
       result: null,
@@ -33,7 +35,15 @@ export default class ReadingList extends React.Component {
           isLoading: false
         });
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+      });
   }
 
   handleBuyClick(event) {
@@ -88,7 +98,15 @@ export default class ReadingList extends React.Component {
 
         });
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+        console.error(error);
+      });
   }
 
   renderPopUp() {
@@ -131,11 +149,14 @@ export default class ReadingList extends React.Component {
   }
 
   render() {
-    const { result, isLoading } = this.state;
+    const { result, isLoading, networkError } = this.state;
     const { user } = this.context;
     if (!user) return <Redirect to="sign-in" />;
     if (isLoading) {
       return <Loader />;
+    }
+    if (networkError) {
+      return <Error />;
     }
     if (!result) return null;
     const books = result;

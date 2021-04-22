@@ -5,6 +5,7 @@ import Loader from '../components/loader';
 import InfiniteScroll from 'react-infinite-scroller';
 import AppContext from '../lib/app-context';
 import SignIn from '../components/sign-in';
+import Error from '../components/error';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -13,6 +14,7 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       isSaved: false,
+      networkError: false,
       isError: false,
       isAdded: false,
       isLoading: true,
@@ -48,7 +50,6 @@ export default class Results extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-
           this.setState({
             isLoading: false,
             inputValue: query,
@@ -56,7 +57,15 @@ export default class Results extends React.Component {
           });
         }
       )
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+      });
   }
 
   componentWillUnmount() {
@@ -156,7 +165,15 @@ export default class Results extends React.Component {
           }, 3000);
         }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+        console.error(error);
+      });
   }
 
   handleAdd(event) {
@@ -196,7 +213,15 @@ export default class Results extends React.Component {
           }, 3000);
         }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+        console.error(error);
+      });
   }
 
   handleClickBack() {
@@ -321,7 +346,10 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const { results, isLoading, redirect } = this.state;
+    const { results, isLoading, redirect, networkError } = this.state;
+    if (networkError) {
+      return <Error />;
+    }
     if (isLoading) {
       return <Loader />;
     }
@@ -336,6 +364,7 @@ export default class Results extends React.Component {
       <>
         <Header />
         {this.renderHeading()}
+
         <div className="results-page" onClick={this.handleClickBack}>
           {(redirect) &&
             <SignIn id={redirect} />}
