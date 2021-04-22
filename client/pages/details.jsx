@@ -258,12 +258,12 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const { isLoading, redirect, networkError } = this.state;
+    const { isLoading, redirect, networkError, route } = this.state;
     if (isLoading) {
       return <Loader />;
     }
     if (networkError) {
-      return <Error />;
+      return <Error value={route} />;
     }
     const book = this.state.result;
     if (!book) return null;

@@ -162,6 +162,8 @@ export default class ReadingList extends React.Component {
     const books = result;
     const bookResults = (
       <div className="rl-container">
+        {(result.length === 0) &&
+          <div className="title two">Nothing Here!</div>}
         {
           books.map(book => {
             const title = book.title;

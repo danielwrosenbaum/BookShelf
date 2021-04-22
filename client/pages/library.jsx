@@ -120,10 +120,15 @@ export default class Library extends React.Component {
     if (networkError) {
       return <Error />;
     }
-    if (!result) return null;
+    if (!result) {
+      return null;
+    }
+
     const books = result;
     const bookResults = (
       <div className="library-container">
+        {(result.length === 0) &&
+          <div className="title two">Nothing Here!</div>}
         {
           books.map(book => {
             const title = book.title;
@@ -170,6 +175,7 @@ export default class Library extends React.Component {
         <div className="details-title">
           <div className="heading two-white">Library</div>
         </div>
+
         <div className="library-page">
           {this.renderDeleteModal()}
           {bookResults}
