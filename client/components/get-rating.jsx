@@ -29,6 +29,9 @@ export default class GetRating extends React.Component {
     })
       .then(res => {
         res.json();
+      })
+      .catch(error => {
+        console.error(error);
       });
   }
 

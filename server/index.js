@@ -83,7 +83,7 @@ app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
     join "books" using ("bookId")
     where "isRead" = 'true'
     and "userId" = $1
-    order by "bookId"
+    order by "addedId"
   `;
   } else if (list === 'readingList') {
     sql = `
@@ -92,7 +92,7 @@ app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
     join "books" using ("bookId")
     where "isRead" = 'false'
     and "userId" = $1
-    order by "bookId"
+    order by "addedId"
     `;
   } else {
     throw new ClientError(401, `${list} is not a valid list.`);

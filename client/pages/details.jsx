@@ -5,12 +5,14 @@ import Header from '../components/header';
 import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
 import SignIn from '../components/sign-in';
+import Error from '../components/error';
 const apiKey = process.env.API_KEY;
 
 export default class Details extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      networkError: false,
       route: parseRoute(window.location.hash),
       isSaved: false,
       isError: false,
@@ -64,7 +66,15 @@ export default class Details extends React.Component {
           });
         }
       )
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+        console.error(error);
+      });
   }
 
   renderDescription() {
@@ -248,9 +258,12 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const { isLoading, redirect } = this.state;
+    const { isLoading, redirect, networkError, route } = this.state;
     if (isLoading) {
       return <Loader />;
+    }
+    if (networkError) {
+      return <Error value={route} />;
     }
     const book = this.state.result;
     if (!book) return null;

@@ -4,11 +4,13 @@ import Header from '../components/header';
 import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
+import Error from '../components/error';
 
 export default class Library extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      networkError: false,
       result: null,
       targetId: null,
       isLoading: true,
@@ -33,7 +35,15 @@ export default class Library extends React.Component {
           isLoading: false
         });
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+        console.error(error);
+      });
   }
 
   handleClick(event) {
@@ -89,20 +99,36 @@ export default class Library extends React.Component {
       .then(result => {
         this.setState({ result });
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error) {
+          this.setState({
+            isLoading: false,
+            networkError: true
+          });
+        }
+        console.error(error);
+      });
   }
 
   render() {
     const { user } = this.context;
     if (!user) return <Redirect to="sign-in" />;
-    const { result, isLoading } = this.state;
+    const { result, isLoading, networkError } = this.state;
     if (isLoading) {
       return <Loader />;
     }
-    if (!result) return null;
+    if (networkError) {
+      return <Error />;
+    }
+    if (!result) {
+      return null;
+    }
+
     const books = result;
     const bookResults = (
       <div className="library-container">
+        {(result.length === 0) &&
+          <div className="title two">Nothing Here!</div>}
         {
           books.map(book => {
             const title = book.title;
@@ -149,6 +175,7 @@ export default class Library extends React.Component {
         <div className="details-title">
           <div className="heading two-white">Library</div>
         </div>
+
         <div className="library-page">
           {this.renderDeleteModal()}
           {bookResults}
