@@ -26,6 +26,7 @@ create table "public"."books" (
 );
 
 create table "public"."readingList" (
+  "addedId"              serial,
   "userId"               integer,
   "title"                text not null,
   "bookId"               text not null,

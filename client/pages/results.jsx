@@ -48,6 +48,7 @@ export default class Results extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+
           this.setState({
             isLoading: false,
             inputValue: query,
