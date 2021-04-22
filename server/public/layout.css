@@ -70,4 +70,8 @@
   .advanced {
     height: 100%;
   }
+
+  .button-container {
+    top: 85%;
+  }
 }
