@@ -8,12 +8,13 @@ export default class AuthForm extends React.Component {
       username: 'guest',
       isClicked: false,
       error: false,
-      password: 'guest'
+      password: 'guest',
+      alreadyExists: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -23,23 +24,11 @@ export default class AuthForm extends React.Component {
     });
   }
 
-  handleClick() {
-    this.setState({
-      isClicked: true
-    });
-  }
-
-  demoUser() {
-    const { isClicked } = this.state;
-    if (!isClicked) {
+  handleDemo() {
+    if (window.location.hash === 'sign-in') {
       return 'guest';
-    }
-  }
-
-  demoPassword() {
-    const { isClicked } = this.state;
-    if (!isClicked) {
-      return 'guest';
+    } else {
+      return event.target.value;
     }
   }
 
@@ -53,9 +42,21 @@ export default class AuthForm extends React.Component {
     );
   }
 
+  userExists() {
+    return (
+      <div className='error-container'>
+        <div className="error-pop-up">
+          <div>Username is taken. Please try again!</div>
+        </div>
+      </div>
+
+    );
+  }
+
   handleClickBack() {
     this.setState({
-      error: false
+      error: false,
+      alreadyExists: false
     });
   }
 
@@ -72,18 +73,36 @@ export default class AuthForm extends React.Component {
     fetch(`/api/bookShelf/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'sign-in';
-        } else if (result.user && result.token) {
-          this.props.onSignIn(result);
+        if (result === 23505) {
+          this.setState({ alreadyExists: true });
         } else {
-          this.setState({ error: true });
+          if (action === 'sign-up') {
+            window.location.hash = 'sign-in';
+          } else if (result.user && result.token) {
+            this.props.onSignIn(result);
+          } else {
+            this.setState({ error: true });
+          }
         }
       });
   }
 
   render() {
-    const { error } = this.state;
+    const demoUser = value => {
+      if (window.location.hash === '#sign-in') {
+        return this.state.username;
+      } else {
+        return value;
+      }
+    };
+    const demoPassword = value => {
+      if (window.location.hash === '#sign-in') {
+        return this.state.password;
+      } else {
+        return value;
+      }
+    };
+    const { error, alreadyExists } = this.state;
     const { action } = this.props;
     const { handleChange, handleSubmit } = this;
     const alternateActionHref = action === 'sign-up'
@@ -99,6 +118,8 @@ export default class AuthForm extends React.Component {
     <form className='sign-in-form'onSubmit={handleSubmit} onClick={this.handleClickBack}>
       {(error) &&
       this.handleError()}
+        {(alreadyExists) &&
+          this.userExists()}
       <div className="sub-col">
         <label htmlFor="username" className="heading three">
           Username
@@ -109,9 +130,8 @@ export default class AuthForm extends React.Component {
           id="username"
           type="text"
           name="username"
-          value={this.demoUser()}
+          value={demoUser(this.value)}
           onChange={handleChange}
-          onClick={this.handleClick}
           className="text-box" />
       </div>
       <div className='sub-col'>
@@ -121,18 +141,17 @@ export default class AuthForm extends React.Component {
         <input
           required
           id="password"
-          value={this.demoPassword()}
+          value={demoPassword(this.value)}
           type="password"
           name="password"
           onChange={handleChange}
-          onClick={this.handleClick}
           className="text-box" />
       </div>
       <div className="sign-in-button-container">
           <a className="sign-button" href={alternateActionHref}>
             {alternatActionText}
           </a>
-        <button type="submit" className="sign-button">
+        <button type="submit" className="sign-button" >
           {submitButtonText}
         </button>
       </div>

@@ -36,15 +36,6 @@ export default class AppDrawer extends React.Component {
     }
   }
 
-  hideButton() {
-    const isClicked = this.state.isClicked;
-    if (!isClicked) {
-      return 'icon';
-    } else {
-      return 'button hidden';
-    }
-  }
-
   hideModal() {
     const isClicked = this.state.isClicked;
     if (!isClicked) {
@@ -73,19 +64,17 @@ export default class AppDrawer extends React.Component {
   }
 
   render() {
-    const buttonClass = this.hideButton();
     const modalClass = this.hideModal();
     const nonModalClass = this.overlay();
     const { user, handleSignOut } = this.context;
     return (
-      <div className={nonModalClass} onClick={this.handleClick}>
-        <a className={buttonClass} onClick={this.handleClick}><i className="fas fa-bars fa-3x"></i></a>
+      <div className={nonModalClass}>
+        <a className="menu-icon" onClick={this.handleClick}><i className="fas fa-bars fa-3x"></i></a>
         <div className="modal-container">
-          <div className={modalClass} onClick={this.handleClick}>
+          <div className={modalClass}>
             <div className={this.hideMenu()}>
               <div className='menu-heading-container'>
                 <div className="sign-menu-container">
-
                 </div>
                 <h1 className="menu-heading">BookShelf</h1>
                 <div className='sign-in-heading'>
@@ -93,13 +82,13 @@ export default class AppDrawer extends React.Component {
                 </div>
               </div>
               <ul className="menu-list">
-                <a href="#search-page">
+                <a href="#search-page" onClick={this.handleClick}>
                   <li className="menu-item">Search</li>
                 </a>
-                <a href="#library">
+                <a href="#library" onClick={this.handleClick}>
                   <li className="menu-item">Library</li>
                 </a>
-                <a href="#reading-list">
+                <a href="#reading-list" onClick={this.handleClick}>
                   <li className="menu-item">Reading List</li>
                 </a>
               </ul>
