@@ -68,7 +68,14 @@ app.post('/api/bookShelf/:action', (req, res, next) => {
         const [user] = result.rows;
         res.status(201).json(user);
       })
-      .catch(err => next(err));
+      .catch(err => {
+        if (err.code === '23505') {
+          res.send(err.code);
+        } else {
+          next(err);
+        }
+
+      });
   }
 });
 

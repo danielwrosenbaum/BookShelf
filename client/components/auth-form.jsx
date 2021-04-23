@@ -8,11 +8,13 @@ export default class AuthForm extends React.Component {
       username: 'guest',
       isClicked: false,
       error: false,
-      password: 'guest'
+      password: 'guest',
+      alreadyExists: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -40,9 +42,21 @@ export default class AuthForm extends React.Component {
     );
   }
 
+  userExists() {
+    return (
+      <div className='error-container'>
+        <div className="error-pop-up">
+          <div>Username is taken. Please try again!</div>
+        </div>
+      </div>
+
+    );
+  }
+
   handleClickBack() {
     this.setState({
-      error: false
+      error: false,
+      alreadyExists: false
     });
   }
 
@@ -59,12 +73,16 @@ export default class AuthForm extends React.Component {
     fetch(`/api/bookShelf/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'sign-in';
-        } else if (result.user && result.token) {
-          this.props.onSignIn(result);
+        if (result === 23505) {
+          this.setState({ alreadyExists: true });
         } else {
-          this.setState({ error: true });
+          if (action === 'sign-up') {
+            window.location.hash = 'sign-in';
+          } else if (result.user && result.token) {
+            this.props.onSignIn(result);
+          } else {
+            this.setState({ error: true });
+          }
         }
       });
   }
@@ -84,7 +102,7 @@ export default class AuthForm extends React.Component {
         return value;
       }
     };
-    const { error } = this.state;
+    const { error, alreadyExists } = this.state;
     const { action } = this.props;
     const { handleChange, handleSubmit } = this;
     const alternateActionHref = action === 'sign-up'
@@ -100,6 +118,8 @@ export default class AuthForm extends React.Component {
     <form className='sign-in-form'onSubmit={handleSubmit} onClick={this.handleClickBack}>
       {(error) &&
       this.handleError()}
+        {(alreadyExists) &&
+          this.userExists()}
       <div className="sub-col">
         <label htmlFor="username" className="heading three">
           Username
@@ -131,7 +151,7 @@ export default class AuthForm extends React.Component {
           <a className="sign-button" href={alternateActionHref}>
             {alternatActionText}
           </a>
-        <button type="submit" className="sign-button">
+        <button type="submit" className="sign-button" >
           {submitButtonText}
         </button>
       </div>
