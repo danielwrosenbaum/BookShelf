@@ -107,7 +107,7 @@ button {
 .menu-heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  margin: 2rem auto;
+  margin: 3rem auto 1rem auto;
   font-size: 2.5rem;
   color: #112d4e;
 }
@@ -530,7 +530,7 @@ button {
 .menu-icon {
   position: fixed;
   color: black;
-  left: 1rem;
+  left: 0.5rem;
   top: 0.5rem;
 }
 
@@ -642,7 +642,7 @@ button {
 }
 
 .menu-icon:active {
-  transform: translateY(5px);
+  /* transform: translateY(1px); */
   color: #a8dadc;
 }
 
