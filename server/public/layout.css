@@ -95,3 +95,15 @@
     margin: 0;
   }
 }
+
+@media screen and (orientation: landscape) and (min-width: 1024px) {
+  .button-container {
+    top: 90%;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 640px) {
+  .button-container {
+    top: 80%;
+  }
+}
