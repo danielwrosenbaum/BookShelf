@@ -13,7 +13,6 @@ export default class AuthForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -23,23 +22,11 @@ export default class AuthForm extends React.Component {
     });
   }
 
-  handleClick() {
-    this.setState({
-      isClicked: true
-    });
-  }
-
-  demoUser() {
-    const { isClicked } = this.state;
-    if (!isClicked) {
+  handleDemo() {
+    if (window.location.hash === 'sign-in') {
       return 'guest';
-    }
-  }
-
-  demoPassword() {
-    const { isClicked } = this.state;
-    if (!isClicked) {
-      return 'guest';
+    } else {
+      return event.target.value;
     }
   }
 
@@ -83,6 +70,20 @@ export default class AuthForm extends React.Component {
   }
 
   render() {
+    const demoUser = value => {
+      if (window.location.hash === '#sign-in') {
+        return this.state.username;
+      } else {
+        return value;
+      }
+    };
+    const demoPassword = value => {
+      if (window.location.hash === '#sign-in') {
+        return this.state.password;
+      } else {
+        return value;
+      }
+    };
     const { error } = this.state;
     const { action } = this.props;
     const { handleChange, handleSubmit } = this;
@@ -109,9 +110,8 @@ export default class AuthForm extends React.Component {
           id="username"
           type="text"
           name="username"
-          value={this.demoUser()}
+          value={demoUser(this.value)}
           onChange={handleChange}
-          onClick={this.handleClick}
           className="text-box" />
       </div>
       <div className='sub-col'>
@@ -121,11 +121,10 @@ export default class AuthForm extends React.Component {
         <input
           required
           id="password"
-          value={this.demoPassword()}
+          value={demoPassword(this.value)}
           type="password"
           name="password"
           onChange={handleChange}
-          onClick={this.handleClick}
           className="text-box" />
       </div>
       <div className="sign-in-button-container">
