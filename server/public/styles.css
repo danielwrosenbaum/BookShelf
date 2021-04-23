@@ -490,6 +490,10 @@ button {
   overflow: auto;
 }
 
+.description-container {
+  margin-bottom: 3rem;
+}
+
 .search-form {
   display: flex;
   flex-direction: column;
