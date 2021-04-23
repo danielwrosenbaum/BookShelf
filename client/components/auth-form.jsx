@@ -5,18 +5,42 @@ export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: 'guest',
+      isClicked: false,
       error: false,
-      password: ''
+      password: 'guest'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleClick() {
+    this.setState({
+      isClicked: true
+    });
+  }
+
+  demoUser() {
+    const { isClicked } = this.state;
+    if (!isClicked) {
+      return 'guest';
+    }
+  }
+
+  demoPassword() {
+    const { isClicked } = this.state;
+    if (!isClicked) {
+      return 'guest';
+    }
   }
 
   handleError() {
@@ -85,7 +109,9 @@ export default class AuthForm extends React.Component {
           id="username"
           type="text"
           name="username"
+          value={this.demoUser()}
           onChange={handleChange}
+          onClick={this.handleClick}
           className="text-box" />
       </div>
       <div className='sub-col'>
@@ -95,9 +121,11 @@ export default class AuthForm extends React.Component {
         <input
           required
           id="password"
+          value={this.demoPassword()}
           type="password"
           name="password"
           onChange={handleChange}
+          onClick={this.handleClick}
           className="text-box" />
       </div>
       <div className="sign-in-button-container">
