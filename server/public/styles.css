@@ -203,6 +203,7 @@ button {
   font-size: 1.5rem;
   font-weight: 500;
   color: #112d4e;
+  margin-bottom: 0.5rem;
 }
 
 .sub {
@@ -317,7 +318,7 @@ button {
 .library-page,
 .rl-page,
 .results-page {
-  background: linear-gradient(#181717e8 0%, #dbe2efb4 85%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("library.jpeg");
 }
 
 .advanced {

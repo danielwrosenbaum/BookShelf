@@ -314,6 +314,7 @@ export default class Results extends React.Component {
             const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
             const text = book.volumeInfo.description;
             const description = this.renderDescription(text);
+            const pageCount = book.volumeInfo.pageCount;
             const bookId = book.id;
             const oneBook = (
               <div key={bookId} name={title} className="card">
@@ -333,6 +334,7 @@ export default class Results extends React.Component {
                       <div className="book-sub-col">
                         <div className="sub-heading six">{title}</div>
                         <div className="sub-heading three">by {authors}</div>
+                        <div className="sub-heading three">{pageCount} pages </div>
                         <div className="sub-heading three">{year}</div>
                       </div>
                       <div>
