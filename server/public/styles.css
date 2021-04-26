@@ -12,6 +12,11 @@ button {
   outline: none;
 }
 
+.row {
+  display: flex;
+  width: 100%;
+}
+
 .save-header,
 .error-header,
 .add-header,
@@ -312,7 +317,7 @@ button {
 .library-page,
 .rl-page,
 .results-page {
-  background: linear-gradient(#f9f7f7e8 0%, #dbe2efb4 85%), url("library.jpeg");
+  background: linear-gradient(#181717e8 0%, #dbe2efb4 85%), url("library.jpeg");
 }
 
 .advanced {
@@ -438,7 +443,17 @@ button {
   margin: 1rem;
 }
 
-.card,
+.card {
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem;
+  height: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
+}
+
 .rl-card,
 .library-card {
   margin: 0.75rem;
@@ -448,10 +463,6 @@ button {
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.651);
-}
-
-.card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
 }
 
 .library-card {
@@ -479,6 +490,14 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.book-col {
+  margin: 0 0.25rem 0.75rem 0.75rem;
+}
+
+.book-sub-col {
+  margin: 1rem 0;
 }
 
 .rl-book-info {
@@ -706,10 +725,6 @@ button {
   background: linear-gradient(150deg, #f9f7f7 0%, #e63946 65%);
 }
 
-.search-details {
-  margin: 1rem 1rem 0.25rem 1rem;
-}
-
 .rl-buy,
 .rl-info {
   font-family: 'Montserrat', sans-serif;
@@ -744,8 +759,8 @@ button {
 }
 
 .card-icons {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  /* flex-direction: column; */
   justify-content: space-between;
   margin: 0.25rem;
   font-size: 1.25rem;
@@ -954,4 +969,25 @@ button {
   background: linear-gradient(150deg, #f9f7f7f8 0%, #a8dadcf8 65%);
   box-shadow: 0 2.5px 7px #112d4ebe;
   border: 1px solid #112d4ebe;
+}
+
+.add-save-results {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-message {
+  margin: 0 0.5rem;
+}
+
+.col-third {
+  width: 40%;
+}
+
+.col-full {
+  width: 100%;
+}
+
+.col-two-thirds {
+  width: 60%;
 }
