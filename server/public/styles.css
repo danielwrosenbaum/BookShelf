@@ -672,7 +672,6 @@ button {
 }
 
 .menu-icon:active {
-  /* transform: translateY(1px); */
   color: #a8dadc;
 }
 
@@ -760,8 +759,6 @@ button {
 }
 
 .card-icons {
-  /* display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   margin: 0.25rem;
   font-size: 1.25rem;
