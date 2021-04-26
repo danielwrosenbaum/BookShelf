@@ -231,7 +231,6 @@ export default class Results extends React.Component {
     } else {
       return null;
     }
-
   }
 
   renderHeading() {
@@ -286,48 +285,61 @@ export default class Results extends React.Component {
     const bookResults = (
       <div className="results-container">
         {
-      books.map((book, index) => {
-        const title = book.volumeInfo.title;
-        const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
-        const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
-        const authors = (author) ? this.getAuthor(author) : 'Unknown';
-        const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
-        const text = book.volumeInfo.description;
-        const description = this.renderDescription(text);
-        const bookId = book.id;
-        const oneBook = (
+          books.map((book, index) => {
+            const title = book.volumeInfo.title;
+            const thumbNail = (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : null;
+            const author = (book.volumeInfo.authors) ? book.volumeInfo.authors : null;
+            const authors = (author) ? this.getAuthor(author) : 'Unknown';
+            const year = (book.volumeInfo.publishedDate) ? parseInt(book.volumeInfo.publishedDate, 10) : null;
+            const text = book.volumeInfo.description;
+            const description = this.renderDescription(text);
+            const pageCount = book.volumeInfo.pageCount;
+            const bookId = book.id;
+            const oneBook = (
               <div key={bookId} name={title} className="card">
-                <div className="result-info">
-                  <div className='pic-container'>
-                    <img className="thumbnail" src={thumbNail} alt={title} />
-                  </div>
-                  <div className="book-col">
-                    <div className="sub-col">
-                      <div className="sub-heading six">{title}</div>
-                      <div className="sub-heading three">by {authors}</div>
-                      <div className="sub-heading three">{year}</div>
-                    </div>
-                    <div>
-                  <a href={`#details?bookId=${bookId}`}>
-                    <button id={bookId} name={title} className="search-details button">Details</button>
-                  </a>
-                    </div>
+                <div className="row">
 
-                  </div>
-                  <div className="description">{description}</div>
                 </div>
-                <div className="card-icons" >
+                <div className="add-save-results col-full">
+                  <div className="add-message">Add to Reading List</div>
                   <i name="add" className="plus-icon fas fa-plus fa-1x" id={bookId} onClick={this.handleAdd}></i>
-                  <i name="save" className="heart-icon far fa-heart fa-1x" id={bookId} onClick={this.handleSave} ></i>
+                </div>
+                <div className="row">
+                  <div className="result-info col-full">
+                    <div className='col-third'>
+                      <img className="thumbnail " src={thumbNail} alt={title} />
+                    </div>
+                    <div className="book-col col-two-thirds">
+                      <div className="book-sub-col">
+                        <div className="sub-heading six">{title}</div>
+                        <div className="sub-heading three">by {authors}</div>
+                        <div className="sub-heading three">{pageCount} pages </div>
+                        <div className="sub-heading three">{year}</div>
+                      </div>
+                      <div>
+                        <a href={`#details?bookId=${bookId}`}>
+                          <button id={bookId} name={title} className="search-details button">Details</button>
+                        </a>
+                      </div>
+
+                    </div>
+                    <div className="description">{description}</div>
+                  </div>
+                </div>
+                <div className="row" >
+                  <div className="add-save-results col-full">
+                    <div className="add-message">Already Read</div>
+                    <i name="save" className="heart-icon far fa-heart fa-1x" id={bookId} onClick={this.handleSave} ></i>
+                  </div>
                 </div>
               </div>
-        );
-        if (index < this.state.items) {
-          bookArr.push(oneBook);
-          return oneBook;
-        }
-        return null;
-      })
+            );
+            if (index < this.state.items) {
+              bookArr.push(oneBook);
+              return oneBook;
+            }
+            return null;
+          })
         }
       </div>
     );
@@ -342,7 +354,6 @@ export default class Results extends React.Component {
         this.setState({ items: this.state.items + 10 });
       }, 1000);
     }
-
   }
 
   render() {
@@ -374,10 +385,10 @@ export default class Results extends React.Component {
               hasMore={this.state.hasMoreItems}
               useWindow={false}>
               {this.getResults()}
-             {(this.state.hasMoreItems) &&
-             <div className="loader-container">
-                <div className="loader"></div>
-             </div>}
+              {(this.state.hasMoreItems) &&
+                <div className="loader-container">
+                  <div className="loader"></div>
+                </div>}
             </InfiniteScroll>
           </div>
         </div>
