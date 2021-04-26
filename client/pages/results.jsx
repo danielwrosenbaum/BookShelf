@@ -29,8 +29,6 @@ export default class Results extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
-    // this.handleHover = this.handleHover.bind(this);
-    // this.handleUnHover = this.handleUnHover.bind(this);
   }
 
   componentDidMount() {
@@ -235,14 +233,6 @@ export default class Results extends React.Component {
     }
   }
 
-  // handleHover() {
-  //   this.setState({ hoveredOver: true });
-  // }
-
-  // handleUnHover() {
-  //   this.setState({ hoveredOver: false });
-  // }
-
   renderHeading() {
     const { isSaved, isError, inputValue, isAdded } = this.state;
     if (isSaved) {
@@ -272,17 +262,6 @@ export default class Results extends React.Component {
       );
     }
   }
-
-  // renderHoveredMessage() {
-  //   const { hoveredOver } = this.state;
-
-  //   if (hoveredOver) {
-  //     console.log(event.target);
-  //     return 'add-message';
-  //   } else {
-  //     return 'add-message hidden';
-  //   }
-  // }
 
   renderModal() {
     const { isSaved, isAdded } = this.state;
@@ -375,7 +354,6 @@ export default class Results extends React.Component {
         this.setState({ items: this.state.items + 10 });
       }, 1000);
     }
-
   }
 
   render() {
