@@ -116,7 +116,7 @@ ul {
 .menu-heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  margin: 3rem auto 1rem auto;
+  margin: 5rem auto 0 auto;
   font-size: 2.5rem;
   color: #112d4e;
 }
@@ -300,7 +300,7 @@ ul {
   border-radius: 0.5rem;
   color: #112d4e;
   display: flex;
-  margin: 0.5rem 1rem;
+  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
   min-width: 100px;
