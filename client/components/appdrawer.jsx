@@ -11,6 +11,19 @@ export default class AppDrawer extends React.Component {
     };
   }
 
+  renderIcon(location) {
+    if (location === window.location.hash) {
+      return (
+        <i className="fas fa-book-open"></i>
+      );
+    } else {
+      return (
+      <i className="fas fa-book"></i>
+      );
+    }
+
+  }
+
   handleMessage() {
     const { user } = this.context;
     if (!user) {
@@ -83,13 +96,13 @@ export default class AppDrawer extends React.Component {
               </div>
               <ul className="menu-list">
                 <a href="#search-page" onClick={this.handleClick}>
-                  <li className="menu-item">Search</li>
+                    <li className="menu-item">{this.renderIcon('#search-page')} Search</li>
                 </a>
                 <a href="#library" onClick={this.handleClick}>
-                  <li className="menu-item">Library</li>
+                  <li className="menu-item">{this.renderIcon('#library')} Library</li>
                 </a>
                 <a href="#reading-list" onClick={this.handleClick}>
-                  <li className="menu-item">Reading List</li>
+                  <li className="menu-item">{this.renderIcon('#reading-list')} Reading List</li>
                 </a>
               </ul>
               <div className='sign-in-button-container'>

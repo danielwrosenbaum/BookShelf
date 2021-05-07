@@ -12,6 +12,10 @@ button {
   outline: none;
 }
 
+ul {
+  list-style: none;
+}
+
 .row {
   display: flex;
   width: 100%;
