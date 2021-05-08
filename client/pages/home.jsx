@@ -17,7 +17,7 @@ export default class Home extends React.Component {
     if (!logoChange) {
       this.changePage = setTimeout(() => {
         this.setState({ logoChange: true });
-      }, 3000);
+      }, 2000);
     }
   }
 

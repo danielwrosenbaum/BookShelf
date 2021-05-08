@@ -1,5 +1,6 @@
 import React from 'react';
 import AdvancedSearch from './advanced-search';
+import { CSSTransition } from 'react-transition-group';
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ export default class SearchPage extends React.Component {
     this.state = {
       inputValue: '',
       isClicked: false,
+      appearHome: true,
       data: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,8 +30,15 @@ export default class SearchPage extends React.Component {
   }
 
   render() {
+    const { appearHome } = this.state;
     if (this.state.isClicked) return <AdvancedSearch />;
     return (
+      <CSSTransition
+      in={appearHome}
+      appear={true}
+      timeout={1000}
+      classNames="fade"
+      >
       <div className="search-container home">
         <form className="search-form" onSubmit={this.handleSubmit}>
           <label>
@@ -42,6 +51,7 @@ export default class SearchPage extends React.Component {
           <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
         </a>
       </div>
+      </CSSTransition>
     );
   }
 }
