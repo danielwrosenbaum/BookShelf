@@ -2,6 +2,7 @@ import React from 'react';
 // import SearchPage from './search-page';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
+import { CSSTransition } from 'react-transition-group';
 
 export default class Home extends React.Component {
   // _isMounted = false;
@@ -50,6 +51,10 @@ export default class Home extends React.Component {
       }
     }
     return (
+      <CSSTransition
+      timeout={2000}
+      classNames="slide"
+      >
       <div className="home-page">
         {/* {this.renderChange()} */}
         <div className="home-title-container">
@@ -62,6 +67,7 @@ export default class Home extends React.Component {
         </div>
 
       </div>
+      </CSSTransition>
     );
   }
 
