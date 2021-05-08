@@ -332,10 +332,14 @@ ul {
 .home-title {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
+  z-index: 2;
+  text-shadow: 0 1px 3px #112d4e;
 
   /* margin: 5rem auto 0 auto; */
   font-size: 4rem;
-  color: #112d4e;
+  color: #f9f7f7;
+
+  /* color: #112d4e */
 }
 
 .library-page,
@@ -1013,15 +1017,51 @@ ul {
   width: 60%;
 }
 
+.home-title-container {
+  z-index: 2;
+}
+
+.home-description {
+  color: #f9f7f7;
+  text-align: center;
+  font-size: 1.25rem;
+  text-shadow: 0 1px 3px #112d4e;
+}
+
 .img-container {
-  /* height: 100%;
-  width: 100%; */
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.book-img {
+  z-index: 1;
+  height: 300px;
+  width: 200px;
+  position: absolute;
+  background: linear-gradient(#f9f7f773 0%, #e639477e 100%), url('book-cover.jpeg');
+  background-size: 200px;
+  box-shadow: 0 2px 5px #112d4e9c;
+  border: 1px solid #112d4e9c;
+}
+
+.back::after {
+  position: absolute;
+  box-shadow: 0 2px 5px #112d4ec2;
+  content: '';
+  border-radius: 50%;
+  bottom: -170px;
+  left: -170px;
+  right: 0;
+  margin: auto;
+  height: 340px;
+  width: 340px;
+  background: linear-gradient(180deg, #f9f7f7 0%, #dbe2ef 25%, #3f71af 100%);
+}
+
 .book-cover {
   width: 200px;
   height: auto;
+  position: absolute;
 }
