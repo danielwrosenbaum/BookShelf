@@ -5,7 +5,6 @@ import Redirect from '../components/redirect';
 import { CSSTransition } from 'react-transition-group';
 
 export default class Home extends React.Component {
-  // _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +28,7 @@ export default class Home extends React.Component {
   changePage() {
     const timer = setTimeout(() => {
       this.setState({ logoChange: true });
-    }, 2000);
+    }, 1000);
     return timer;
   }
 
@@ -52,17 +51,17 @@ export default class Home extends React.Component {
     }
     return (
       <CSSTransition
-      timeout={2000}
-      classNames="slide"
+      in={true}
+        timeout={3000}
+        classNames="fade"
       >
-      <div className="home-page">
-        {/* {this.renderChange()} */}
+        <div className="animate__animated animate__fadeOut animate__delay-3s home-page">
         <div className="home-title-container">
-          <div className="home-title">BookShelf</div>
+            <div className="animate__animated animate__fadeInUp home-title">BookShelf</div>
           <div className="home-description">Your Own Personal Library</div>
         </div>
-        <div className="img-container">
-          <div className="book-img"></div>
+          <div className=" img-container">
+            <div className="animate__animated animate__fadeInLeft book-img"></div>
           <div className="back"></div>
         </div>
 

@@ -36,10 +36,10 @@ export default class SearchPage extends React.Component {
       <CSSTransition
       in={appearHome}
       appear={true}
-      timeout={1000}
+      timeout={2000}
       classNames="fade"
       >
-      <div className="search-container home">
+        <div className=" search-container home">
         <form className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="heading one">Search</div>
