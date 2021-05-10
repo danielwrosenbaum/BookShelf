@@ -4,6 +4,7 @@ import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
 import Error from '../components/error';
+import { CSSTransition } from 'react-transition-group';
 
 export default class ReadingList extends React.Component {
   constructor(props) {
@@ -79,7 +80,9 @@ export default class ReadingList extends React.Component {
     const { user } = this.context;
     const userId = user.userId;
     const bookId = targetId;
-    this.setState({ isDeleteClicked: false });
+    this.setState({
+      isDeleteClicked: false
+    });
     const req = {
       method: 'DELETE'
     };
@@ -95,7 +98,6 @@ export default class ReadingList extends React.Component {
         this.setState({
           isLoading: false,
           result
-
         });
       })
       .catch(error => {
@@ -173,9 +175,7 @@ export default class ReadingList extends React.Component {
             return (
               <div key={bookId} className="rl-card">
                 <div className="rl-card-info">
-                  <div className='pic-container'>
-                    <img className="thumbnail" src={thumbNail} alt={title} />
-                  </div>
+                  <img className="thumbnail" src={thumbNail} alt={title} />
                   <div className="rl-col">
                     <div className="rl-book-info">
                       <div className="sub-heading six">{title}</div>
@@ -191,7 +191,7 @@ export default class ReadingList extends React.Component {
                 </div>
                 <div className="delete-container">
                   <i id={bookId} name={title} className="delete-button fas fa-times" onClick={this.handleDeleteClick}></i>
-                  </div>
+                </div>
               </div>
             );
           })
@@ -200,15 +200,21 @@ export default class ReadingList extends React.Component {
     );
     return (
       <>
-      <Header />
+        <Header />
         <div className="details-title">
           <div className="heading two-white">Reading List</div>
         </div>
-        <div className="rl-page">
-          {this.renderDeleteModal()}
-          {this.renderPopUp()}
-          {bookResults}
-        </div>
+        <CSSTransition
+          in={!isLoading}
+          appear={true}
+          timeout={500}
+          classNames="fade">
+          <div className="rl-page">
+            {this.renderDeleteModal()}
+            {this.renderPopUp()}
+            {bookResults}
+          </div>
+        </CSSTransition>
       </>
     );
   }

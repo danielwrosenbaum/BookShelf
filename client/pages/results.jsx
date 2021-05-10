@@ -6,6 +6,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import AppContext from '../lib/app-context';
 import SignIn from '../components/sign-in';
 import Error from '../components/error';
+import { CSSTransition } from 'react-transition-group';
 const apiKey = process.env.API_KEY;
 const bookURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -298,40 +299,40 @@ export default class Results extends React.Component {
             const oneBook = (
               <div key={bookId} name={title} className="card">
                 <div className="row">
+                  <div className='col-book-third'>
+                    <img className="thumbnail " src={thumbNail} alt={title} />
+                  </div>
+                  <div className="col-book-two-thirds">
+                    <div className="add-save-results col-full">
+                      <div className="add-message">Add to Reading List</div>
+                      <i name="add" className="plus-icon fas fa-plus fa-1x" id={bookId} onClick={this.handleAdd}></i>
+                    </div>
+                    <div className="row">
+                        <div className="book-col">
+                          <div className="book-sub-col">
+                            <div className="sub-heading six">{title}</div>
+                            <div className="sub-heading three">by {authors}</div>
+                            <div className="sub-heading three">{pageCount} pages </div>
+                            <div className="sub-heading three">{year}</div>
+                          </div>
+                          <div>
+                            <a href={`#details?bookId=${bookId}`}>
+                              <button id={bookId} name={title} className="search-details button">Details</button>
+                            </a>
+                          </div>
+                        </div>
+                        <div className="description">{description}</div>
+                    </div>
+                    <div className="row" >
+                      <div className="add-save-results col-full">
+                        <div className="add-message">Already Read</div>
+                        <i name="save" className="heart-icon far fa-heart fa-1x" id={bookId} onClick={this.handleSave} ></i>
+                      </div>
+                    </div>
+                  </div>
 
                 </div>
-                <div className="add-save-results col-full">
-                  <div className="add-message">Add to Reading List</div>
-                  <i name="add" className="plus-icon fas fa-plus fa-1x" id={bookId} onClick={this.handleAdd}></i>
-                </div>
-                <div className="row">
-                  <div className="result-info col-full">
-                    <div className='col-third'>
-                      <img className="thumbnail " src={thumbNail} alt={title} />
-                    </div>
-                    <div className="book-col col-two-thirds">
-                      <div className="book-sub-col">
-                        <div className="sub-heading six">{title}</div>
-                        <div className="sub-heading three">by {authors}</div>
-                        <div className="sub-heading three">{pageCount} pages </div>
-                        <div className="sub-heading three">{year}</div>
-                      </div>
-                      <div>
-                        <a href={`#details?bookId=${bookId}`}>
-                          <button id={bookId} name={title} className="search-details button">Details</button>
-                        </a>
-                      </div>
 
-                    </div>
-                    <div className="description">{description}</div>
-                  </div>
-                </div>
-                <div className="row" >
-                  <div className="add-save-results col-full">
-                    <div className="add-message">Already Read</div>
-                    <i name="save" className="heart-icon far fa-heart fa-1x" id={bookId} onClick={this.handleSave} ></i>
-                  </div>
-                </div>
               </div>
             );
             if (index < this.state.items) {
@@ -375,23 +376,28 @@ export default class Results extends React.Component {
       <>
         <Header />
         {this.renderHeading()}
-
-        <div className="results-page" onClick={this.handleClickBack}>
-          {(redirect) &&
-            <SignIn id={redirect} />}
-          <div style={{ height: '100vh', overflow: 'auto' }}>
-            <InfiniteScroll
-              loadMore={this.loadMore.bind(this)}
-              hasMore={this.state.hasMoreItems}
-              useWindow={false}>
-              {this.getResults()}
-              {(this.state.hasMoreItems) &&
-                <div className="loader-container">
-                  <div className="loader"></div>
-                </div>}
-            </InfiniteScroll>
+        <CSSTransition
+          in={!isLoading}
+          appear={true}
+          timeout={500}
+          classNames="fade">
+          <div className="results-page" onClick={this.handleClickBack}>
+            {(redirect) &&
+              <SignIn id={redirect} />}
+            <div style={{ height: '100vh', overflow: 'auto' }}>
+              <InfiniteScroll
+                loadMore={this.loadMore.bind(this)}
+                hasMore={this.state.hasMoreItems}
+                useWindow={false}>
+                {this.getResults()}
+                {(this.state.hasMoreItems) &&
+                  <div className="loader-container">
+                    <div className="loader"></div>
+                  </div>}
+              </InfiniteScroll>
+            </div>
           </div>
-        </div>
+        </CSSTransition>
         {this.renderModal()}
       </>
     );

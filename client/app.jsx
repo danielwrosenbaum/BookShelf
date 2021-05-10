@@ -84,7 +84,6 @@ export default class App extends React.Component {
         <>{(route.path !== '') &&
           <AppDrawer />
         }
-
           <PageContainer>
             {this.renderPage()}
           </PageContainer>

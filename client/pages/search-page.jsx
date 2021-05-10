@@ -34,23 +34,23 @@ export default class SearchPage extends React.Component {
     if (this.state.isClicked) return <AdvancedSearch />;
     return (
       <CSSTransition
-      in={appearHome}
-      appear={true}
-      timeout={2000}
-      classNames="fade"
+        in={appearHome}
+        appear={true}
+        timeout={1000}
+        classNames="fade"
       >
         <div className=" search-container home">
-        <form className="search-form" onSubmit={this.handleSubmit}>
-          <label>
-            <div className="heading one">Search</div>
-            <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
-          </label>
-          <input className="button submit" type="submit" value="Submit" />
-        </form>
-        <a href="#advanced-search" className='button-anchor'>
-          <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
-        </a>
-      </div>
+          <form className="search-form" onSubmit={this.handleSubmit}>
+            <label>
+              <div className="heading one">Search</div>
+              <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
+            </label>
+            <input className="button submit" type="submit" value="Submit" />
+          </form>
+          <a href="#advanced-search" className='button-anchor'>
+            <button onClick={this.handleAdvancedButton} className="button advanced-btn">Advanced Search</button>
+          </a>
+        </div>
       </CSSTransition>
     );
   }

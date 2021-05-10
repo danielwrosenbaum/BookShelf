@@ -1,5 +1,4 @@
 import React from 'react';
-// import SearchPage from './search-page';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
 import { CSSTransition } from 'react-transition-group';
@@ -17,19 +16,12 @@ export default class Home extends React.Component {
     if (!logoChange) {
       this.changePage = setTimeout(() => {
         this.setState({ logoChange: true });
-      }, 2000);
+      }, 3200);
     }
   }
 
   componentWillUnmount() {
     clearTimeout(this.changePage);
-  }
-
-  changePage() {
-    const timer = setTimeout(() => {
-      this.setState({ logoChange: true });
-    }, 1000);
-    return timer;
   }
 
   renderChange() {
@@ -51,21 +43,22 @@ export default class Home extends React.Component {
     }
     return (
       <CSSTransition
-      in={true}
+        in={true}
+        exit={logoChange}
         timeout={3000}
         classNames="fade"
       >
         <div className="animate__animated animate__fadeOut animate__delay-3s home-page">
-        <div className="home-title-container">
-            <div className="animate__animated animate__fadeInUp home-title">BookShelf</div>
-          <div className="home-description">Your Own Personal Library</div>
-        </div>
+          <div className="home-title-container">
+            <div className="animate__animated animate__fadeInUp animate__delay-1s home-title">BookShelf</div>
+            <div className="home-description">Your Own Personal Library</div>
+          </div>
           <div className=" img-container">
             <div className="animate__animated animate__fadeInLeft book-img"></div>
-          <div className="back"></div>
-        </div>
+            <div className="back"></div>
+          </div>
 
-      </div>
+        </div>
       </CSSTransition>
     );
   }

@@ -18,7 +18,7 @@ export default class AppDrawer extends React.Component {
       );
     } else {
       return (
-      <i className="fas fa-book"></i>
+        <i className="fas fa-book"></i>
       );
     }
 
@@ -52,9 +52,9 @@ export default class AppDrawer extends React.Component {
   hideModal() {
     const isClicked = this.state.isClicked;
     if (!isClicked) {
-      return 'modal-hidden';
+      return 'modal-hidden animate__animated animate__slideOutLeft';
     } else {
-      return 'modal';
+      return 'modal animate__animated animate__slideInLeft';
     }
   }
 
@@ -96,7 +96,7 @@ export default class AppDrawer extends React.Component {
               </div>
               <ul className="menu-list">
                 <a href="#search-page" onClick={this.handleClick}>
-                    <li className="menu-item">{this.renderIcon('#search-page')} Search</li>
+                  <li className="menu-item">{this.renderIcon('#search-page')} Search</li>
                 </a>
                 <a href="#library" onClick={this.handleClick}>
                   <li className="menu-item">{this.renderIcon('#library')} Library</li>
