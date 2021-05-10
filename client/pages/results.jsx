@@ -164,6 +164,7 @@ export default class Results extends React.Component {
           this.setState({
             isSaved: true
           });
+          this.renderData();
           this.saveTimer = setTimeout(() => {
             this.setState({
               isSaved: false
@@ -212,6 +213,7 @@ export default class Results extends React.Component {
           this.setState({
             isAdded: true
           });
+          this.renderData();
           this.addTimer = setTimeout(() => {
             this.setState({
               isAdded: false
@@ -326,6 +328,26 @@ export default class Results extends React.Component {
     }
   }
 
+  renderMessage(list, book) {
+    const { alreadyAdded, alreadyRead, isLoaded } = this.state;
+    if (isLoaded) {
+      if (list === 'add') {
+        if (alreadyAdded.includes(book)) {
+          return 'In Your Reading List';
+        } else {
+          return 'Add to Reading List';
+        }
+      }
+      if (list === 'save') {
+        if (alreadyRead.includes(book)) {
+          return 'In Your Library';
+        } else {
+          return 'Already Read';
+        }
+      }
+    }
+  }
+
   getResults() {
     const { results } = this.state;
     const books = results.items;
@@ -351,7 +373,7 @@ export default class Results extends React.Component {
                   </div>
                   <div className="col-book-two-thirds">
                     <div className="add-save-results col-full">
-                      <div className="add-message">Add to Reading List</div>
+                      <div className="add-message">{this.renderMessage('add', bookId)}</div>
                       <i name="add" className={this.renderIcons('add', bookId)} id={bookId} onClick={this.handleAdd}></i>
                     </div>
                     <div className="row">
@@ -372,7 +394,7 @@ export default class Results extends React.Component {
                     </div>
                     <div className="row" >
                       <div className="add-save-results col-full">
-                        <div className="add-message">Already Read</div>
+                        <div className="add-message">{this.renderMessage('save', bookId)}</div>
                         <i name="save" className={this.renderIcons('save', bookId)} id={bookId} onClick={this.handleSave} ></i>
                       </div>
                     </div>
