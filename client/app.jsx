@@ -12,6 +12,7 @@ import Library from './pages/library';
 import ReadingList from './pages/reading-list';
 import Auth from './pages/auth';
 import Home from './pages/home';
+import ReadingPlan from './pages/reading-plan';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '') {
+    if (route.path === '' || route.path === 'home') {
       return <Home />;
     }
     if (route.path === 'search-page') {
@@ -72,6 +73,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'reading-list') {
       return <ReadingList />;
+    }
+    if (route.path === 'reading-plan') {
+      return <ReadingPlan />;
     }
   }
 
