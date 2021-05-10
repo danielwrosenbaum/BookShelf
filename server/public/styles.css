@@ -253,7 +253,7 @@ ul {
 }
 
 .adv-title {
-  margin-top: 3rem;
+  margin-top: 5rem;
   color: #112d4e;
   font-size: 2.5rem;
   text-align: center;
@@ -584,6 +584,11 @@ ul {
   align-items: center;
   text-align: center;
   margin: 2rem;
+}
+
+.reading-plan-form {
+  /* margin-top: 5rem; */
+  height: 100vh;
 }
 
 .button,
