@@ -840,6 +840,10 @@ ul {
   display: none;
 }
 
+.red-icon {
+  color: #e63946;
+}
+
 .red {
   color: #e63946;
   transition: color 1000ms;

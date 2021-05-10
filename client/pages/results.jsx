@@ -18,6 +18,8 @@ export default class Results extends React.Component {
       networkError: false,
       isError: false,
       isAdded: false,
+      alreadyRead: null,
+      alreadyAdded: null,
       isLoading: true,
       redirect: null,
       route: parseRoute(window.location.hash),
@@ -30,6 +32,7 @@ export default class Results extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
+    this.renderIcons = this.renderIcons.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +54,7 @@ export default class Results extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+          this.renderData();
           this.setState({
             isLoading: false,
             inputValue: query,
@@ -279,6 +283,58 @@ export default class Results extends React.Component {
     }
   }
 
+  renderData() {
+    const { user } = this.context;
+    if (user) {
+      const { userId } = user;
+      fetch(`/api/bookShelf/${userId}`)
+        .then(res => res.json())
+        .then(result => {
+          const addedArray = [];
+          const savedArray = [];
+          for (let i = 0; i < result.length; i++) {
+            if (result[i].isRead) {
+              savedArray.push(result[i]);
+            } else {
+              addedArray.push(result[i]);
+            }
+          }
+          this.setState({ alreadyAdded: addedArray, alreadyRead: savedArray });
+        });
+    }
+
+  }
+
+  renderIcons(list, book) {
+    const { alreadyAdded, alreadyRead } = this.state;
+    if (alreadyAdded) {
+      if (list === 'add') {
+        const icon = (alreadyAdded.map(addedBook => {
+          if (addedBook.bookId === book) {
+            return 'plus-icon fas fa-plus fa-1x red-icon';
+          } else {
+            return 'plus-icon fas fa-plus fa-1x';
+          }
+        }));
+        return icon;
+      }
+    }
+    if (alreadyRead) {
+      if (list === 'save') {
+        const icon = (
+          alreadyRead.map(readBook => {
+            if (readBook.bookId === book) {
+              return 'red-icon heart-icon fas fa-heart fa-1x';
+            } else {
+              return 'heart-icon far fa-heart fa-1x';
+            }
+          })
+        );
+        return icon;
+      }
+    }
+  }
+
   getResults() {
     const { results } = this.state;
     const books = results.items;
@@ -305,7 +361,7 @@ export default class Results extends React.Component {
                   <div className="col-book-two-thirds">
                     <div className="add-save-results col-full">
                       <div className="add-message">Add to Reading List</div>
-                      <i name="add" className="plus-icon fas fa-plus fa-1x" id={bookId} onClick={this.handleAdd}></i>
+                      <i name="add" className={this.renderIcons('add', bookId)} id={bookId} onClick={this.handleAdd}></i>
                     </div>
                     <div className="row">
                         <div className="book-col">
@@ -326,7 +382,7 @@ export default class Results extends React.Component {
                     <div className="row" >
                       <div className="add-save-results col-full">
                         <div className="add-message">Already Read</div>
-                        <i name="save" className="heart-icon far fa-heart fa-1x" id={bookId} onClick={this.handleSave} ></i>
+                        <i name="save" className={this.renderIcons('save', bookId)} id={bookId} onClick={this.handleSave} ></i>
                       </div>
                     </div>
                   </div>

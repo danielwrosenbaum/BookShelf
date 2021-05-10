@@ -79,6 +79,20 @@ app.post('/api/bookShelf/:action', (req, res, next) => {
   }
 });
 
+app.get('/api/bookShelf/:userId', (req, res, next) => {
+  const userId = req.params.userId;
+  const sql = `
+  select *
+    from "readingList"
+    where "userId" = $1
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
 app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
   const list = req.params.list;
   const userId = req.params.userId;
