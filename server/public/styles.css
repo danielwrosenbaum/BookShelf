@@ -18,6 +18,8 @@ button {
 
 ul {
   list-style: none;
+  margin-block-start: 0;
+  padding-inline-start: 0;
 }
 
 .row {
@@ -126,8 +128,8 @@ ul {
 }
 
 .menu-list {
-  margin: 0.75rem;
   height: 100%;
+  margin: 0 1rem;
 }
 
 .sub-heading {
@@ -313,6 +315,15 @@ ul {
   margin: 1rem 0;
 }
 
+.sign-in-menu-container {
+  display: flex;
+  width: 230px;
+  justify-content: space-evenly;
+  margin: 1rem auto;
+
+  /* padding: 1rem; */
+}
+
 .sign-menu-container {
   display: flex;
   flex-direction: column;
@@ -323,7 +334,7 @@ ul {
   border-radius: 0.5rem;
   color: #112d4e;
   display: flex;
-  margin-bottom: 2rem;
+  margin: 1rem;
   justify-content: center;
   align-items: center;
   min-width: 100px;
