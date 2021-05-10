@@ -349,6 +349,7 @@ ul {
 .library-page,
 .rl-page,
 .home-page,
+.reading-plan-page,
 .results-page {
   min-height: 100vh;
   overflow: auto;
@@ -374,7 +375,8 @@ ul {
 
 .library-page,
 .rl-page,
-.results-page {
+.results-page,
+.reading-plan-page {
   background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("library.jpeg");
 }
 
@@ -399,6 +401,7 @@ ul {
 
 .results-container,
 .library-container,
+.reading-plan-container,
 .rl-container {
   margin-top: 4.5rem;
   width: 100%;
@@ -573,7 +576,8 @@ ul {
 }
 
 .search-form,
-.adv-search-form {
+.adv-search-form,
+.reading-plan-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
