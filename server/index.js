@@ -127,13 +127,13 @@ app.get('/api/bookShelf/:list/:userId', (req, res, next) => {
 });
 
 app.post('/api/bookShelf/', (req, res, next) => {
-  const { title, author, bookId, coverUrl, rating, isRead, userId } = req.body;
+  const { title, author, bookId, coverUrl, rating, isRead, userId, pageCount } = req.body;
   if (!title || !author || !bookId) {
     throw new ClientError(401, 'invalid post');
   }
   const bookSql = `
-  insert into "books" ("title", "author", "bookId", "coverUrl")
-  values ($1, $2, $3, $4)
+  insert into "books" ("title", "author", "bookId", "coverUrl", "pageCount")
+  values ($1, $2, $3, $4, $5)
   on conflict("bookId")
   do nothing
   returning *
@@ -143,7 +143,7 @@ app.post('/api/bookShelf/', (req, res, next) => {
   values ($1, $2, $3, $4, $5)
   returning *
   `;
-  const bookParams = [title, author, bookId, coverUrl];
+  const bookParams = [title, author, bookId, coverUrl, pageCount];
   const listParams = [title, bookId, rating, isRead, userId];
   db.query(bookSql, bookParams)
     .then(result => {

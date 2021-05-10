@@ -111,6 +111,7 @@ export default class Results extends React.Component {
           info = {
             title: books[i].volumeInfo.title,
             bookId: books[i].id,
+            pageCount: (books[i].volumeInfo.pageCount) ? books[i].volumeInfo.pageCount : null,
             coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
             author: this.getAuthor(books[i].volumeInfo.authors),
             userId: user.userId,
@@ -123,6 +124,7 @@ export default class Results extends React.Component {
             title: books[i].volumeInfo.title,
             bookId: books[i].id,
             coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+            pageCount: (books[i].volumeInfo.pageCount) ? books[i].volumeInfo.pageCount : null,
             author: this.getAuthor(books[i].volumeInfo.authors),
             userId: user.userId,
             isRead: false,
