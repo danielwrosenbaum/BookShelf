@@ -75,6 +75,21 @@
   }
 }
 
+@media screen and (max-height: 700px) {
+  .adv-submit {
+    height: 1.5rem;
+  }
+
+  .adv-text-box {
+    height: 1.5rem;
+    margin: 0.5rem;
+  }
+
+  .adv-search-form {
+    margin: 0;
+  }
+}
+
 @media screen and (min-width: 900px) {
   .col-book-third {
     width: 15%;

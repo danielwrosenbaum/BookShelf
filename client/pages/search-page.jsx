@@ -42,7 +42,7 @@ export default class SearchPage extends React.Component {
         <div className="search-page home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
-              <div className="heading one">Search</div>
+              <div className="heading one font-shadow">Search</div>
               <input placeholder="Search Books" required className="text-box" type="text" name="search" onChange={this.handleChange} />
             </label>
             <input className="button submit" type="submit" value="Submit" />

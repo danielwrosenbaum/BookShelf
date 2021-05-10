@@ -178,6 +178,10 @@ ul {
   color: #f9f7f7;
 }
 
+.font-shadow {
+  text-shadow: 0 1px 3px #112d4e;
+}
+
 .two {
   font-size: 2rem;
   color: #112d4e;
@@ -236,6 +240,21 @@ ul {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.adv-search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+
+.adv-title {
+  margin-top: 3rem;
+  color: #112d4e;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 .pop-up-container,
@@ -353,7 +372,7 @@ ul {
 }
 
 .sign-in-page,
-.search-page {
+.home {
   background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("library.jpeg");
 }
 
@@ -542,7 +561,8 @@ ul {
   margin-bottom: 3rem;
 }
 
-.search-form {
+.search-form,
+.adv-search-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -552,7 +572,8 @@ ul {
 }
 
 .button,
-.text-box {
+.text-box,
+.adv-text-box {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0.75rem;
   font-size: 1rem;
@@ -575,6 +596,22 @@ ul {
   color: #112d4e;
   width: 100px;
   height: 40px;
+}
+
+.adv-submit {
+  background: linear-gradient(#f9f7f7 25%, #dbe2ef 95%);
+  color: #112d4e;
+  width: 100px;
+  height: 40px;
+}
+
+.adv-text-box {
+  background-color: #f9f7f7;
+  width: 230px;
+  height: 2rem;
+  margin: 1rem 0 2rem 0;
+  color: #112d4e;
+  text-align: center;
 }
 
 .advanced-btn {
