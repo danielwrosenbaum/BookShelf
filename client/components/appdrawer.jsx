@@ -104,6 +104,9 @@ export default class AppDrawer extends React.Component {
                 <a href="#reading-list" onClick={this.handleClick}>
                   <li className="menu-item">{this.renderIcon('#reading-list')} Reading List</li>
                 </a>
+                <a href="#reading-plan" onClick={this.handleClick}>
+                  <li className="menu-item">{this.renderIcon('#reading-plan')} Reading Plan</li>
+                </a>
                 <li className='sign-in-menu-container'>
                   {user !== null &&
                     <a href='' >
