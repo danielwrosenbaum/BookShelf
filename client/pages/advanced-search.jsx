@@ -56,32 +56,32 @@ export default class AdvancedSearch extends React.Component {
 
   render() {
     return (
-      <div className="search-container advanced">
-        <div className="sub-heading two">Advanced Search</div>
-        <form name="title" className="search-form" onSubmit={this.handleSubmit}>
+      <div className="adv-search-page advanced">
+        <div className="sub-heading adv-title">Advanced Search</div>
+        <form name="title" className="adv-search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="heading three-white">Search by Title</div>
-            <input name="title" className="text-box" type="text" placeholder="Title Name..." required onChange={this.handleChange} />
+            <input name="title" className="adv-text-box" type="text" placeholder="Title Name..." required onChange={this.handleChange} />
             <div>
-              <input className="button submit" type="submit" value="Submit" />
+              <input className="button adv-submit" type="submit" value="Submit" />
             </div>
           </label>
         </form>
         <form name="author" className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="heading three-white">Search by Author</div>
-            <input name="author" className="text-box" type="text" placeholder="Author Name..." required onChange={this.handleChange} />
+            <input name="author" className="adv-text-box" type="text" placeholder="Author Name..." required onChange={this.handleChange} />
             <div>
-              <input className="button submit" type="submit" value="Submit" />
+              <input className="button adv-submit" type="submit" value="Submit" />
             </div>
           </label>
         </form>
         <form name="ISBN" className="search-form" onSubmit={this.handleSubmit}>
           <label>
             <div className="heading three-white">Search by ISBN</div>
-            <input name="ISBN" className="text-box" type="text" placeholder="ISBN number..." required onChange={this.handleChange} />
+            <input name="ISBN" className="adv-text-box" type="text" placeholder="ISBN number..." required onChange={this.handleChange} />
             <div>
-              <input className="button submit" type="submit" value="Submit" />
+              <input className="button adv-submit" type="submit" value="Submit" />
             </div>
           </label>
         </form>

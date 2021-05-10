@@ -6,10 +6,18 @@ body {
   background-color: #f9f7f7;
 }
 
+:root {
+  --animate-delay: 0.5s;
+}
+
 a,
 button {
   text-decoration: none;
   outline: none;
+}
+
+ul {
+  list-style: none;
 }
 
 .row {
@@ -112,7 +120,7 @@ button {
 .menu-heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  margin: 3rem auto 1rem auto;
+  margin: 5rem auto 0 auto;
   font-size: 2.5rem;
   color: #112d4e;
 }
@@ -170,6 +178,10 @@ button {
   color: #f9f7f7;
 }
 
+.font-shadow {
+  text-shadow: 0 1px 3px #112d4e;
+}
+
 .two {
   font-size: 2rem;
   color: #112d4e;
@@ -222,12 +234,27 @@ button {
   align-items: center;
 }
 
-.search-container {
+.search-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.adv-search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+
+.adv-title {
+  margin-top: 3rem;
+  color: #112d4e;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 .pop-up-container,
@@ -296,7 +323,7 @@ button {
   border-radius: 0.5rem;
   color: #112d4e;
   display: flex;
-  margin: 0.5rem 1rem;
+  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
   min-width: 100px;
@@ -310,9 +337,28 @@ button {
 .details-page,
 .library-page,
 .rl-page,
+.home-page,
 .results-page {
   min-height: 100vh;
   overflow: auto;
+}
+
+.home-page {
+  background: linear-gradient(-150deg, #f9f7f7 0%, #dbe2ef 25%, #3f72af 75%, #112d4e 100%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  z-index: 2;
+  text-shadow: 0 1px 3px #112d4e;
+  font-size: 4rem;
+  color: #f9f7f7;
 }
 
 .library-page,
@@ -494,7 +540,7 @@ button {
 }
 
 .book-col {
-  margin: 0 0.25rem 0.75rem 0.75rem;
+  margin: 0.5rem;
 }
 
 .book-sub-col {
@@ -515,7 +561,8 @@ button {
   margin-bottom: 3rem;
 }
 
-.search-form {
+.search-form,
+.adv-search-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -525,7 +572,8 @@ button {
 }
 
 .button,
-.text-box {
+.text-box,
+.adv-text-box {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0.75rem;
   font-size: 1rem;
@@ -550,6 +598,22 @@ button {
   height: 40px;
 }
 
+.adv-submit {
+  background: linear-gradient(#f9f7f7 25%, #dbe2ef 95%);
+  color: #112d4e;
+  width: 100px;
+  height: 40px;
+}
+
+.adv-text-box {
+  background-color: #f9f7f7;
+  width: 230px;
+  height: 2rem;
+  margin: 1rem 0 2rem 0;
+  color: #112d4e;
+  text-align: center;
+}
+
 .advanced-btn {
   background: linear-gradient(#f9f7f7bd 0, #3f72af 95%);
   color: #f9f7f7;
@@ -560,6 +624,11 @@ button {
 .menu-icon {
   position: fixed;
   color: black;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.top-left {
   left: 0.5rem;
   top: 0.5rem;
 }
@@ -584,7 +653,6 @@ button {
   opacity: 1;
   width: 300px;
   background: linear-gradient(-120deg, #f9f7f7f1 0%, #dbe2eff1 55%, #3f72aff1 100%);
-  transition: width 0.5s, opacity 0.5s;
 }
 
 .delete-overlay,
@@ -610,8 +678,11 @@ button {
   position: fixed;
   top: 40%;
   bottom: 40%;
-  left: 20%;
-  right: 20%;
+  left: 0%;
+  right: 0%;
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
   font-size: 1.25rem;
   background: linear-gradient(-135deg, #f9f7f7 0%, #dbe2ef 75%);
 }
@@ -806,6 +877,10 @@ button {
   display: none;
 }
 
+.red-icon {
+  color: #e63946;
+}
+
 .red {
   color: #e63946;
   transition: color 1000ms;
@@ -982,10 +1057,95 @@ button {
   width: 40%;
 }
 
+.col-book-third {
+  width: 40%;
+}
+
 .col-full {
   width: 100%;
 }
 
-.col-two-thirds {
+.col-book-two-thirds {
   width: 60%;
+}
+
+.home-title-container {
+  z-index: 2;
+}
+
+.home-description {
+  color: #f9f7f7;
+  text-align: center;
+  font-size: 1.25rem;
+  text-shadow: 0 1px 3px #112d4e;
+}
+
+.img-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-img {
+  z-index: 1;
+  height: 300px;
+  width: 200px;
+  position: absolute;
+  background: linear-gradient(#f9f7f773 0%, #e639477e 100%), url('book-cover.jpeg');
+  background-size: 200px;
+  box-shadow: 0 2px 5px #112d4e9c;
+  border: 1px solid #112d4e9c;
+}
+
+.back::after {
+  position: absolute;
+  box-shadow: 0 2px 5px #112d4ec2;
+  content: '';
+  border-radius: 50%;
+  bottom: -170px;
+  left: -170px;
+  right: 0;
+  margin: auto;
+  height: 340px;
+  width: 340px;
+  background: linear-gradient(180deg, #f9f7f7 0%, #dbe2ef 25%, #3f71af 100%);
+}
+
+.book-cover {
+  width: 200px;
+  height: auto;
+  position: absolute;
+}
+
+.fade-appear {
+  opacity: 0.1;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 500ms linear;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.15;
+  background: linear-gradient(180deg, #f9f7f7 0%, #dbe2ef 25%, #3f71af 100%);
+  transition: opacity 1500ms linear;
+}
+
+.fade-exit-done {
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
 }

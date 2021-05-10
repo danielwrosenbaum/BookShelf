@@ -5,6 +5,7 @@ import Loader from '../components/loader';
 import AppContext from '../lib/app-context';
 import Redirect from '../components/redirect';
 import Error from '../components/error';
+import { CSSTransition } from 'react-transition-group';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -91,13 +92,14 @@ export default class Library extends React.Component {
     };
     fetch(`/api/bookShelf/${bookId}/${userId}`, req)
       .then(result => {
+        this.setState({ isLoading: true });
         return result;
       })
       .catch(error => console.error(error));
     fetch(`/api/bookShelf/library/${userId}`)
       .then(res => res.json())
       .then(result => {
-        this.setState({ result });
+        this.setState({ result, isLoading: false });
       })
       .catch(error => {
         if (error) {
@@ -139,9 +141,7 @@ export default class Library extends React.Component {
             return (
               <div key={bookId} id={bookId} className="library-card">
                 <div className="lib-info">
-                  <div className='pic-container'>
                     <img className="thumbnail" src={thumbNail} alt={title} />
-                  </div>
                   <div className="lib-col">
                     <div className="sub-col">
                         <div className="sub-heading six">{title}</div>
@@ -175,11 +175,16 @@ export default class Library extends React.Component {
         <div className="details-title">
           <div className="heading two-white">Library</div>
         </div>
-
+        <CSSTransition
+          in={!isLoading}
+          appear={true}
+          timeout={500}
+          classNames="fade">
         <div className="library-page">
           {this.renderDeleteModal()}
           {bookResults}
         </div>
+        </CSSTransition>
       </>
     );
   }

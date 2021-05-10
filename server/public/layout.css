@@ -11,6 +11,14 @@
     min-width: 25%;
   }
 
+  .col-book-third {
+    width: 25%;
+  }
+
+  .col-book-two-thirds {
+    width: 75%;
+  }
+
   .info {
     align-self: flex-end;
   }
@@ -59,10 +67,36 @@
     font-size: 1.5rem;
   }
 
+  .delete-modal,
   .buy-modal {
     width: 300px;
     height: 200px;
     margin: 0 auto;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .adv-submit {
+    height: 1.5rem;
+  }
+
+  .adv-text-box {
+    height: 1.5rem;
+    margin: 0.5rem;
+  }
+
+  .adv-search-form {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .col-book-third {
+    width: 15%;
+  }
+
+  .col-book-two-thirds {
+    width: 85%;
   }
 }
 
