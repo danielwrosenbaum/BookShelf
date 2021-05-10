@@ -892,6 +892,10 @@ ul {
   color: #e63946;
 }
 
+.blue-icon {
+  color: #3f72af;
+}
+
 .red {
   color: #e63946;
   transition: color 1000ms;

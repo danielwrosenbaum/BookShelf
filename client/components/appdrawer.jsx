@@ -14,11 +14,11 @@ export default class AppDrawer extends React.Component {
   renderIcon(location) {
     if (location === window.location.hash) {
       return (
-        <i className="fas fa-book-open"></i>
+        <i className="fas fa-book-open red-icon"></i>
       );
     } else {
       return (
-        <i className="fas fa-book"></i>
+        <i className="fas fa-book blue-icon"></i>
       );
     }
 
