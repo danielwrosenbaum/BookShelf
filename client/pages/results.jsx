@@ -383,7 +383,7 @@ export default class Results extends React.Component {
                           <div className="book-sub-col">
                             <div className="sub-heading six">{title}</div>
                             <div className="sub-heading three">by {authors}</div>
-                            <div className="sub-heading three">{pageCount} pages </div>
+                            <div className="sub-heading three">{(pageCount) ? pageCount + ' pages' : null}</div>
                             <div className="sub-heading three">{year}</div>
                           </div>
                           <div>
