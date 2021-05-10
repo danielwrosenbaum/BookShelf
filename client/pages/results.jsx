@@ -21,6 +21,7 @@ export default class Results extends React.Component {
       alreadyRead: null,
       alreadyAdded: null,
       isLoading: true,
+      isLoaded: false,
       redirect: null,
       route: parseRoute(window.location.hash),
       inputValue: null,
@@ -294,43 +295,33 @@ export default class Results extends React.Component {
           const savedArray = [];
           for (let i = 0; i < result.length; i++) {
             if (result[i].isRead) {
-              savedArray.push(result[i]);
+              savedArray.push(result[i].bookId);
             } else {
-              addedArray.push(result[i]);
+              addedArray.push(result[i].bookId);
             }
           }
-          this.setState({ alreadyAdded: addedArray, alreadyRead: savedArray });
+          this.setState({ alreadyAdded: addedArray, alreadyRead: savedArray, isLoaded: true });
         });
     }
 
   }
 
   renderIcons(list, book) {
-    const { alreadyAdded, alreadyRead } = this.state;
-    if (alreadyAdded) {
+    const { alreadyAdded, alreadyRead, isLoaded } = this.state;
+    if (isLoaded) {
       if (list === 'add') {
-        const icon = (alreadyAdded.map(addedBook => {
-          if (addedBook.bookId === book) {
-            return 'plus-icon fas fa-plus fa-1x red-icon';
-          } else {
-            return 'plus-icon fas fa-plus fa-1x';
-          }
-        }));
-        return icon;
+        if (alreadyAdded.includes(book)) {
+          return 'plus-icon fas fa-plus fa-1x red-icon';
+        } else {
+          return 'plus-icon fas fa-plus fa-1x';
+        }
       }
-    }
-    if (alreadyRead) {
       if (list === 'save') {
-        const icon = (
-          alreadyRead.map(readBook => {
-            if (readBook.bookId === book) {
-              return 'red-icon heart-icon fas fa-heart fa-1x';
-            } else {
-              return 'heart-icon far fa-heart fa-1x';
-            }
-          })
-        );
-        return icon;
+        if (alreadyRead.includes(book)) {
+          return 'red-icon heart-icon fas fa-heart fa-1x';
+        } else {
+          return 'heart-icon far fa-heart fa-1x';
+        }
       }
     }
   }
