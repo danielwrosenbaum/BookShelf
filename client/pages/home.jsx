@@ -16,7 +16,7 @@ export default class Home extends React.Component {
     if (!logoChange) {
       this.changePage = setTimeout(() => {
         this.setState({ logoChange: true });
-      }, 3200);
+      }, 5200);
     }
   }
 
@@ -45,15 +45,15 @@ export default class Home extends React.Component {
       <CSSTransition
         in={true}
         exit={logoChange}
-        timeout={3000}
+        timeout={5000}
         classNames="fade"
       >
-        <div className="animate__animated animate__fadeOut animate__delay-3s home-page">
+        <div className="animate__animated animate__fadeOut animate__delay-5s home-page">
           <div className="home-title-container">
             <div className="animate__animated animate__fadeInUp animate__delay-1s home-title">BookShelf</div>
-            <div className="home-description">Your Own Personal Library</div>
+            <div className="animate__animated animate__fadeIn animate__delay-2s home-description">Your Own Personal Library</div>
           </div>
-          <div className=" img-container">
+          <div className="img-container">
             <div className="animate__animated animate__fadeInLeft book-img"></div>
             <div className="back"></div>
           </div>

@@ -230,7 +230,7 @@ ul {
   align-items: center;
 }
 
-.search-container {
+.search-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -353,7 +353,7 @@ ul {
 }
 
 .sign-in-page,
-.home {
+.search-page {
   background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("library.jpeg");
 }
 
@@ -1092,6 +1092,7 @@ ul {
 
 .fade-exit.fade-exit-active {
   opacity: 0.15;
+  background: linear-gradient(180deg, #f9f7f7 0%, #dbe2ef 25%, #3f71af 100%);
   transition: opacity 1500ms linear;
 }
 

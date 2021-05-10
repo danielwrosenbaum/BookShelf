@@ -39,7 +39,7 @@ export default class SearchPage extends React.Component {
         timeout={1000}
         classNames="fade"
       >
-        <div className=" search-container home">
+        <div className="search-page home">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label>
               <div className="heading one">Search</div>
