@@ -14,10 +14,13 @@ export default class ReadingPlan extends React.Component {
       result: null,
       selectedPageCount: '',
       selectedBookId: null,
-      readingDays: ''
+      readingDays: '',
+      pagesADay: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleReadingDays = this.handleReadingDays.bind(this);
+    this.handlePages = this.handlePages.bind(this);
+    this.handlePageCount = this.handlePageCount.bind(this);
   }
 
   componentDidMount() {
@@ -45,11 +48,20 @@ export default class ReadingPlan extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
+    const { selectedPageCount, readingDays } = this.state;
+    if (readingDays) {
+
+      const total = (selectedPageCount / readingDays);
+      this.setState({ pagesADay: total });
+    }
 
   }
 
   handleReadingDays(event) {
-    this.setState({ readingDays: event.target.value });
+    const { selectedPageCount } = this.state;
+    const readingDays = parseInt(event.target.value, 10);
+    const total = selectedPageCount / readingDays;
+    this.setState({ readingDays: readingDays, pagesADay: total.toFixed(1) });
 
   }
 
@@ -57,12 +69,23 @@ export default class ReadingPlan extends React.Component {
     const { result } = this.state;
     const bookId = event.target.value;
     const book = result.find(book => book.bookId === bookId);
-
     this.setState({ selectedPageCount: book.pageCount, selectedBookId: book.bookId });
   }
 
-  renderBooks(result) {
+  handlePageCount(event) {
+    const pageCount = event.target.value;
+    const { readingDays } = this.state;
+    const total = pageCount / readingDays;
+    this.setState({ selectedPageCount: pageCount, pagesADay: total });
+  }
 
+  handlePages(event) {
+    const { selectedPageCount } = this.state;
+    const total = selectedPageCount / event.target.value;
+    this.setState({ pagesADay: event.target.value, readingDays: total.toFixed(1) });
+  }
+
+  renderBooks(result) {
     const bookResults = (
         <select onChange={this.handleChange} id="books" name="books" className="reading-plan-container text-box">
           {(result.length === 0) &&
@@ -87,7 +110,7 @@ export default class ReadingPlan extends React.Component {
   render() {
     const { user } = this.context;
     if (!user) return <Redirect to="sign-in" />;
-    const { isLoading, result, selectedPageCount } = this.state;
+    const { isLoading, result, selectedPageCount, pagesADay, readingDays } = this.state;
     if (isLoading) {
       return <Loader />;
     }
@@ -106,13 +129,16 @@ export default class ReadingPlan extends React.Component {
           <div className="reading-plan-page">
             <div className="reading-plan-container">
               <form className="reading-plan-form">
-                <label htmlFor="books">Choose A Book</label>
+                <label className="sub-heading one-reading-plan" htmlFor="books">Choose A Book</label>
                 {this.renderBooks(result)}
-                <label>Number of Pages</label>
-                <input placeholder="Pages" required type="text" className="text-box" onChange={this.handleChange} value={selectedPageCount} name="pages" />
-                <label>How Many Days A Week Do You Read?</label>
-                <input placeholder="Number of Days" value={this.state.readingDays} required type="number" className="text-box" onChange={this.handleReadingDays} />
-                <input className="button submit" type="submit" />
+                <label className="sub-heading four">Number of Pages</label>
+                <input placeholder="Pages" required type="text" className="text-box" onChange={this.handlePageCount} value={selectedPageCount} name="pages" />
+                <label className="sub-heading four">How Many Days Until You Need to Finish?</label>
+                <input placeholder="Number of Days" value={readingDays} required type="number" className="text-box" onChange={this.handleReadingDays} />
+
+                {/* <input className="button submit" type="submit" /> */}
+                <label className="sub-heading four">Read This Many Pages A Day:</label>
+                <input placeholder="Number of Pages" value={pagesADay} type="number" className="text-box" onChange={this.handlePages} />
               </form>
             </div>
           </div>

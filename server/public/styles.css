@@ -184,6 +184,11 @@ ul {
   text-shadow: 0 1px 3px #112d4e;
 }
 
+.one-reading-plan {
+  font-size: 2.5rem;
+  color: #112d4e;
+}
+
 .two {
   font-size: 2rem;
   color: #112d4e;
@@ -320,8 +325,6 @@ ul {
   width: 230px;
   justify-content: space-evenly;
   margin: 1rem auto;
-
-  /* padding: 1rem; */
 }
 
 .sign-menu-container {
@@ -412,7 +415,7 @@ ul {
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -576,8 +579,7 @@ ul {
 }
 
 .search-form,
-.adv-search-form,
-.reading-plan-form {
+.adv-search-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -587,8 +589,12 @@ ul {
 }
 
 .reading-plan-form {
-  /* margin-top: 5rem; */
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  height: 90vh;
 }
 
 .button,
