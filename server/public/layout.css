@@ -121,6 +121,10 @@
     margin-block-end: 0;
   }
 
+  .reading-plan-form {
+    height: 100vh;
+  }
+
   .menu-list {
     margin: 0 0.75rem;
   }

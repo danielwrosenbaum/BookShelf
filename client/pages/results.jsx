@@ -111,6 +111,7 @@ export default class Results extends React.Component {
           info = {
             title: books[i].volumeInfo.title,
             bookId: books[i].id,
+            pageCount: (books[i].volumeInfo.pageCount) ? books[i].volumeInfo.pageCount : null,
             coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
             author: this.getAuthor(books[i].volumeInfo.authors),
             userId: user.userId,
@@ -123,6 +124,7 @@ export default class Results extends React.Component {
             title: books[i].volumeInfo.title,
             bookId: books[i].id,
             coverUrl: (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.thumbnail : null,
+            pageCount: (books[i].volumeInfo.pageCount) ? books[i].volumeInfo.pageCount : null,
             author: this.getAuthor(books[i].volumeInfo.authors),
             userId: user.userId,
             isRead: false,
@@ -377,20 +379,20 @@ export default class Results extends React.Component {
                       <i name="add" className={this.renderIcons('add', bookId)} id={bookId} onClick={this.handleAdd}></i>
                     </div>
                     <div className="row">
-                        <div className="book-col">
-                          <div className="book-sub-col">
-                            <div className="sub-heading six">{title}</div>
-                            <div className="sub-heading three">by {authors}</div>
-                            <div className="sub-heading three">{pageCount} pages </div>
-                            <div className="sub-heading three">{year}</div>
-                          </div>
-                          <div>
-                            <a href={`#details?bookId=${bookId}`}>
-                              <button id={bookId} name={title} className="search-details button">Details</button>
-                            </a>
-                          </div>
+                      <div className="book-col">
+                        <div className="book-sub-col">
+                          <div className="sub-heading six">{title}</div>
+                          <div className="sub-heading three">by {authors}</div>
+                          <div className="sub-heading three">{(pageCount) ? pageCount + ' pages' : null}</div>
+                          <div className="sub-heading three">{year}</div>
                         </div>
-                        <div className="description">{description}</div>
+                        <div>
+                          <a href={`#details?bookId=${bookId}`}>
+                            <button id={bookId} name={title} className="search-details button">Details</button>
+                          </a>
+                        </div>
+                      </div>
+                      <div className="description">{description}</div>
                     </div>
                     <div className="row" >
                       <div className="add-save-results col-full">

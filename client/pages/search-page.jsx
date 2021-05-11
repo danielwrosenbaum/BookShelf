@@ -36,7 +36,7 @@ export default class SearchPage extends React.Component {
       <CSSTransition
         in={appearHome}
         appear={true}
-        timeout={1000}
+        timeout={500}
         classNames="fade"
       >
         <div className="search-page home">

@@ -55,7 +55,7 @@ export default class Home extends React.Component {
           </div>
           <div className="img-container">
             <div className="animate__animated animate__fadeInLeft book-img"></div>
-            <div className="back"></div>
+            <div className="animate__animated animate__rotateOut animate__delay-4s back"></div>
           </div>
 
         </div>

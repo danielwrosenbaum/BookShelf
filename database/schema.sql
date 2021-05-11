@@ -21,6 +21,7 @@ create table "public"."books" (
   "author"              text,
   "bookId"              text          not null,
   "coverUrl"            text,
+  "pageCount"           integer,
   "addedAt"             timestamptz(6) not null default now(),
   primary key ("bookId")
 );

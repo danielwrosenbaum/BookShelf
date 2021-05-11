@@ -18,6 +18,8 @@ button {
 
 ul {
   list-style: none;
+  margin-block-start: 0;
+  padding-inline-start: 0;
 }
 
 .row {
@@ -126,8 +128,8 @@ ul {
 }
 
 .menu-list {
-  margin: 0.75rem;
   height: 100%;
+  margin: 0 1rem;
 }
 
 .sub-heading {
@@ -180,6 +182,11 @@ ul {
 
 .font-shadow {
   text-shadow: 0 1px 3px #112d4e;
+}
+
+.one-reading-plan {
+  font-size: 2.5rem;
+  color: #112d4e;
 }
 
 .two {
@@ -251,7 +258,7 @@ ul {
 }
 
 .adv-title {
-  margin-top: 3rem;
+  margin-top: 5rem;
   color: #112d4e;
   font-size: 2.5rem;
   text-align: center;
@@ -313,6 +320,13 @@ ul {
   margin: 1rem 0;
 }
 
+.sign-in-menu-container {
+  display: flex;
+  width: 230px;
+  justify-content: space-evenly;
+  margin: 1rem auto;
+}
+
 .sign-menu-container {
   display: flex;
   flex-direction: column;
@@ -323,7 +337,7 @@ ul {
   border-radius: 0.5rem;
   color: #112d4e;
   display: flex;
-  margin-bottom: 2rem;
+  margin: 1rem;
   justify-content: center;
   align-items: center;
   min-width: 100px;
@@ -338,6 +352,7 @@ ul {
 .library-page,
 .rl-page,
 .home-page,
+.reading-plan-page,
 .results-page {
   min-height: 100vh;
   overflow: auto;
@@ -363,7 +378,8 @@ ul {
 
 .library-page,
 .rl-page,
-.results-page {
+.results-page,
+.reading-plan-page {
   background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("library.jpeg");
 }
 
@@ -388,6 +404,7 @@ ul {
 
 .results-container,
 .library-container,
+.reading-plan-container,
 .rl-container {
   margin-top: 4.5rem;
   width: 100%;
@@ -398,7 +415,7 @@ ul {
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -569,6 +586,15 @@ ul {
   align-items: center;
   text-align: center;
   margin: 2rem;
+}
+
+.reading-plan-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  height: 90vh;
 }
 
 .button,
@@ -879,6 +905,10 @@ ul {
 
 .red-icon {
   color: #e63946;
+}
+
+.blue-icon {
+  color: #3f72af;
 }
 
 .red {

@@ -141,11 +141,11 @@ export default class Library extends React.Component {
             return (
               <div key={bookId} id={bookId} className="library-card">
                 <div className="lib-info">
-                    <img className="thumbnail" src={thumbNail} alt={title} />
+                  <img className="thumbnail" src={thumbNail} alt={title} />
                   <div className="lib-col">
                     <div className="sub-col">
-                        <div className="sub-heading six">{title}</div>
-                        <div className="sub-heading three">by {author}</div>
+                      <div className="sub-heading six">{title}</div>
+                      <div className="sub-heading three">by {author}</div>
                     </div>
                     <div className="sub-col">
                       <a href={`#details?bookId=${bookId}`}>
@@ -171,7 +171,7 @@ export default class Library extends React.Component {
     );
     return (
       <>
-      <Header />
+        <Header />
         <div className="details-title">
           <div className="heading two-white">Library</div>
         </div>
@@ -180,10 +180,10 @@ export default class Library extends React.Component {
           appear={true}
           timeout={500}
           classNames="fade">
-        <div className="library-page">
-          {this.renderDeleteModal()}
-          {bookResults}
-        </div>
+          <div className="library-page">
+            {this.renderDeleteModal()}
+            {bookResults}
+          </div>
         </CSSTransition>
       </>
     );

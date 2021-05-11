@@ -14,11 +14,11 @@ export default class AppDrawer extends React.Component {
   renderIcon(location) {
     if (location === window.location.hash) {
       return (
-        <i className="fas fa-book-open"></i>
+        <i className="fas fa-book-open red-icon"></i>
       );
     } else {
       return (
-        <i className="fas fa-book"></i>
+        <i className="fas fa-book blue-icon"></i>
       );
     }
 
@@ -104,24 +104,28 @@ export default class AppDrawer extends React.Component {
                 <a href="#reading-list" onClick={this.handleClick}>
                   <li className="menu-item">{this.renderIcon('#reading-list')} Reading List</li>
                 </a>
+                <a href="#reading-plan" onClick={this.handleClick}>
+                  <li className="menu-item">{this.renderIcon('#reading-plan')} Reading Plan</li>
+                </a>
+                <li className='sign-in-menu-container'>
+                  {user !== null &&
+                    <a href='' >
+                      <button className="sign-button" onClick={handleSignOut}>Sign out</button>
+                    </a>
+                  }
+                  {user === null &&
+                    <>
+                      <a href="#sign-in">
+                        <button className='sign-button' onClick={this.handleClick}>Sign In</button>
+                      </a>
+                      <a href="#sign-up" >
+                        <button className="sign-button" onClick={this.handleClick}>Sign Up</button>
+                      </a>
+                    </>
+                  }
+                </li>
               </ul>
-              <div className='sign-in-button-container'>
-                {user !== null &&
-                  <a href='' >
-                    <button className="sign-button" onClick={handleSignOut}>Sign out</button>
-                  </a>
-                }
-                {user === null &&
-                  <>
-                    <a href="#sign-in">
-                      <button className='sign-button'>Sign In</button>
-                    </a>
-                    <a href="#sign-up" >
-                      <button className="sign-button">Sign Up</button>
-                    </a>
-                  </>
-                }
-              </div>
+
             </div>
           </div>
         </div>
