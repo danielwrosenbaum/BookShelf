@@ -119,7 +119,7 @@ export default class AppDrawer extends React.Component {
                         <button className='sign-button' onClick={this.handleClick}>Sign In</button>
                       </a>
                       <a href="#sign-up" >
-                      <button className="sign-button" onClick={this.handleClick}>Sign Up</button>
+                        <button className="sign-button" onClick={this.handleClick}>Sign Up</button>
                       </a>
                     </>
                   }

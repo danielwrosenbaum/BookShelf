@@ -87,21 +87,21 @@ export default class ReadingPlan extends React.Component {
 
   renderBooks(result) {
     const bookResults = (
-        <select onChange={this.handleChange} id="books" name="books" className="reading-plan-container text-box">
-          {(result.length === 0) &&
-            <option value="none" className="title two">No Books In Reading List!</option>}
-            <option value="none">Choose A Book From Reading List</option>
-          {
-            result.map(book => {
-              const title = book.title;
-              const bookId = book.bookId;
-              const pageCount = book.pageCount;
-              return (
-                <option key={bookId} name={title} props={pageCount} value={bookId}>{title}</option>
-              );
-            })
-          }
-        </select>
+      <select onChange={this.handleChange} id="books" name="books" className="reading-plan-container text-box">
+        {(result.length === 0) &&
+          <option value="none" className="title two">No Books In Reading List!</option>}
+        <option value="none">Choose A Book From Reading List</option>
+        {
+          result.map(book => {
+            const title = book.title;
+            const bookId = book.bookId;
+            const pageCount = book.pageCount;
+            return (
+              <option key={bookId} name={title} props={pageCount} value={bookId}>{title}</option>
+            );
+          })
+        }
+      </select>
     );
     return bookResults;
 
@@ -135,8 +135,6 @@ export default class ReadingPlan extends React.Component {
                 <input placeholder="Pages" required type="text" className="text-box" onChange={this.handlePageCount} value={selectedPageCount} name="pages" />
                 <label className="sub-heading four">How Many Days Until You Need to Finish?</label>
                 <input placeholder="Number of Days" value={readingDays} required type="number" className="text-box" onChange={this.handleReadingDays} />
-
-                {/* <input className="button submit" type="submit" /> */}
                 <label className="sub-heading four">Read This Many Pages A Day:</label>
                 <input placeholder="Number of Pages" value={pagesADay} type="number" className="text-box" onChange={this.handlePages} />
               </form>

@@ -379,20 +379,20 @@ export default class Results extends React.Component {
                       <i name="add" className={this.renderIcons('add', bookId)} id={bookId} onClick={this.handleAdd}></i>
                     </div>
                     <div className="row">
-                        <div className="book-col">
-                          <div className="book-sub-col">
-                            <div className="sub-heading six">{title}</div>
-                            <div className="sub-heading three">by {authors}</div>
-                            <div className="sub-heading three">{(pageCount) ? pageCount + ' pages' : null}</div>
-                            <div className="sub-heading three">{year}</div>
-                          </div>
-                          <div>
-                            <a href={`#details?bookId=${bookId}`}>
-                              <button id={bookId} name={title} className="search-details button">Details</button>
-                            </a>
-                          </div>
+                      <div className="book-col">
+                        <div className="book-sub-col">
+                          <div className="sub-heading six">{title}</div>
+                          <div className="sub-heading three">by {authors}</div>
+                          <div className="sub-heading three">{(pageCount) ? pageCount + ' pages' : null}</div>
+                          <div className="sub-heading three">{year}</div>
                         </div>
-                        <div className="description">{description}</div>
+                        <div>
+                          <a href={`#details?bookId=${bookId}`}>
+                            <button id={bookId} name={title} className="search-details button">Details</button>
+                          </a>
+                        </div>
+                      </div>
+                      <div className="description">{description}</div>
                     </div>
                     <div className="row" >
                       <div className="add-save-results col-full">
