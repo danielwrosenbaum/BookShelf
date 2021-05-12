@@ -22,6 +22,10 @@ ul {
   padding-inline-start: 0;
 }
 
+select {
+  padding: 1px 2px;
+}
+
 .row {
   display: flex;
   width: 100%;
@@ -105,7 +109,8 @@ ul {
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
-  width: 80%;
+
+  /* width: 80%; */
   margin: auto;
 }
 
@@ -410,6 +415,13 @@ ul {
   width: 100%;
 }
 
+.reading-plan-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .details-container {
   min-height: 100vh;
   margin-top: 4rem;
@@ -456,6 +468,7 @@ ul {
 
 .rl-button-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   margin: 2rem 1rem 0 1rem;
@@ -534,7 +547,7 @@ ul {
 }
 
 .rl-card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 65%, #3f72af 100%);
 }
 
 .no-underline {
@@ -589,16 +602,19 @@ ul {
 }
 
 .reading-plan-form {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  height: 90vh;
+
+  /* height: 90vh; */
 }
 
 .button,
 .text-box,
+.select-box,
 .adv-text-box {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0.75rem;
@@ -608,6 +624,7 @@ ul {
   outline: none;
 }
 
+.select-box,
 .text-box {
   background-color: #f9f7f7;
   width: 230px;
@@ -615,6 +632,7 @@ ul {
   margin: 1rem 0 2rem 0;
   color: #112d4e;
   text-align: center;
+  text-indent: 0.5rem;
 }
 
 .submit {
