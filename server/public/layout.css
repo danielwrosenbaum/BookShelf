@@ -121,9 +121,9 @@
     margin-block-end: 0;
   }
 
-  /* .reading-plan-form {
-    height: 100vh;
-  } */
+  .reading-plan-form {
+    height: 100%;
+  }
 
   .menu-list {
     margin: 0 0.75rem;
@@ -139,6 +139,10 @@
     top: 90%;
   }
 
+  .reading-plan-form {
+    height: 90vh;
+  }
+
   .advanced {
     height: 100vh;
   }
@@ -147,5 +151,16 @@
 @media screen and (orientation: landscape) and (max-width: 640px) {
   .button-container {
     top: 80%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .rl-button-container {
+    flex-wrap: wrap;
+  }
+
+  .thumbnail {
+    max-height: 200px;
+    width: auto;
   }
 }

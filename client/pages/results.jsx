@@ -335,16 +335,16 @@ export default class Results extends React.Component {
     if (isLoaded) {
       if (list === 'add') {
         if (alreadyAdded.includes(book)) {
-          return 'In Your Reading List';
+          return <div className="add-message red-icon">In Your Reading List</div>;
         } else {
-          return 'Add to Reading List';
+          return <div className="add-message">Add to Reading List</div>;
         }
       }
       if (list === 'save') {
         if (alreadyRead.includes(book)) {
-          return 'In Your Library';
+          return <div className="add-message red-icon">In Your Library</div>;
         } else {
-          return 'Already Read';
+          return <div className="add-message">Already Read</div>;
         }
       }
     }
@@ -375,7 +375,7 @@ export default class Results extends React.Component {
                   </div>
                   <div className="col-book-two-thirds">
                     <div className="add-save-results col-full">
-                      <div className="add-message">{this.renderMessage('add', bookId)}</div>
+                      {this.renderMessage('add', bookId)}
                       <i name="add" className={this.renderIcons('add', bookId)} id={bookId} onClick={this.handleAdd}></i>
                     </div>
                     <div className="row">

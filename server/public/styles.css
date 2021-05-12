@@ -109,8 +109,6 @@ select {
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
-
-  /* width: 80%; */
   margin: auto;
 }
 
@@ -407,19 +405,12 @@ select {
   justify-content: center;
 }
 
+.reading-plan-container,
 .results-container,
 .library-container,
-.reading-plan-container,
 .rl-container {
   margin-top: 4.5rem;
   width: 100%;
-}
-
-.reading-plan-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
 .details-container {
@@ -468,7 +459,8 @@ select {
 
 .rl-button-container {
   display: flex;
-  flex-wrap: wrap;
+
+  /* flex-wrap: wrap; */
   flex-direction: row;
   justify-content: space-between;
   margin: 2rem 1rem 0 1rem;
@@ -521,7 +513,7 @@ select {
 }
 
 .card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
+  background: linear-gradient(-120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
   display: flex;
   flex-direction: column;
   margin: 0.75rem;
@@ -543,7 +535,7 @@ select {
 }
 
 .library-card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 100%);
+  background: linear-gradient(-120deg, #f9f7f7 0%, #dbe2ef 50%, #3f72af 100%);
 }
 
 .rl-card {
@@ -608,8 +600,7 @@ select {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-
-  /* height: 90vh; */
+  height: 90vh;
 }
 
 .button,
