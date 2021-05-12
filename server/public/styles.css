@@ -383,16 +383,16 @@ select {
 .rl-page,
 .results-page,
 .reading-plan-page {
-  background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("images/library.jpeg");
 }
 
 .advanced {
-  background: linear-gradient(#f9f7f7dc 0%, #ef7d85ad 100%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7dc 0%, #ef7d85ad 100%), url("images/library.jpeg");
 }
 
 .sign-in-page,
 .home {
-  background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("images/library.jpeg");
 }
 
 .details-page {
@@ -459,8 +459,6 @@ select {
 
 .rl-button-container {
   display: flex;
-
-  /* flex-wrap: wrap; */
   flex-direction: row;
   justify-content: space-between;
   margin: 2rem 1rem 0 1rem;
@@ -1131,7 +1129,7 @@ select {
   height: 300px;
   width: 200px;
   position: absolute;
-  background: linear-gradient(#f9f7f773 0%, #e639477e 100%), url('book-cover.jpeg');
+  background: linear-gradient(#f9f7f773 0%, #e639477e 100%), url('images/book-cover.jpeg');
   background-size: 200px;
   box-shadow: 0 2px 5px #112d4e9c;
   border: 1px solid #112d4e9c;
