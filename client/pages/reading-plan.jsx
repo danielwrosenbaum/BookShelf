@@ -87,10 +87,10 @@ export default class ReadingPlan extends React.Component {
 
   renderBooks(result) {
     const bookResults = (
-      <select onChange={this.handleChange} id="books" name="books" className="reading-plan-container text-box">
+      <select onChange={this.handleChange} id="books" name="books" className="select-box">
         {(result.length === 0) &&
           <option value="none" className="title two">No Books In Reading List!</option>}
-        <option value="none">Choose A Book From Reading List</option>
+        <option value="none">Books:</option>
         {
           result.map(book => {
             const title = book.title;
@@ -129,9 +129,9 @@ export default class ReadingPlan extends React.Component {
           <div className="reading-plan-page">
             <div className="reading-plan-container">
               <form className="reading-plan-form">
-                <label className="sub-heading one-reading-plan" htmlFor="books">Choose A Book</label>
+                <label className="sub-heading two" htmlFor="books">Choose A Book From Your Reading List</label>
                 {this.renderBooks(result)}
-                <label className="sub-heading four">Number of Pages</label>
+                <label className="sub-heading four">Number of Pages:</label>
                 <input placeholder="Pages" required type="text" className="text-box" onChange={this.handlePageCount} value={selectedPageCount} name="pages" />
                 <label className="sub-heading four">How Many Days Until You Need to Finish?</label>
                 <input placeholder="Number of Days" value={readingDays} required type="number" className="text-box" onChange={this.handleReadingDays} />

@@ -22,6 +22,10 @@ ul {
   padding-inline-start: 0;
 }
 
+select {
+  padding: 1px 2px;
+}
+
 .row {
   display: flex;
   width: 100%;
@@ -105,7 +109,6 @@ ul {
 .heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
-  width: 80%;
   margin: auto;
 }
 
@@ -380,16 +383,16 @@ ul {
 .rl-page,
 .results-page,
 .reading-plan-page {
-  background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7dc 0%, #dbe2efb4 85%), url("images/library.jpeg");
 }
 
 .advanced {
-  background: linear-gradient(#f9f7f7dc 0%, #ef7d85ad 100%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7dc 0%, #ef7d85ad 100%), url("images/library.jpeg");
 }
 
 .sign-in-page,
 .home {
-  background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("library.jpeg");
+  background: linear-gradient(#f9f7f7bb 0%, #112d4e88  100%), url("images/library.jpeg");
 }
 
 .details-page {
@@ -402,9 +405,9 @@ ul {
   justify-content: center;
 }
 
+.reading-plan-container,
 .results-container,
 .library-container,
-.reading-plan-container,
 .rl-container {
   margin-top: 4.5rem;
   width: 100%;
@@ -508,7 +511,7 @@ ul {
 }
 
 .card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
+  background: linear-gradient(-120deg, #f9f7f7 0%, #dbe2ef 50%, #a8dadc 100%);
   display: flex;
   flex-direction: column;
   margin: 0.75rem;
@@ -530,11 +533,11 @@ ul {
 }
 
 .library-card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 100%);
+  background: linear-gradient(-120deg, #f9f7f7 0%, #dbe2ef 50%, #3f72af 100%);
 }
 
 .rl-card {
-  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 45%, #3f72af 100%);
+  background: linear-gradient(120deg, #f9f7f7 0%, #dbe2ef 65%, #3f72af 100%);
 }
 
 .no-underline {
@@ -589,6 +592,7 @@ ul {
 }
 
 .reading-plan-form {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -599,6 +603,7 @@ ul {
 
 .button,
 .text-box,
+.select-box,
 .adv-text-box {
   font-family: 'Montserrat', sans-serif;
   border-radius: 0.75rem;
@@ -608,6 +613,7 @@ ul {
   outline: none;
 }
 
+.select-box,
 .text-box {
   background-color: #f9f7f7;
   width: 230px;
@@ -615,6 +621,7 @@ ul {
   margin: 1rem 0 2rem 0;
   color: #112d4e;
   text-align: center;
+  text-indent: 0.5rem;
 }
 
 .submit {
@@ -1122,7 +1129,7 @@ ul {
   height: 300px;
   width: 200px;
   position: absolute;
-  background: linear-gradient(#f9f7f773 0%, #e639477e 100%), url('book-cover.jpeg');
+  background: linear-gradient(#f9f7f773 0%, #e639477e 100%), url('images/book-cover.jpeg');
   background-size: 200px;
   box-shadow: 0 2px 5px #112d4e9c;
   border: 1px solid #112d4e9c;
