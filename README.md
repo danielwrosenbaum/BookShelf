@@ -1,7 +1,7 @@
 # BookShelf
 
 A full stack JavaScript application for readers who want to keep track of what they’ve read and add new books to a reading list.
-<img width="692" alt="Screen Shot 2021-05-13 at 3 13 54 PM" src="https://user-images.githubusercontent.com/74999873/118194301-feed6280-b3fd-11eb-94b8-ee8bc19e29d5.png">
+<img width="450" alt="Screen Shot 2021-05-13 at 3 13 54 PM" src="https://user-images.githubusercontent.com/74999873/118194301-feed6280-b3fd-11eb-94b8-ee8bc19e29d5.png">
 
 
 ## Technologies & Tools Used
