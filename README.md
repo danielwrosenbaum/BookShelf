@@ -1,6 +1,6 @@
 # BookShelf
 
-A full stack mobile-first JavaScript application for readers who want to find new books to read, keep track of and rate books they've already read, and develop a reading plan for the books next on their list. 
+A full stack, mobile-first JavaScript application created in React for readers who want to find new books to read, keep track of and rate books they've already read, and develop a reading plan for the books next on their list. 
 
 <img width="450" alt="Screen Shot 2021-05-13 at 3 13 54 PM" src="https://user-images.githubusercontent.com/74999873/118194301-feed6280-b3fd-11eb-94b8-ee8bc19e29d5.png">
 
