@@ -35,6 +35,8 @@ A full stack mobile-first JavaScript application for readers who want to find ne
 9. User Can View Reading List
 10. User Can Delete Books from Library & Reading List
 11. User Can Create an Account
+12. User Can Sign In and Save books to their Account
+13. User Can View A Reading Plan for Books in their Reading List
 
 ## Examples
 
