@@ -40,9 +40,14 @@ A full stack, mobile-first JavaScript application created in React for readers w
 
 ## Examples
 
-![user can search](https://user-images.githubusercontent.com/74999873/115622739-1a58c800-a2ad-11eb-9cc0-2a31b6997d0e.gif) ![user can save and add](https://user-images.githubusercontent.com/74999873/115622765-26448a00-a2ad-11eb-9b5a-ddb79d9adc75.gif) 
+![bookshelf 1](https://user-images.githubusercontent.com/74999873/118195541-3fe67680-b400-11eb-9155-94c4deac0f23.gif). 
+![bookshelf 2](https://user-images.githubusercontent.com/74999873/118195732-9c499600-b400-11eb-86ab-71649a495628.gif). 
+![Bookshelf 3](https://user-images.githubusercontent.com/74999873/118195554-470d8480-b400-11eb-9529-eaea0760263d.gif). 
 
-![user can rate and delete](https://user-images.githubusercontent.com/74999873/115622810-32304c00-a2ad-11eb-91d3-5e8fd0a10e32.gif) ![user can view details and delete](https://user-images.githubusercontent.com/74999873/115622846-3c524a80-a2ad-11eb-8aff-89ae0076a21d.gif)
+![bookshelf 4](https://user-images.githubusercontent.com/74999873/118195565-4aa10b80-b400-11eb-8ee4-27201ef39e54.gif). 
+![bookshelf 5](https://user-images.githubusercontent.com/74999873/118195569-4c6acf00-b400-11eb-90ac-65f1cff9e5b4.gif). 
+![bookshelf 6](https://user-images.githubusercontent.com/74999873/118195839-d5820600-b400-11eb-89da-a5d677ef0980.gif)
+
 
 ## Development
 
