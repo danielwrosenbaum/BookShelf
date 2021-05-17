@@ -24,14 +24,6 @@ export default class Home extends React.Component {
     clearTimeout(this.changePage);
   }
 
-  renderChange() {
-    const { logoChange } = this.state;
-    if (!logoChange) {
-      this.changePage();
-    }
-
-  }
-
   render() {
     const { logoChange } = this.state;
     if (logoChange) {

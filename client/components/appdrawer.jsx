@@ -125,11 +125,9 @@ export default class AppDrawer extends React.Component {
                   }
                 </li>
               </ul>
-
             </div>
           </div>
         </div>
-
       </div>
     );
   }

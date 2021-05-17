@@ -27,6 +27,10 @@ export default class App extends React.Component {
     this.handleSignOut = this.handleSignOut.bind(this);
   }
 
+  // componentDidMount listens for a hashchange and then sets state with the parsed hash
+  // it grabs the value of the key "react-context-jwt" that was passed when signing in and assigns to variable token
+  // if there is a token, a user variable is created with the value of the decodetoken function with argument token
+  // that user is set to state and isAuthorizing is set to false
   componentDidMount() {
     window.addEventListener('hashchange', () => {
       this.setState({ route: parseRoute(window.location.hash) });

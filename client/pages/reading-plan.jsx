@@ -59,7 +59,7 @@ export default class ReadingPlan extends React.Component {
 
   handleReadingDays(event) {
     const { selectedPageCount } = this.state;
-    const readingDays = parseInt(event.target.value, 10);
+    const readingDays = (event.target.value) ? parseInt(event.target.value, 10) : '';
     const total = selectedPageCount / readingDays;
     this.setState({ readingDays: readingDays, pagesADay: total.toFixed(1) });
 
@@ -69,7 +69,7 @@ export default class ReadingPlan extends React.Component {
     const { result } = this.state;
     const bookId = event.target.value;
     const book = result.find(book => book.bookId === bookId);
-    this.setState({ selectedPageCount: book.pageCount, selectedBookId: book.bookId });
+    this.setState({ selectedPageCount: book.pageCount, selectedBookId: book.bookId, readingDays: '', pagesADay: '' });
   }
 
   handlePageCount(event) {
