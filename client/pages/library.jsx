@@ -99,7 +99,7 @@ export default class Library extends React.Component {
     fetch(`/api/bookShelf/library/${userId}`)
       .then(res => res.json())
       .then(result => {
-        this.setState({ result, isLoading: false });
+        this.setState({ isLoading: false, result });
       })
       .catch(error => {
         if (error) {

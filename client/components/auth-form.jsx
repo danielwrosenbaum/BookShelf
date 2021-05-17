@@ -14,7 +14,6 @@ export default class AuthForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {

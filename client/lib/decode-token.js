@@ -4,3 +4,5 @@ export default function decodeToken(token) {
   const payload = JSON.parse(jsonPayload);
   return payload;
 }
+
+// atob decodes a base-64 encoded string
