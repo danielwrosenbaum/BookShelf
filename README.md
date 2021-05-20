@@ -22,6 +22,7 @@ A full stack, mobile-first JavaScript application created in React for readers w
 ## Link
 
 [BookShelf](https://personal-book-manager.herokuapp.com/)
+[Video Demo](https://youtu.be/ZVSjqmPsxEA)
 
 ## Features
 
